@@ -30,8 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('user', UserController::class)->middleware('auth');
-Route::resource('car', CarController::class)->middleware('auth');
+Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
+Route::resource('car', CarController::class)->middleware(['auth', 'verified']);
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

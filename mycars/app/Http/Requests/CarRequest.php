@@ -22,13 +22,13 @@ class CarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'matricula'=> 'required|unique:cars',
-            'marca'=> 'required|',
-            'modelo'=> 'required',
-            'anio'=> 'required|integer',
-            'fecha_ultima_revision'=> 'required|date',
-            'foto'=> 'required|image',
-            'precio'=> 'required',
+            'matricula' => 'required|unique:cars,matricula,NULL,id,deleted_at,NULL',
+            'marca' => 'required|',
+            'modelo' => 'required',
+            'anio' => 'required|integer',
+            'fecha_ultima_revision' => 'required|date',
+            'foto' => 'required|image',
+            'precio' => 'required',
         ];
     }
 }
