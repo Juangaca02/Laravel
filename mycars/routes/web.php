@@ -33,5 +33,6 @@ Route::middleware('auth')->group(function () {
 Route::resource('user', UserController::class)->middleware(['auth', 'verified']);
 Route::resource('car', CarController::class)->middleware(['auth', 'verified']);
 
-
 require __DIR__ . '/auth.php';
+
+//Api
