@@ -25,7 +25,7 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen">
-        @include('layouts.navigation')
+        @include('layouts.navbar')
 
         <!-- Page Heading -->
         @if (isset($header))
@@ -41,6 +41,7 @@
             {{ $slot }}
         </main>
     </div>
+    <script src="{{ asset('../js/index.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>
 

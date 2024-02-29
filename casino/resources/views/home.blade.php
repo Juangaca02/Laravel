@@ -4,8 +4,12 @@
             <h2>────── EXPERIENCE THE RICHNESS ──────</h2>
             <h1>Win Big Playing Luxury Casino Games</h1>
             <p>Win a once-in-a-lifetime exclusive Experience!</p>
-            <button type="submit" class="btn-dorado  text-white font-medium rounded-lg text-sm px-4 py-2 text-center">Get
-                started</button>
+            @auth
+                
+            @else
+            <button type="submit"  
+            class="btn-dorado bg-dorado text-white font-medium rounded-lg text-sm px-4 py-2 text-center"><a href="{{ route('login') }}">Get started</a></button> 
+            @endauth
         </div>
     </div>
     <br><br>
