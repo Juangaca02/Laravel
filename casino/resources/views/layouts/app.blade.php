@@ -41,6 +41,7 @@
             {{ $slot }}
         </main>
     </div>
+    @include('layouts.footer')
     <script src="{{ asset('../js/index.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 </body>

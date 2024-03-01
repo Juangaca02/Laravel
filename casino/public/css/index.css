@@ -3,6 +3,10 @@ body {
     background-color: rgb(24, 24, 28);
 }
 
+section {
+    margin-top: 170px;
+}
+
 .dorado {
     color: rgb(159, 142, 98);
 }
@@ -18,9 +22,12 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: transparent; /* Fondo inicialmente transparente */
-    transition: background-color 0.3s ease; /* Transición suave */
-    z-index: 1000; /* Asegurar que la barra de navegación esté por encima de otros elementos */
+    background-color: transparent;
+    /* Fondo inicialmente transparente */
+    transition: background-color 0.3s ease;
+    /* Transición suave */
+    z-index: 1000;
+    /* Asegurar que la barra de navegación esté por encima de otros elementos */
 }
 
 .navbar.opaque {
