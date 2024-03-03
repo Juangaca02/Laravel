@@ -18,29 +18,35 @@
             <ul
                 class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 items-center">
                 <li>
-                    <a href="#"
+                    <a href="{{ route('home') }}"
                         class="cursor-pointer block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">Home</a>
                 </li>
                 @auth
+                    @if (Auth::user()->is_admin == '1')
+                        <li>
+                            <a href="{{ route('listUsers') }}"
+                                class="cursor-pointer block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
+                                List User
+                            </a>
+                        </li>
+                    @endif
                     <li>
-                        <a
-                            class="cursor-pointer block py-2 px-3  text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">Transaction</a>
+                        <a href="{{ route('transaction.index') }}"
+                            class="cursor-pointer block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">Transaction</a>
                     </li>
                     <li>
                         <a href="{{ route('userProfile') }}"
-                            class="cursor-pointer block py-2 px-3 mr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">Account</a>
+                            class="cursor-pointer block py-2 px-3 mr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600  md:p-0">Account</a>
                     </li>
                     <li>
                         <div class="dropdown text-white">
                             <p class="cursor-pointer"><span class="dorado">Name:</span> {{ Auth::user()->name }} </p>
                             <p class="cursor-pointer"><span class="dorado">Balance:</span> {{ Auth::user()->balance }} €</p>
-                            {{-- <div class="dropdown-content cursor-pointer dorado">
-              <a href=""
-                class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0">
-                Logout
-              </a>
-            </div> --}}
                         </div>
+                    </li>
+                    <li>
+                        <a
+                            class="cursor-pointer block py-2 px-3 text-white rounded hover:bg-transparent border-0 hover:text-red-700 p-0">Logout</a>
                     </li>
                 @else
                     <li>

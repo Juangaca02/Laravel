@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\BetController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +16,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', [HomeController::class, 'show'])->name('home');
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+//})->name('home');
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -38,5 +41,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('bet', BetController::class)->middleware(['auth', 'verified']);
+Route::resource('transaction', TransactionController::class)->middleware(['auth', 'verified']);
+
+Route::get('/listUsers', function () {
+    return view('listUsers/index');
+})->middleware(['auth', 'verified', 'admin'])->name('listUsers');
 
 require __DIR__ . '/auth.php';

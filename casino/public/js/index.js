@@ -1,4 +1,5 @@
-document.addEventListener("scroll", function() {
+// Navbar
+document.addEventListener("scroll", function () {
     var navbar = document.querySelector('.navbar');
     if (window.scrollY > 0) {
         navbar.classList.add('opaque');
@@ -6,3 +7,5 @@ document.addEventListener("scroll", function() {
         navbar.classList.remove('opaque');
     }
 });
+
+// Create Bets

@@ -12,6 +12,8 @@ export default {
     theme: {
         colors: {
             'dorado': '#9F8E62',
+            'doradoBoton1': '#836F3E',
+            'doradoBoton2': '#99996A',
         },
         extend: {
             fontFamily: {

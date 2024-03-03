@@ -2,29 +2,27 @@
 
 namespace App\Livewire;
 
-use App\Models\Car;
-use Livewire\Attributes\On;
+use App\Models\Bet;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Features\SupportPagination\WithoutUrlPagination;
 use Livewire\WithPagination;
 
-// #[On('actualizarLista')]
-//Se Puede poner en la clase entera y funciona en todos
-class CarForm extends Component
+class BetForm extends Component
 {
     use WithPagination, WithoutUrlPagination;
-    public $nombre;
     public $buscar;
-    public $campoOrden = "id";
+    public $campoOrden = "amount_bet";
     public $orden = "asc";
 
-    #[On('actualizarLista')]
     public function render()
     {
-        $cars = Car::where('marca', 'like', '%' . $this->buscar . '%')
-            ->orWhere('modelo', 'like', '%' . $this->buscar . '%')->
-            orderBy($this->campoOrden, $this->orden)->paginate(10);
-        return view('livewire.car-form')->with('cars', $cars);
+        // $bets = Bet::all()->where('user_id', Auth::user()->id);
+        // return view('livewire.bet-form')->with('bets', $bets);
+        $bets = Bet::where('user_id', Auth::id())
+            ->orderBy($this->campoOrden, $this->orden)
+            ->get();
+        return view('livewire.bet-form', compact('bets'));
     }
 
     public function ordenar($valor)

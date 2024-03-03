@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BetRequest;
 use App\Models\Bet;
+use App\Models\Game;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BetController extends Controller
 {
@@ -20,15 +24,29 @@ class BetController extends Controller
      */
     public function create()
     {
-        return view('bet.create');
+        $Games = Game::all();
+        return view('bet.create')->with('Games', $Games);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BetRequest $request)
     {
-        //
+        $request->validated();
+        try {
+            $newBet = new Bet();
+            $newBet->user_id = Auth::user()->id;
+            $newBet->game_id = $request->game_id;
+            $newBet->description_bet = $request->description_bet;
+            $newBet->amount_bet = $request->amount_bet;
+            $newBet->save();
+
+            return to_route('bet.index')->with('success', 'Bet created successfully');
+        } catch (QueryException $ex) {
+            return to_route('bet.index')->with('error', $ex->getMessage());
+            //return back()->with('error', $ex->getMessage());
+        }
     }
 
     /**
@@ -44,7 +62,7 @@ class BetController extends Controller
      */
     public function edit(Bet $bet)
     {
-        //
+        return 'edit';
     }
 
     /**

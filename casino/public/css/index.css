@@ -16,6 +16,15 @@ section {
     justify-content: center;
 }
 
+/* Estilo no aplicado */
+/* .botonGeneral {
+    background-image: linear-gradient(to right, rgb(131, 111, 62), rgb(153, 153, 106));
+} */
+
+.botonGeneral:hover {
+    background-image: linear-gradient(to right, rgb(136, 110, 46), rgb(156, 156, 79));
+}
+
 /*--------------NavBar------------*/
 .navbar {
     position: fixed;
@@ -80,9 +89,11 @@ section {
     /* Espacio entre el texto y el borde inferior de la imagen */
 }
 
-.btn-dorado {
+/* Estilo no aplicado */
+/* .btn-dorado {
     background-color: #9F8E62;
-}
+} */
+
 
 .btn-dorado:hover {
     background-color: rgb(87, 76, 48);
