@@ -40,7 +40,7 @@
                     </thead>
                     <tbody>
                         @foreach ($bets as $bet)
-                            @if ($bet->game_id == 2)
+                            @if ($bet->game_id == 1)
                                 <tr class="">
                                     <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                                         @php
@@ -54,7 +54,9 @@
                                     <td class="px-6 py-4">
                                         {{ $bet->amount_bet }} €
                                     </td>
-                                    @if ($bet->user_id == Auth::user()->id)
+                                    {{-- Auth::check() Verifica si hay un usuario autentificado y devuelve true o false,
+                                        haciendo que si el Auth::user() es null, no de fallo al no controlar dicho null --}}
+                                    @if (Auth::check() && $bet->user_id == Auth::user()->id)
                                         <td class="px-6 py-4">
                                             <a href="{{ route('bet.edit', ['bet' => $bet->id]) }}">
                                                 <button type="button"
@@ -96,7 +98,7 @@
                     </thead>
                     <tbody>
                         @foreach ($bets as $bet)
-                            @if ($bet->game_id == 1)
+                            @if ($bet->game_id == 2)
                                 <tr class="">
                                     <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                                         @php
@@ -110,7 +112,9 @@
                                     <td class="px-6 py-4">
                                         {{ $bet->amount_bet }} €
                                     </td>
-                                    @if ($bet->user_id == Auth::user()->id)
+                                    {{-- Auth::check() Verifica si hay un usuario autentificado y devuelve true o false,
+                                        haciendo que si el Auth::user() es null, no de fallo al no controlar dicho null --}}
+                                    @if (Auth::check() && $bet->user_id == Auth::user()->id)
                                         <td class="px-6 py-4">
                                             <a href="{{ route('bet.edit', ['bet' => $bet->id]) }}">
                                                 <button type="button"

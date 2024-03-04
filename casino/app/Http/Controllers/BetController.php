@@ -42,7 +42,7 @@ class BetController extends Controller
             $newBet->amount_bet = $request->amount_bet;
             $newBet->save();
 
-            return to_route('bet.index')->with('success', 'Bet created successfully');
+            return to_route('userProfile')->with('success', 'Bet created successfully');
         } catch (QueryException $ex) {
             return to_route('bet.index')->with('error', $ex->getMessage());
             //return back()->with('error', $ex->getMessage());
