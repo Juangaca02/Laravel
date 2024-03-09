@@ -33,9 +33,11 @@
                             <th scope="col" class="px-6 py-3">
                                 Balance
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                Option
-                            </th>
+                            @auth
+                                <th scope="col" class="px-6 py-3">
+                                    Option
+                                </th>
+                            @endauth
                         </tr>
                     </thead>
                     <tbody>
@@ -91,9 +93,11 @@
                             <th scope="col" class="px-6 py-3">
                                 Balance
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                Option
-                            </th>
+                            @auth
+                                <th scope="col" class="px-6 py-3">
+                                    Option
+                                </th>
+                            @endauth
                         </tr>
                     </thead>
                     <tbody>

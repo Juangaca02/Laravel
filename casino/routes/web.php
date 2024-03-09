@@ -39,10 +39,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::patch('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profileDelete', [ProfileController::class, 'destroyUser'])->name('profile.destroyUser');
+    Route::post('/profileCreateUser', [ProfileController::class, 'storeUser'])->name('profile.storeUser');
+    Route::patch('/profilepromoteToAdmin', [ProfileController::class, 'promoteToAdmin'])->name('profile.promoteToAdmin');
 });
 
 Route::resource('bet', BetController::class)->middleware(['auth', 'verified']);
 Route::resource('transaction', TransactionController::class)->middleware(['auth', 'verified']);
+Route::get('/report', [TransactionController::class, 'report'])->name('report');
 
 Route::get('/listUsers', function () {
     return view('listUsers.index');

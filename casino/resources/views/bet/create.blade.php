@@ -3,7 +3,7 @@
         <div class="grid grid-cols-2 text-white">
             <div class="flex justify-center items-center">
                 <div class="rounded-lg w-96">
-                    <a href="#" class="flex justify-center items-center mb-3">
+                    <a href="{{ route('home') }}" class="flex justify-center items-center mb-3">
                         <img class="h-20" src="{{ asset('storage/images/logo.png') }}" alt="logo">
                     </a>
                     <h1 class="text-xl font-bold leading-tight tracking-tight dorado md:text-2xl text-center mb-6">
@@ -52,7 +52,7 @@
             </div>
             <div class="flex justify-center items-center ">
                 <div class="rounded-lg w-96">
-                    <a href="#" class="flex justify-center items-center mb-6">
+                    <a href="{{ route('home') }}" class="flex justify-center items-center mb-6">
                         <img class="h-20" src="{{ asset('storage/images/logo.png') }}" alt="logo">
                     </a>
                     <h1 class="text-xl font-bold leading-tight tracking-tight dorado md:text-2xl text-center">

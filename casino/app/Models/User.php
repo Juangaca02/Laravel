@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function GameBelongsToMany()
     {
-        return $this->belongsToMany(Game::class, 'bet')->withPivot('description_bet', 'amaunt_bet');
+        return $this->belongsToMany(Game::class, 'bets')->withPivot('id', 'description_bet', 'amount_bet');
     }
 
 }

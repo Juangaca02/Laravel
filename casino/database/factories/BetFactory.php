@@ -32,8 +32,34 @@ class BetFactory extends Factory
         return [
             'user_id' => $this->faker->randomElement($userId),
             'game_id' => $this->faker->randomElement($gameId),
-            'description_bet' => $this->faker->sentence(3),
+            'description_bet' => $this->faker->sentence(1),
             'amount_bet' => $this->faker->numberBetween(10, 100),
         ];
     }
+
+    // $apuestas = [
+    //     'Straight Up' ,
+    //     'Split' ,
+    //     'Street' ,
+    //     'Corner o Square' ,
+    //     'Line o Double Street',
+    //     'Dozens',
+    //     'Columns',
+    //     'Rojo/Negro',
+    //     'Pares/Impares',
+    //     'Alto/Bajo',
+    // ];
+    // $tipos_apuestas = [
+    //     'Carta alta',
+    //     'Par',
+    //     'Doble par',
+    //     'Trio',
+    //     'Escalera',
+    //     'Color',
+    //     'Full',
+    //     'Poker',
+    //     'Escalera de color',
+    //     'Escalera real'
+    // ];
+
 }

@@ -35,10 +35,11 @@
                 <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)"
                     required autocomplete="username" />
                 <x-input-error class="mt-2" :messages="$errors->get('email')" />
-                <a href="{{ route('verification.notice') }}">
-                    <p class="underline dorado mt-4">Verificar Email</p>
-                </a>
-
+                @if (!$user->hasVerifiedEmail())
+                    <a href="{{ route('verification.notice') }}">
+                        <p class="underline dorado mt-4">Verificar Email</p>
+                    </a>
+                @endif
                 @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
                     <div>
                         <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">

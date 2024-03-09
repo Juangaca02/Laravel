@@ -1,4 +1,4 @@
-<footer class="mt-5">
+<footer class="mt-20">
     <div class=" py-4 text-gray-400">
         <div class="container px-4 mx-auto">
             <div class="-mx-4 flex flex-wrap justify-between">

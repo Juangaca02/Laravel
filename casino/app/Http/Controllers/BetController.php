@@ -34,15 +34,23 @@ class BetController extends Controller
     public function store(BetRequest $request)
     {
         $request->validated();
+        $user = Auth::user();
         try {
             $newBet = new Bet();
             $newBet->user_id = Auth::user()->id;
             $newBet->game_id = $request->game_id;
             $newBet->description_bet = $request->description_bet;
             $newBet->amount_bet = $request->amount_bet;
-            $newBet->save();
 
-            return to_route('userProfile')->with('successBet', 'Bet created successfully');
+            if ($user->balance < $request->amount_bet) {
+                return to_route('userProfile')->with('errorBet', 'Fondos Insuficientes');
+            } else {
+                $user->balance -= $request->amount_bet;
+                $user->save();
+                $newBet->save();
+            }
+
+            return to_route('userProfile')->with('successBet', 'Apuesta Creada Correctamente');
         } catch (QueryException $ex) {
             return to_route('userProfile')->with('errorBet', 'Error en la Base de Datos');
             //return back()->with('error', $ex->getMessage());
@@ -75,11 +83,30 @@ class BetController extends Controller
             'description_bet' => 'required',
             'amount_bet' => 'required',
         ]);
+        $lastBet = Bet::find($bet->id);
+        $user = Auth::user();
         try {
             $bet->description_bet = $request->description_bet;
             $bet->amount_bet = $request->amount_bet;
-            $bet->save();
-            return to_route('userProfile')->with('successBet', 'Apuesta Actualizada Correctamente');
+
+            if ($user->balance < $request->amount_bet) {
+                return to_route('userProfile')->with('errorBet', 'Fondos Insuficientes');
+            } else {
+                if ($lastBet->amount_bet > $bet->amount_bet) {
+                    $user->balance += $lastBet->amount_bet - $bet->amount_bet;
+                    $bet->save();
+                    $user->save();
+                    return to_route('userProfile')->with('successBet', 'Apuesta Actualizada Correctamente');
+                } else if ($lastBet->amount_bet < $bet->amount_bet) {
+                    $user->balance -= $bet->amount_bet - $lastBet->amount_bet;
+                    $bet->save();
+                    $user->save();
+                    return to_route('userProfile')->with('successBet', 'Apuesta Actualizada Correctamente');
+                }
+            }
+
+
+
         } catch (QueryException $ex) {
             return to_route('userProfile')->with('errorBet', 'Error en la Base de Datos');
         }
@@ -91,6 +118,9 @@ class BetController extends Controller
     public function destroy(Bet $bet)
     {
         try {
+            $user = Auth::user();
+            $user->balance += $bet->amount_bet;
+            $user->save();
             $bet->delete();
             return to_route('userProfile')->with('errorBet', 'Apuesta Borrada Correctamente');
         } catch (QueryException $ex) {

@@ -2,28 +2,30 @@
 
 namespace App\Livewire;
 
-use App\Models\Bet;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Features\SupportPagination\WithoutUrlPagination;
 use Livewire\WithPagination;
 
-class BetForm extends Component
+
+class ListUser extends Component
 {
     use WithPagination, WithoutUrlPagination;
+    public $buscar;
     public $campoOrden = "id";
     public $orden = "asc";
+    public $mostrar = false;
+
+    public function mostrarForm()
+    {
+        $this->mostrar = !$this->mostrar;
+    }
 
     public function render()
     {
-        $user = Auth::user();
-        $bets = $user->GameBelongsToMany()->orderBy($this->campoOrden, $this->orden)->paginate(5);
-        // $bets3 = Bet::where('user_id', Auth::id())
-        //     ->orderBy($this->campoOrden, $this->orden)
-        //     ->paginate(5);
-        //return view('livewire.bet-form', compact('bets'));
-        return view('livewire.bet-form')->with('bets', $bets);
+        $users = User::orderBy($this->campoOrden, $this->orden)->paginate(5);
+        return view('livewire.list-user', compact('users'));
     }
 
     public function ordenar($valor)

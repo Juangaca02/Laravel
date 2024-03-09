@@ -1,35 +1,39 @@
-<div>
-    {{-- If you look to others for fulfillment, you will never truly be fulfilled. --}}
-    <h2 class="font-semibold text-center text-xl dorado leading-tight">Your Transactions</h2>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        @if (session('updateTransaction'))
-            <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
-                {{ session('updateTransaction') }}
-            </div>
-        @endif
-        @if (session('errorTransaction'))
-            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
-                {{ session('errorTransaction') }}
-            </div>
-        @endif
-        @if ($transactions->isEmpty())
-            <div>
-                <p class="text-red-600">No hay transacciones</p>
-            </div>
-        @else
-            <div class="flex justify-end m-2">
-                <a href="{{ route('report') }}" class="botonGeneral rounded-lg px-4 py-2">Descargar PDF</a>
-            </div>
-            <table class="bg-white mt-4 w-full text-sm text-left rtl:text-right text-gray-500 ">
-                <thead class="bg-gray-800 text-xs text-white uppercase">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+    <!-- Enlace CDN para Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Enlace CDN para Flowbite -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flowbite@^1.2.0/dist/css/flowbite.min.css">
+
+    <link href="/css/index.css" rel="stylesheet">
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+<body class="font-sans antialiased">
+    <div class="">
+        <main>
+            <p class="text-3xl text-center">Lista de transacciones</p>
+            <table class="border border-black mt-4 w-full text-sm text-left rtl:text-right ">
+                <thead class="border border-black text-xs text-white uppercase">
                     <tr>
-                        <th scope="col" wire:click="ordenar('transaction_type')" class="px-6 py-3 cursor-pointer">
+                        <th scope="col" wire:click="ordenar('transaction_type')"
+                            class="border border-black px-6 py-3 cursor-pointer">
                             <div class="flex items-center">
-                                @if ($campoOrden == 'transaction_type')
-                                    <p class="text-red-600">Tipo de Transaction</p>
-                                @else
-                                    Tipo de Transaction
-                                @endif
+                                Tipo de Transaction
                                 <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     fill="currentColor" viewBox="0 0 24 24">
                                     <path
@@ -37,13 +41,10 @@
                                 </svg>
                             </div>
                         </th>
-                        <th scope="col" wire:click="ordenar('balance')" class="px-6 py-3 cursor-pointer">
+                        <th scope="col" wire:click="ordenar('balance')"
+                            class="border border-black px-6 py-3 cursor-pointer">
                             <div class="flex items-center">
-                                @if ($campoOrden == 'balance')
-                                    <p class="text-red-600">Balance</p>
-                                @else
-                                    Balance
-                                @endif
+                                Balance
                                 <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     fill="currentColor" viewBox="0 0 24 24">
                                     <path
@@ -51,13 +52,10 @@
                                 </svg>
                             </div>
                         </th>
-                        <th scope="col" wire:click="ordenar('created_at')" class="px-6 py-3 cursor-pointer">
+                        <th scope="col" wire:click="ordenar('created_at')"
+                            class="border border-black px-6 py-3 cursor-pointer">
                             <div class="flex items-center">
-                                @if ($campoOrden == 'created_at')
-                                    <p class="text-red-600">Fecha de Transaction</p>
-                                @else
-                                    Fecha de Transaction
-                                @endif
+                                Fecha de Transaction
                                 <svg class="w-3 h-3 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     fill="currentColor" viewBox="0 0 24 24">
                                     <path
@@ -69,25 +67,25 @@
                 </thead>
                 <tbody>
                     @foreach ($transactions as $transaction)
-                        <tr class="text-black">
-                            <th scope="row" class="font-bold px-6 py-4 font-medium whitespace-nowrap">
+                        <tr class="border border-black text-black">
+                            <th scope="row"
+                                class="border border-black font-bold px-6 py-4 font-medium whitespace-nowrap">
                                 {{ $transaction->transaction_type }}
                             </th>
-                            <td class="px-6 py-4">
+                            <td class="border border-black px-6 py-4 text-center">
                                 {{ $transaction->balance }} €
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="border border-black px-6 py-4 text-center">
                                 {{ $transaction->created_at }}
                             </td>
                         </tr>
                     @endforeach
-                    @if ($transactions->hasPages())
-                        <div>
-                            {{ $transactions->links() }}
-                        </div>
-                    @endif
                 </tbody>
             </table>
-        @endif
+        </main>
     </div>
-</div>
+    <script src="{{ asset('../js/index.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+</body>
+
+</html>

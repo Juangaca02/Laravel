@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,6 +12,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class ProfileController extends Controller
 {
@@ -57,7 +60,7 @@ class ProfileController extends Controller
         if (isset($request->image)) {
             try {
                 if ($user->image != "default.png") {
-                    Storage::delete(Str::replaceFirst("storage/images/", "", $user->image));
+                    Storage::delete("public/images/" . Str::replaceFirst("storage/images/", "", $user->image));
                 }
                 $userPhoto = time() . "-" . $request->file("image")->getClientOriginalName();
                 $user->image = $userPhoto;
@@ -94,4 +97,52 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function destroyUser(Request $request, User $user)
+    {
+        try {
+            User::findOrFail($request->user)->delete();
+            return Redirect::route('listUsers')->with('status', 'Usuario eliminado');
+        } catch (\Throwable $th) {
+            return Redirect::route('listUsers')->with('status', 'Usuario no eliminado');
+        }
+
+
+        //echo ($user);
+        //$user->delete();
+        //return Redirect::route('listUsers')->with('status', 'Usuario eliminado');
+    }
+
+    public function storeUser(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+        User::create([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'balance' => 0,
+            'is_admin' => false,
+        ]);
+        return Redirect::route('listUsers')->with('status', 'Usuario creado');
+    }
+
+    public function promoteToAdmin(Request $request)
+    {
+        try {
+            $user = User::findOrFail($request->user);
+            $user->is_admin = true;
+            $user->save();
+            return Redirect::route('listUsers')->with("status", 'User promoted successfully');
+        } catch (QueryException $ex) {
+            return Redirect::route('listUsers')->with("status", 'User could not be promoted');
+        }
+    }
+
+
 }

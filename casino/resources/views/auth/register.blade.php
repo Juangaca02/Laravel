@@ -20,12 +20,12 @@
 
     <link href="/css/index.css" rel="stylesheet">
 
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans antialiased">
     @include('layouts.navbar')
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center mt-20 ">
         <a href="/">
             <x-application-logo class="w-20 h-20 fill-current" />
         </a>
