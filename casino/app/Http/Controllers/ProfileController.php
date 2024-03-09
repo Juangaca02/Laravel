@@ -56,11 +56,10 @@ class ProfileController extends Controller
     public function updatePhoto(Request $request)
     {
         $user = Auth::user();
-        echo $request->image;
         if (isset($request->image)) {
             try {
                 if ($user->image != "default.png") {
-                    Storage::delete("public/images/" . Str::replaceFirst("storage/images/", "", $user->image));
+                    Storage::delete("public/images/" . $user->image);
                 }
                 $userPhoto = time() . "-" . $request->file("image")->getClientOriginalName();
                 $user->image = $userPhoto;
@@ -68,7 +67,7 @@ class ProfileController extends Controller
                 $user->save();
                 $msg = "Foto actualizada";
             } catch (QueryException $ex) {
-                $msg = "La foto ya existe";
+                $msg = "Error al actualizar la imagen";
             }
         } else {
             $msg = "No has seleccionado una Imagen";

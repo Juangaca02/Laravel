@@ -78,7 +78,6 @@ class BetController extends Controller
      */
     public function update(Request $request, Bet $bet)
     {
-        //dd($bet);
         $request->validate([
             'description_bet' => 'required',
             'amount_bet' => 'required',
