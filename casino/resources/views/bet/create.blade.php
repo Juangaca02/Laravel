@@ -20,22 +20,23 @@
                                 <label for="apuesta" class="block mb-2 text-md font-medium dorado">Apuesta:</label>
                                 <select name="description_bet" id="description_bet"
                                     class="mb-4 bg-gray-700 text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 block w-sm transition duration-75">
-                                    <option class="bg-gray-700" value="straight_up">Straight Up</option>
-                                    <option class="bg-gray-700" value="split">Split</option>
-                                    <option class="bg-gray-700" value="street">Street</option>
-                                    <option class="bg-gray-700" value="corner_square">Corner o Square</option>
-                                    <option class="bg-gray-700" value="line_double_street">Line o Double Street</option>
-                                    <option class="bg-gray-700" value="dozens">Dozens</option>
-                                    <option class="bg-gray-700" value="columns">Columns</option>
-                                    <option class="bg-gray-700" value="even_odd">Pares/Impares</option>
-                                    <option class="bg-gray-700" value="red_black">Rojo/Negro</option>
-                                    <option class="bg-gray-700" value="high_low">Alto/Bajo</option>
+                                    <option class="bg-gray-700" value="Straight Up">Straight Up</option>
+                                    <option class="bg-gray-700" value="Split">Split</option>
+                                    <option class="bg-gray-700" value="Street">Street</option>
+                                    <option class="bg-gray-700" value="Corner o Square">Corner o Square</option>
+                                    <option class="bg-gray-700" value="Line o Double Street">Line o Double Street
+                                    </option>
+                                    <option class="bg-gray-700" value="Dozens">Dozens</option>
+                                    <option class="bg-gray-700" value="Columns">Columns</option>
+                                    <option class="bg-gray-700" value="Pares/Impares">Pares/Impares</option>
+                                    <option class="bg-gray-700" value="Rojo/Negro">Rojo/Negro</option>
+                                    <option class="bg-gray-700" value="Alto/Bajo">Alto/Bajo</option>
                                 </select>
                             </li>
                             <li>
                                 <label for="amount_bet" class="block mb-2 text-md font-medium dorado">Cantidad:</label>
                                 <input type="number" name="amount_bet" id="amount_bet"
-                                    class="@error('amount_bet') is-invalid @enderror text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                    class="@error('amount_bet') is-invalid @enderror text-white  bg-gray-700 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                     placeholder="Amount" required>
                                 @error('amount_bet')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -57,29 +58,27 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight dorado md:text-2xl text-center">
                         Create Poker Bet
                     </h1>
-                    <form class="rounded-lg" action="#">
+                    <form class="rounded-lg" action="{{ route('bet.store') }}" method="POST">
                         @csrf
                         <ul>
-                            <li>
-                                <label for="name" class="block mb-2 text-md font-medium dorado">Nombre:</label>
-                                <input type="text" name="name" id="name"
-                                    class="mb-4 bg-gray-700 text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                    placeholder="Name" required="">
+                            <li class="hidden">
+                                <label for="game_id" class="block mb-2 text-md font-medium dorado">Nombre:</label>
+                                <input type="text" name="game_id" id="game_id" value="2">
                             </li>
                             <li>
                                 <label for="apuesta" class="block mb-2 text-md font-medium dorado">Apuesta:</label>
-                                <select
+                                <select name="description_bet" id="description_bet"
                                     class="mb-4 bg-gray-700 text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 block w-sm transition duration-75">
-                                    <option class="bg-gray-700" value="carta_alta">Carta alta</option>
-                                    <option class="bg-gray-700" value="par">Par</option>
-                                    <option class="bg-gray-700" value="doble_par">Doble par</option>
-                                    <option class="bg-gray-700" value="trio">Trio</option>
-                                    <option class="bg-gray-700" value="escalera">Escalera</option>
-                                    <option class="bg-gray-700" value="color">Color</option>
-                                    <option class="bg-gray-700" value="full">Full</option>
-                                    <option class="bg-gray-700" value="poker">Poker</option>
-                                    <option class="bg-gray-700" value="escalera_de_color">Escalera de color</option>
-                                    <option class="bg-gray-700" value="escalera_real">Escalera real</option>
+                                    <option class="bg-gray-700" value="Carta Alta">Carta alta</option>
+                                    <option class="bg-gray-700" value="Par">Par</option>
+                                    <option class="bg-gray-700" value="Doble par">Doble par</option>
+                                    <option class="bg-gray-700" value="Trio">Trio</option>
+                                    <option class="bg-gray-700" value="Escalera">Escalera</option>
+                                    <option class="bg-gray-700" value="Color">Color</option>
+                                    <option class="bg-gray-700" value="Full">Full</option>
+                                    <option class="bg-gray-700" value="Poker">Poker</option>
+                                    <option class="bg-gray-700" value="Escalera de color">Escalera de color</option>
+                                    <option class="bg-gray-700" value="Escalera real">Escalera real</option>
                                 </select>
                             </li>
                             <li>

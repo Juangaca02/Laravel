@@ -2,27 +2,25 @@
 
 namespace App\Livewire;
 
-use App\Models\Bet;
-use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Features\SupportPagination\WithoutUrlPagination;
 use Livewire\WithPagination;
 
-class BetForm extends Component
+class TransactionForm extends Component
 {
     use WithPagination, WithoutUrlPagination;
-    public $campoOrden = "game_id";
+    public $buscar;
+    public $campoOrden = "created_at";
     public $orden = "asc";
 
     public function render()
     {
-        $bets2 = User::find(Auth::id());
-        $bets3 = $bets2->GameBelongsToMany()->wherePivot('description_bet', 'amaunt_bet');
-        $bets = Bet::where('user_id', Auth::id())
+        $transactions = Transaction::where('user_id', Auth::id())
             ->orderBy($this->campoOrden, $this->orden)
             ->paginate(5);
-        return view('livewire.bet-form', compact('bets'));
+        return view('livewire.transaction-form', compact('transactions'));
     }
 
     public function ordenar($valor)

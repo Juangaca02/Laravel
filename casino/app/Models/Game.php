@@ -15,4 +15,9 @@ class Game extends Model
         'name',
         'descripcion',
     ];
+
+    public function betBTM()
+    {
+        return $this->belongsToMany(User::class, 'bet')->withPivot('description_bet', 'amaunt_bet');
+    }
 }

@@ -18,5 +18,14 @@ class Bet extends Model
         'amount_bet',
     ];
 
+    public function currentOwner()
+    {
+        return $this->belongsTo(User::class, 'current_owner_id');
+    }
+
+    public function sponsors()
+    {
+        return $this->belongsToMany(User::class, 'sponsors')->withPivot("status");
+    }
 
 }

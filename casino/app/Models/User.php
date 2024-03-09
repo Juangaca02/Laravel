@@ -46,4 +46,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function transactionHasMany()
+    {
+        return $this->hasMany(Transaction::class, 'user_id');
+    }
+
+    public function GameBelongsToMany()
+    {
+        return $this->belongsToMany(Game::class, 'bet')->withPivot('description_bet', 'amaunt_bet');
+    }
+
 }

@@ -42,9 +42,9 @@ class BetController extends Controller
             $newBet->amount_bet = $request->amount_bet;
             $newBet->save();
 
-            return to_route('userProfile')->with('success', 'Bet created successfully');
+            return to_route('userProfile')->with('successBet', 'Bet created successfully');
         } catch (QueryException $ex) {
-            return to_route('bet.index')->with('error', $ex->getMessage());
+            return to_route('userProfile')->with('errorBet', 'Error en la Base de Datos');
             //return back()->with('error', $ex->getMessage());
         }
     }
@@ -62,7 +62,7 @@ class BetController extends Controller
      */
     public function edit(Bet $bet)
     {
-        return 'edit';
+        return view('bet.edit')->with('bet', $bet);
     }
 
     /**
@@ -70,7 +70,19 @@ class BetController extends Controller
      */
     public function update(Request $request, Bet $bet)
     {
-        //
+        //dd($bet);
+        $request->validate([
+            'description_bet' => 'required',
+            'amount_bet' => 'required',
+        ]);
+        try {
+            $bet->description_bet = $request->description_bet;
+            $bet->amount_bet = $request->amount_bet;
+            $bet->save();
+            return to_route('userProfile')->with('successBet', 'Apuesta Actualizada Correctamente');
+        } catch (QueryException $ex) {
+            return to_route('userProfile')->with('errorBet', 'Error en la Base de Datos');
+        }
     }
 
     /**
@@ -78,6 +90,11 @@ class BetController extends Controller
      */
     public function destroy(Bet $bet)
     {
-        //
+        try {
+            $bet->delete();
+            return to_route('userProfile')->with('errorBet', 'Apuesta Borrada Correctamente');
+        } catch (QueryException $ex) {
+            return to_route('userProfile')->with('errorBet', 'Error en la Base de Datos');
+        }
     }
 }

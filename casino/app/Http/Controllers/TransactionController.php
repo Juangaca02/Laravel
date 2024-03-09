@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionRequest;
 use App\Models\Transaction;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -26,9 +29,19 @@ class TransactionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TransactionRequest $request)
     {
-        //
+        $request->validated();
+        try {
+            $newTransaction = new Transaction();
+            $newTransaction->user_id = Auth::user()->id;
+            $newTransaction->transaction_type = $request->transaction_type;
+            $newTransaction->balance = $request->balance;
+            $newTransaction->save();
+            return to_route('transaction.index')->with('success', 'Transaction created successfully');
+        } catch (QueryException $ex) {
+            return to_route('transaction.index')->with('error', $ex->getMessage());
+        }
     }
 
     /**

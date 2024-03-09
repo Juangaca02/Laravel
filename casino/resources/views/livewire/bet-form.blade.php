@@ -1,9 +1,24 @@
 <div>
     {{-- If your happiness depends on money, you will never be happy with yourself. --}}
-    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Your Bets</h2>
+    <h2 class="font-semibold text-center text-xl dorado leading-tight">Your Bets</h2>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        @if (session('successBet'))
+            <x-my-alert textColor="text-green-800" bgColor="bg-green-50">
+                {{ session('successBet') }}
+            </x-my-alert>
+        @endif
+        @if (session('errorBet'))
+            <x-my-alert textColor="text-red-800" bgColor="bg-red-50">
+                {{ session('errorBet') }}
+            </x-my-alert>
+        @endif
+        {{-- @if ($bets->isEmpty())
+            <div>
+                <p class="text-red-600">No hay apuestas</p>
+            </div>
+        @else --}}
+        <table class="mt-4 w-full text-sm text-left rtl:text-right text-gray-500 ">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-400 ">
                 <tr>
                     <th scope="col" wire:click="ordenar('user_id')" class="px-6 py-3 cursor-pointer">
                         <div class="flex items-center">
@@ -61,9 +76,8 @@
             </thead>
             <tbody>
                 @foreach ($bets as $bet)
-                    <tr class="bg-white bordenar-b dark:bg-gray-800 dark:bordenar-gray-700">
-                        <th scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <tr class="bg-white ">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             @php
                                 $user = App\Models\User::find($bet->user_id);
                             @endphp
@@ -84,7 +98,7 @@
                         <td class="px-6 py-4">
                             <a href="{{ route('bet.edit', ['bet' => $bet->id]) }}">
                                 <button type="button"
-                                    class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                                     Editar
                                 </button>
                             </a>
@@ -93,14 +107,22 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                                     Eliminar
                                 </button>
                             </form>
                         </td>
                     </tr>
                 @endforeach
+
+                @if ($bets->hasPages())
+                    <div>
+                        {{ $bets->links() }}
+                    </div>
+                @endif
             </tbody>
         </table>
+        {{-- @endif --}}
+
     </div>
 </div>

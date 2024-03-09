@@ -37,6 +37,7 @@ Route::get('/userProfile', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
@@ -44,7 +45,7 @@ Route::resource('bet', BetController::class)->middleware(['auth', 'verified']);
 Route::resource('transaction', TransactionController::class)->middleware(['auth', 'verified']);
 
 Route::get('/listUsers', function () {
-    return view('listUsers/index');
+    return view('listUsers.index');
 })->middleware(['auth', 'verified', 'admin'])->name('listUsers');
 
 require __DIR__ . '/auth.php';

@@ -1,6 +1,6 @@
 <x-app-layout>
-    <section class="flex relative">
-        <div class="border border-white rounded-lg ml-20 mr-20 max-w-lg">
+    <section class="flex relative container mx-auto">
+        <div class="border border-white rounded-lg ml-40 mr-20 max-w-lg">
             <div class="px-4 py-5 sm:px-6">
                 <h3 class="text-lg leading-6 font-medium dorado">
                     Your Profile
@@ -9,6 +9,10 @@
             <div class="px-4 py-5 sm:p-0">
                 <table class="text-sm text-left rtl:text-right text-white">
                     <tbody>
+                        <tr>
+                            <img class="w-56 max-h-56 max-w-56 min-h-56 min-w-56 mx-auto"
+                                src="{{ Storage::url('images/' . Auth::user()->image) }}" alt="">
+                        </tr>
                         <tr>
                             <th class="px-3 py-2 text-sm font-medium dorado">
                                 Full Name
@@ -49,11 +53,6 @@
                         </a>
                     </button>
                 </div>
-            </div>
-            <div class="px-4 py-3 sm:px-6">
-                <h3 class="text-center text-lg leading-6 font-medium dorado">
-                    Delete User
-                </h3>
             </div>
         </div>
         <div class="">
