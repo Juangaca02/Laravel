@@ -1,3 +1,21 @@
+/*--------------NavBar------------*/
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    /* Fondo inicialmente transparente */
+    transition: background-color 0.3s ease;
+    /* Transición suave */
+    z-index: 1000;
+    /* Asegurar que la barra de navegación esté por encima de otros elementos */
+}
+
+.navbar.opaque {
+    background-color: rgb(24, 24, 28, 0.8);
+}
+
 /*------------------------------------------Home------------------------------------------*/
 section {
     background-color: black;
@@ -7,15 +25,15 @@ section {
 /*-------------------------------------Carrousel-Home-------------------------------------*/
 .bg-image {
     position: relative;
-    background-image: url('../storage/Images/Images-Home/TopHome.png');
-    background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-    min-height: 850px;
-    /* Ajusta el valor según tus necesidades */
     color: rgb(229, 206, 182);
-    /* Cambia el color del texto */
     text-align: center;
+    /* Cambia el color del texto */
+    /* background-image: url('../storage/Images/Images-Home/TopHome.png'); */
+    /* background-size: cover; */
+    /* background-attachment: fixed; */
+    /* min-height: 800px; */
+    /* Ajusta el valor según tus necesidades */
     /* background-color: rgba(0, 0, 0, 0.75); */
     /* Alinea el texto al centro */
 }
@@ -34,18 +52,26 @@ section {
     /* Ajusta el valor alpha para ajustar la opacidad */
 }
 
+@media screen and (max-width: 768px) {
+    .overlay {
+        padding: 20px;
+        padding-top: 100px;
+    }
+}
+
+
+
 /* Estilos para el texto */
-.bg-image h2 {
+/* .bg-image h2 {
     color: rgb(220, 143, 105);
     font-size: 32px;
     /* Tamaño de fuente */
-}
 
-.bg-image h1 {
+
+/*¡ .bg-image h1 {
     font-family: 'Cinzel';
     color: rgb(159, 142, 98);
     font-size: 50px;
-    /* Tamaño de fuente */
-    margin-bottom: 20px;
+    /* Tamaño de fuente 
+    margin-bottom: 20px; 
     /* Espacio entre el texto y el borde inferior de la imagen */
-}

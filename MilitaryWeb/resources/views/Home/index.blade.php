@@ -1,16 +1,25 @@
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+<script src="{{ asset('js/index.js') }}"></script>
+@include('layouts.navigation2')
 <x-pagina-sin-nada-layout>
     <div class="bg-image">
+        <figure>
+            <img src="{{ asset('/storage/Images/Images-Home/TopHome.png') }}" alt="">
+            {{-- <figcaption></figcaption> --}}
+        </figure>
         <div class="overlay">
-            <h2>────── EXPERIENCE THE RICHNESS ──────</h2>
-            <h1>Win Big Playing Luxury Casino Games</h1>
-            <p>Win a once-in-a-lifetime exclusive Experience!</p>
+            <h1 class="text-2xl text-yellow-500 " >En la línea del deber, cada decisión cuenta</h1>
+            <h2 class="text-5xl inline-block bg-gradient-to-r from-yellow-500 via-white to-blue-500 bg-clip-text text-transparent py-1">Bienvenido a Military Web</h2>
+            <h3 class="text-xl text-blue-500 " >Preparados para el deber, informados para la victoria</h3>
         </div>
+        <button type="submit"
+                    class="ms-4 inline-flex items-center px-4 py-2 bg-gradient-to-r from-doradoBoton1 to-doradoBoton2 botonGeneral rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                    REENVIAR CORREO DE VERIFICACIÓN
+                </button>
     </div>
     <section>
-        <br><br>
         <div>
-            <p class="text-center">
+            <p class="text-center text-white ">
                 Para un proyecto Laravel donde necesitas almacenar imágenes que serán estáticas y siempre las mismas,
                 hay
                 varias opciones que podrías considerar:
