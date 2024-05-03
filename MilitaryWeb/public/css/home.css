@@ -16,13 +16,14 @@
     background-color: rgb(24, 24, 28, 0.8);
 }
 
-/*------------------------------------------Home------------------------------------------*/
-section {
+/*-------------------------------------Home-Principal-------------------------------------*/
+.home-Principal {
     background-color: black;
     background-image: linear-gradient(to bottom, rgba(0, 1, 1, 0.5), rgb(34, 57, 72));
 }
 
 /*-------------------------------------Carrousel-Home-------------------------------------*/
+/*----------------------------------------En-Desuso---------------------------------------*/
 .bg-image {
     position: relative;
     background-position: center;
@@ -40,7 +41,7 @@ section {
 
 /* Superpone un div semi-transparente encima de la imagen */
 .overlay {
-    padding: 200px;
+    /* padding: 200px; */
     /* Ajusta el valor según tus necesidades */
     position: absolute;
     top: 0;
@@ -58,20 +59,3 @@ section {
         padding-top: 100px;
     }
 }
-
-
-
-/* Estilos para el texto */
-/* .bg-image h2 {
-    color: rgb(220, 143, 105);
-    font-size: 32px;
-    /* Tamaño de fuente */
-
-
-/*¡ .bg-image h1 {
-    font-family: 'Cinzel';
-    color: rgb(159, 142, 98);
-    font-size: 50px;
-    /* Tamaño de fuente 
-    margin-bottom: 20px; 
-    /* Espacio entre el texto y el borde inferior de la imagen */

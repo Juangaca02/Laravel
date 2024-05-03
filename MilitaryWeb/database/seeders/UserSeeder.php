@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
                 'surname' => 'García Castro',
                 'sex' => 'M',
                 'birthdate' => '1990-05-15',
-                'password' => 12345678, //bcrypt('contraseña123'), // Asegúrate de cifrar la contraseña correctamente
+                'password' => bcrypt(12345678), //bcrypt('contraseña123'), // Asegúrate de cifrar la contraseña correctamente
                 'email' => 'juan@gmail.com',
                 'phone' => 123456789,
                 'town' => 'Madrid',
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
                 'surname' => 'Fernandez Pino',
                 'sex' => 'M',
                 'birthdate' => '1989-05-16',
-                'password' => 12345678, //bcrypt('contraseña123'), // Asegúrate de cifrar la contraseña correctamente
+                'password' => bcrypt(12345678), //bcrypt('contraseña123'), // Asegúrate de cifrar la contraseña correctamente
                 'email' => 'pino@gmail.com',
                 'phone' => 123456789,
                 'town' => 'Malaga',
@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
                 'surname' => 'Aguayo Guerrero',
                 'sex' => 'M',
                 'birthdate' => '1990-08-21',
-                'password' => 12345678, //bcrypt('contraseña123'), // Asegúrate de cifrar la contraseña correctamente
+                'password' => bcrypt(12345678), //bcrypt('contraseña123'), // Asegúrate de cifrar la contraseña correctamente
                 'email' => 'aguayo@gmail.com',
                 'phone' => 123456789,
                 'town' => 'Barcelona',
