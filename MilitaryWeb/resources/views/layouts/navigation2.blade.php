@@ -1,12 +1,35 @@
 <nav class="navbar navbar-fixed w-full z-10">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        
-        
-        
+        <a href="{{ route('home') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="{{ asset('storage/images/MilitaryWebLogo.png') }}" class="h-20" alt="Flowbite Logo" />
+            <span class="text-white text-2xl font-semibold ">MilitaryWeb</span>
+        </a>
         <div class="hidden sm:flex sm:items-center sm:ms-6">
-            <ul
-                class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 items-center">
-                
+            <ul class="flex font-medium p-4 md:p-0 mt-4 rounded-lg md:space-x-8 rtl:space-x-reverse items-center">
+                @auth
+                    <li>
+                        <a href="{{ route('home') }}"
+                            class="cursor-pointer block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
+                            Home
+                        </a>
+                    </li>
+                    @if (Auth::user()->rol_id == 2)
+                        <li>
+                            <a href=""
+                                class="cursor-pointer block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
+                                List Admin
+                            </a>
+                        </li>
+                    @endif
+                    @if (Auth::user()->range_id > 5)
+                        <li>
+                            <a href=""
+                                class="cursor-pointer block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
+                                List Soldier
+                            </a>
+                        </li>
+                    @endif
+                @else
                     <a href="{{ route('login') }}"
                         class="font-semibold text-white hover:text-yellow-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                         Login</a>
@@ -16,6 +39,7 @@
                             Register
                         </a>
                     @endif
+                @endauth
             </ul>
         </div>
     </div>

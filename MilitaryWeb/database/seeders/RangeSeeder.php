@@ -15,6 +15,11 @@ class RangeSeeder extends Seeder
     {
         $rangeData = [
             [
+                'name' => 'Sin Definir',
+                'description' => 'Sin Definir',
+                'icon' => 'Sin Definir',
+            ],
+            [
                 'name' => 'Soldado',
                 'description' => 'Soldado raso en el ejército español',
                 'icon' => 'soldado-icon.png',

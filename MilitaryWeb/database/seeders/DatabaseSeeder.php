@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             DestinationSeeder::class,
             ArmySeeder::class,
-            RangeSeeder::class,
             RolSeeder::class,
             UserSeeder::class,
             MissionSeeder::class,

@@ -15,6 +15,11 @@ class ArmySeeder extends Seeder
     {
         $armyData = [
             [
+                'name' => 'Sin Definir',
+                'description' => 'Sin Definir',
+                'icon' => 'Sin Definir',
+            ],
+            [
                 'name' => 'Ejército de Tierra',
                 'description' => 'El Ejército de Tierra es la rama terrestre de las Fuerzas Armadas españolas, encargada de llevar a cabo operaciones militares en tierra.',
                 'icon' => 'ejercito-tierra.png',
