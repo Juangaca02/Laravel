@@ -60,6 +60,30 @@ class User extends Authenticatable
      */
     public function missions()
     {
-        return $this->belongsToMany(Mission::class, 'user_mission');
+        return $this->belongsToMany(Mission::class, 'user_mission')->withPivot('status');
+    }
+
+    /**
+     * 
+     */
+    public function army()
+    {
+        return $this->belongsTo(Army::class);
+    }
+
+    /**
+     * 
+     */
+    public function rol()
+    {
+        return $this->belongsTo(Rol::class);
+    }
+
+    /**
+     * 
+     */
+    public function range()
+    {
+        return $this->belongsTo(Range::class);
     }
 }

@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Destination extends Model
 {
     use HasFactory;
+
+    /**
+     * 
+     */
+    public function missions()
+    {
+        return $this->hasMany(Mission::class);
+    }
 }

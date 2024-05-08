@@ -1,23 +1,26 @@
 <section class="home-Naval flex flex-col text-white">
     <article class="m-[100px] flex flex-col-reverse lg:flex-row items-center space-x-5 ">
         <div class="w-full lg:w-2/3">
-            <p class="text-white text-[27px] font-bold">Nuestra plataforma está diseñada para brindar a los miembros
-                del ejército acceso rápido y seguro a información crucial sobre posibles destinos de guerra, bases
-                militares y más. Ya sea que estés preparándote para una misión importante o simplemente necesites
-                mantenerte informado sobre los acontecimientos actuales, estamos aquí para ayudarte.</p>
+            <p class="text-white text-[27px] font-bold">
+                @php
+                    echo Auth::user()->name;
+                    echo Auth::user()->pivot->title;
+                @endphp
+
+            </p>
         </div>
         <div class="w-full lg:w-1/2 mb-5 lg:mb-0">
             <figure class="flex items-center justify-center">
-                <img class="rounded-3xl max-h-[375px]"
-                    src="{{ asset('/storage/Images/Images-Home/PlaneHome.jpg') }}" alt="">
+                <img class="rounded-3xl max-h-[375px]" src="{{ asset('/storage/Images/Images-Home/PlaneHome.jpg') }}"
+                    alt="">
             </figure>
         </div>
     </article>
     <article class="m-[100px] flex flex-col lg:flex-row items-center space-x-5">
         <div class="w-full lg:w-1/2 mb-5 lg:mb-0">
             <figure class="flex items-center justify-center">
-                <img class="rounded-3xl max-h-[375px]"
-                    src="{{ asset('/storage/Images/Images-Home/MilitaryBase.jpg') }}" alt="">
+                <img class="rounded-3xl max-h-[375px]" src="{{ asset('/storage/Images/Images-Home/MilitaryBase.jpg') }}"
+                    alt="">
             </figure>
         </div>
         <div class="w-full lg:w-1/2">

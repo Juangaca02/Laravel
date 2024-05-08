@@ -9,8 +9,27 @@ class Mission extends Model
 {
     use HasFactory;
 
+    /**
+     * 
+     */
+    public function army()
+    {
+        return $this->belongsTo(Army::class);
+    }
+
+    /**
+     * 
+     */
+    public function destination()
+    {
+        return $this->belongsTo(Destination::class);
+    }
+
+    /**
+     * 
+     */
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_mission');
+        return $this->belongsToMany(User::class, 'user_missions');
     }
 }
