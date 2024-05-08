@@ -4,9 +4,10 @@
             <p class="text-white text-[27px] font-bold">
                 @php
                     echo Auth::user()->name;
-                    echo Auth::user()->pivot->title;
+                    foreach (Auth::user()->missions()->get() as $value) {
+                        echo $value->title;
+                    }
                 @endphp
-
             </p>
         </div>
         <div class="w-full lg:w-1/2 mb-5 lg:mb-0">
