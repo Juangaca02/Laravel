@@ -824,10 +824,42 @@
             }
         }
     </style>
+    {{-- <style>
+        .loading {
+            display: none;
+            /* Ocultar el elemento por defecto */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(32, 209, 16, 0.8);
+            text-align: center;
+            padding-top: 20%;
+            z-index: 9999;
+        }
+    </style> --}}
 </head>
 
 <body>
-    {{ $slot }}
+    {{-- <div class="loading" id="loading">Loading...</div>
+
+    <div id="main-content" style="display: none;"> --}}
+        {{ $slot }}
+    {{-- </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Mostrar el indicador de carga
+            document.getElementById("loading").style.display = "block";
+
+            // Ocultar el indicador de carga después de 4 segundos (4000 milisegundos)
+            setTimeout(function() {
+                document.getElementById("loading").style.display = "none";
+                // Mostrar el contenido principal después de que el indicador de carga se oculte
+                document.getElementById("main-content").style.display = "block";
+            }, 2000);
+        });
+    </script> --}}
 </body>
 
 </html>

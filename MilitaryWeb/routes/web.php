@@ -22,6 +22,15 @@ Route::get('/home', function () {
     return view('index');
 });
 
+Route::get('/createMission', function () {
+    return view('createMission');
+})->name('createMission');
+
+Route::get('/createMission', function () {
+    return view('mission.create');
+})->middleware(['auth', 'verified'])->name('createMission');
+
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

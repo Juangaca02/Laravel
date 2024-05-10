@@ -19,7 +19,6 @@ class MissionSeeder extends Seeder
                 'subtitle' => 'Infiltración en territorio enemigo',
                 'description' => 'Misión encubierta para obtener información crucial sobre las actividades enemigas.',
                 'date' => '2024-04-10',
-                'hours' => 8,
                 'status' => 'En progreso',
                 'type' => 'Reconocimiento',
                 'priority' => 'Alta',
@@ -35,7 +34,6 @@ class MissionSeeder extends Seeder
                 'subtitle' => 'Patrulla marítima',
                 'description' => 'Misión de vigilancia para asegurar las aguas territoriales y detectar actividades sospechosas.',
                 'date' => '2024-04-15',
-                'hours' => 12,
                 'status' => 'Planificado',
                 'type' => 'Patrulla',
                 'priority' => 'Media',
@@ -46,6 +44,22 @@ class MissionSeeder extends Seeder
                 'destination_id' => 2,
                 'user_id' => 2,
             ],
+            [
+                'title' => 'Operación Vigilancia Nocturna',
+                'subtitle' => 'Patrullaje en áreas sensibles',
+                'description' => 'Misión de vigilancia nocturna para monitorear actividades sospechosas en la frontera.',
+                'date' => '2024-05-05',
+                'status' => 'Pendiente',
+                'type' => 'Patrulla',
+                'priority' => 'Media',
+                'objective' => 'Detectar movimientos ilegales en la frontera',
+                'action' => 'Patrullaje sigiloso en áreas designadas',
+                'result' => 'Sin novedades hasta el momento',
+                'army_id' => 2,
+                'destination_id' => 4,
+                'user_id' => 2,
+            ],
+            
             // Puedes agregar más misiones aquí según tus necesidades
         ];
         Mission::insert($missionData);

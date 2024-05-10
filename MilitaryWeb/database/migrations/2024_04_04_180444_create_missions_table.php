@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->string('subtitle');
             $table->string('description');
             $table->date('date');
-            $table->integer('hours');
             $table->string('status');
             $table->string('type');
             $table->string('priority');
