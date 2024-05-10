@@ -88,6 +88,8 @@ class UserSeeder extends Seeder
             ],
             // Puedes agregar más usuarios aquí según tus necesidades
         ];
-        User::insert($userData);
+        foreach ($userData as $data) {
+            User::create($data);
+        }
     }
 }

@@ -23,6 +23,8 @@ class RolSeeder extends Seeder
                 'description' => 'Rol de administrador con privilegios ampliados. Tienen acceso completo a todas las funcionalidades del sistema y pueden gestionar usuarios, configuraciones y contenido.',
             ],
         ];
-        Rol::insert($rolData);
+        foreach ($rolData as $data) {
+            Rol::create($data);
+        }
     }
 }

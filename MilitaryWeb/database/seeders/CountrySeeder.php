@@ -158,6 +158,8 @@ class CountrySeeder extends Seeder
             ];
 
         // Inserta los datos en la tabla
-        Country::insert($countryData);
+        foreach ($countryData as $data) {
+            Country::create($data);
+        }
     }
 }

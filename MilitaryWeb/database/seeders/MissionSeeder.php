@@ -25,7 +25,7 @@ class MissionSeeder extends Seeder
                 'objective' => 'Recopilar datos sobre posiciones enemigas',
                 'action' => 'Infiltración sigilosa en territorio enemigo',
                 'result' => 'En progreso',
-                'army_id' => 1,
+                'army_id' => 3,
                 'destination_id' => 3,
                 'user_id' => 1,
             ],
@@ -55,13 +55,14 @@ class MissionSeeder extends Seeder
                 'objective' => 'Detectar movimientos ilegales en la frontera',
                 'action' => 'Patrullaje sigiloso en áreas designadas',
                 'result' => 'Sin novedades hasta el momento',
-                'army_id' => 2,
+                'army_id' => 3,
                 'destination_id' => 4,
                 'user_id' => 2,
             ],
-            
             // Puedes agregar más misiones aquí según tus necesidades
         ];
-        Mission::insert($missionData);
+        foreach ($missionData as $data) {
+            Mission::create($data);
+        }
     }
 }

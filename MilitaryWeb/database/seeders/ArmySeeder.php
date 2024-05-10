@@ -37,6 +37,8 @@ class ArmySeeder extends Seeder
         ];
 
         // Inserta los datos en la tabla
-        Army::insert($armyData);
+        foreach ($armyData as $data) {
+            Army::create($data);
+        }
     }
 }

@@ -69,6 +69,8 @@ class DestinationSeeder extends Seeder
             ];
 
         // Inserta los datos en la tabla
-        Destination::insert($destinationData);
+        foreach ($destinationData as $data) {
+            Destination::create($data);
+        }
     }
 }

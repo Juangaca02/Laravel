@@ -102,6 +102,8 @@ class RangeSeeder extends Seeder
         ];
 
         // Inserta los datos en la tabla
-        Range::insert($rangeData);
+        foreach ($rangeData as $data) {
+            Range::create($data);
+        }
     }
 }

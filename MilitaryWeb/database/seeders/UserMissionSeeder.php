@@ -19,6 +19,8 @@ class UserMissionSeeder extends Seeder
                 'mission_id' => '1',
             ],
         ];
-        User_Mission::insert($user_mission);
+        foreach ($user_mission as $data) {
+            User_Mission::create($data);
+        }
     }
 }
