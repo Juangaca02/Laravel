@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->string('objective');
             $table->string('action');
             $table->string('result');
+            $table->string('photo', 2048)->nullable();
             $table->unsignedBigInteger('army_id');
             $table->foreign('army_id')->references('id')->on('armies');
             $table->unsignedBigInteger('destination_id');
