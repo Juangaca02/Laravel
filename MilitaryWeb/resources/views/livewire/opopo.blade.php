@@ -3,7 +3,6 @@
         <div class="row g-3">
             <div class="col-xxl-5 col-sm-12">
                 <div class="search-box">
-                    <!-- <input type="text" class="form-control search bg-light border-light" placeholder="Search for tasks or something..."> -->
                     <input type="text" class="form-control search bg-light border-light" wire:model="search" placeholder="Buscar...">
                     <i class="ri-search-line search-icon"></i>
                 </div>
@@ -11,9 +10,7 @@
         </div>
     </div>
 
-
     <div class="card-body">
-
         <div class="table-responsive table-card mb-4">
             <table class="table text-start align-middle table-nowrap mb-0" id="tasksTable">
                 <thead class="table-light text-muted">

@@ -1,0 +1,59 @@
+.btn_deleteUser {
+    position: relative;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid #cc0000;
+    background-color: #e50000;
+    overflow: hidden;
+}
+
+.btn_deleteUser,
+.btn_deleteUser__icon,
+.btn_deleteUser__text {
+    transition: all 0.3s;
+}
+
+.btn_deleteUser .btn_deleteUser__text {
+    transform: translateX(35px);
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn_deleteUser .btn_deleteUser__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: #cc0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_deleteUser .svg {
+    width: 20px;
+}
+
+.btn_deleteUser:hover {
+    background: #cc0000;
+}
+
+.btn_deleteUser:hover .btn_deleteUser__text {
+    color: transparent;
+}
+
+.btn_deleteUser:hover .btn_deleteUser__icon {
+    width: 148px;
+    transform: translateX(0);
+}
+
+.btn_deleteUser:active .btn_deleteUser__icon {
+    background-color: #b20000;
+}
+
+.btn_deleteUser:active {
+    border: 1px solid #b20000;
+}

@@ -22,6 +22,10 @@ Route::get('/home', function () {
     return view('index');
 });
 
+Route::get('/prueba', function () {
+    return view('listuserarmy');
+});
+
 Route::get('/createMission', function () {
     return view('createMission');
 })->name('createMission');

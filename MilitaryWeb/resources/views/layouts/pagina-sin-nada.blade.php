@@ -839,9 +839,13 @@
             z-index: 9999;
         }
     </style> --}}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+<script src="{{ asset('js/index.js') }}"></script>
 </head>
 
+
 <body>
+    @include('layouts.navigation2')
     {{-- <div class="loading" id="loading">Loading...</div>
 
     <div id="main-content" style="display: none;"> --}}
