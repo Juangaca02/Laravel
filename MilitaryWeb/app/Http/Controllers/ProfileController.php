@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,4 +58,32 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+
+    public function verificarUser($id)
+    {
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['error' => 'Usuario no encontrado'], 404);
+        }
+
+        $verificar = request()->input('verificar', false);
+
+        $user->verified = $verificar;
+        $user->save();
+
+        return response()->json(['success' => 'Usuario actualizado correctamente']);
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['error' => 'Usuario no encontrado'], 404);
+        }
+        $user->delete();
+        return response()->json(['success' => 'Usuario eliminado correctamente']);
+    }
+
+
 }

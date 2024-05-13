@@ -840,7 +840,11 @@
         }
     </style> --}}
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-<script src="{{ asset('js/index.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/buttonDeleteUser.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/index.js') }}"></script>
+    <script src="{{ asset('js/buttonDeleteUser.js') }}"></script>
 </head>
 
 
@@ -849,7 +853,7 @@
     {{-- <div class="loading" id="loading">Loading...</div>
 
     <div id="main-content" style="display: none;"> --}}
-        {{ $slot }}
+    {{ $slot }}
     {{-- </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {

@@ -6,9 +6,9 @@
         </div>
         @Auth
             @if (Auth::user()->range_id >= 16)
-            <div class="flex justify-center my-5" >
-                <button onclick="window.location.href = '{{ route('login') }}';" class="buttonHome">Crear Mision</button>
-            </div>
+                <div class="flex justify-center my-5">
+                    <button onclick="window.location.href = '{{ route('login') }}';" class="buttonHome">Crear Mision</button>
+                </div>
             @else
             @endif
         @endauth
@@ -21,7 +21,7 @@
                     </div>
                     <div class="lg:flex">
                         <figure class="mx-10 flex flex-col justify-center text-center "><!--- max-w-[800px] --->
-                            <img class="rounded-3xl" src="{{ asset('/storage/Images/Images-Relleno/barco.jpg') }}"
+                            <img class="rounded-3xl" src="{{ asset('/storage/Images/ImagesRelleno/barco.jpg') }}"
                                 alt="">
                             <figcaption class="text-2xl italic mt-2">Buque insignia de la Armada</figcaption>
                         </figure>

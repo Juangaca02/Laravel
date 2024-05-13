@@ -40,37 +40,48 @@
                                 {{ $item->entry_army_date }}
                             </td>
                             <td class="text-center">
-                                {{ $item->verified }}
+                                <form action="/verificarUser/{{ $item->id }}" method="post">
+                                    @csrf
+                                    @method('post')
+                                    <input type="checkbox" class="verificar" data-id="{{ $item->id }}"
+                                        {{ $item->verified ? 'checked' : '' }}>
+                                </form>
                             </td>
                             <td class="text-center">
-                                <button class="btn_deleteUser" type="button">
-                                    <span class="btn_deleteUser__text">Delete</span>
-                                    <span class="btn_deleteUser__icon"><svg class="svg" height="512" viewBox="0 0 512 512"
-                                            width="512" xmlns="http://www.w3.org/2000/svg">
-                                            <title></title>
-                                            <path
-                                                d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320"
-                                                style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
-                                            </path>
-                                            <line
-                                                style="stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
-                                                x1="80" x2="432" y1="112" y2="112"></line>
-                                            <path
-                                                d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40"
-                                                style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
-                                            </path>
-                                            <line
-                                                style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
-                                                x1="256" x2="256" y1="176" y2="400"></line>
-                                            <line
-                                                style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
-                                                x1="184" x2="192" y1="176" y2="400"></line>
-                                            <line
-                                                style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
-                                                x1="328" x2="320" y1="176" y2="400"></line>
-                                        </svg>
-                                    </span>
-                                </button>
+                                <form action="/deleteUser/{{ $item->id }}" method="delete">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn_deleteUser rounded-xl" type="button"
+                                        onclick="confirmDelete({{ $item->id }})">
+                                        <span class="btn_deleteUser__text">Delete</span>
+                                        <span class="btn_deleteUser__icon">
+                                            <svg class="svg" height="512" viewBox="0 0 512 512" width="512"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <title></title>
+                                                <path
+                                                    d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320"
+                                                    style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
+                                                </path>
+                                                <line
+                                                    style="stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+                                                    x1="80" x2="432" y1="112" y2="112"></line>
+                                                <path
+                                                    d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40"
+                                                    style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px">
+                                                </path>
+                                                <line
+                                                    style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+                                                    x1="256" x2="256" y1="176" y2="400"></line>
+                                                <line
+                                                    style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+                                                    x1="184" x2="192" y1="176" y2="400"></line>
+                                                <line
+                                                    style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+                                                    x1="328" x2="320" y1="176" y2="400"></line>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @empty

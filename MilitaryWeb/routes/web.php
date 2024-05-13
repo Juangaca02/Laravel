@@ -26,6 +26,23 @@ Route::get('/prueba', function () {
     return view('listuserarmy');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Nuevo
+    Route::post('/verificarUser/{id}', [ProfileController::class, 'verificarUser'])->name('verificarUser');
+    Route::delete('/deleteUser/{id}', [ProfileController::class, 'deleteUser'])->name('deleteUser');
+});
+
+
+
+
+
+
+
+
+
 Route::get('/createMission', function () {
     return view('createMission');
 })->name('createMission');
@@ -39,10 +56,6 @@ Route::get('/createMission', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
 
 require __DIR__ . '/auth.php';

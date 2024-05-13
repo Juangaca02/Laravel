@@ -10,7 +10,8 @@ use Livewire\WithPagination;
 
 class UserTable extends Component
 {
-    use WithPagination, WithoutUrlPagination;
+
+    use WithPagination,WithoutUrlPagination;
 
     protected $queryString = [
         'search' => ['except' => ''],
@@ -23,15 +24,7 @@ class UserTable extends Component
 
     public function render()
     {
-        // Obtén el usuario autenticado
-        $currentUser = Auth::user();
-
-        // Filtra los usuarios para excluir al usuario autenticado
-        // y solo mostrar usuarios del mismo ejército
-        $allUsers = User::where('army_id', $currentUser->army_id)
-            ->where('id', '!=', $currentUser->id)
-            ->get();
-
+        $allUsers = User::all();
         return view('livewire.user-table')->with('allUsers', $allUsers);
     }
 
