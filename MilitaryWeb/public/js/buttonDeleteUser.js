@@ -50,7 +50,6 @@ $(document).ready(function () {
     });
 });
 
-
 function confirmDelete(userId) {
     // Mostrar SweetAlert para confirmar la acción
     Swal.fire({
