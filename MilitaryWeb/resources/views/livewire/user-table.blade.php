@@ -1,54 +1,43 @@
-<section class="bg-[#CE9568]">
-    {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
-    <div class="card-body border border-dashed border-end-0 border-start-0">
-        <div class="row g-3">
-            <div class="col-xxl-5 col-sm-12">
-                <div class="search-box">
-                    <input type="text" class="form-control search bg-light border-light" wire:model="search"
-                        placeholder="Buscar...">
-                    <i class="ri-search-line search-icon"></i>
-                </div>
+{{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
+<section class="bg-[#dbb186] border rounded-3xl border-transparent">
+    <div class="py-4 mx-[20px] md:mx-[100px]">
+        <div class="grid gap-3">
+            <div class="col-span-full xl:col-span-5">
+                <div class="relative">
+                    <input type="text" class="bg-[#CE9568] w-full p-2 rounded border-white placeholder-white" wire:model="search" placeholder="Buscar...">
+                </div>                
             </div>
         </div>
     </div>
-    <div class="card-body">
-        <div class="table-responsive table-card mb-4">
-            <table class="table text-start align-middle table-nowrap mb-0" id="tasksTable">
-                <thead class="table-light text-muted">
-                    <tr>
-                        <th class="">Nombre</th>
-                        <th class="">Apellidos</th>
-                        <th class="">Dni</th>
-                        <th class="">Fecha de alistamiento</th>
-                        <th class="">Vefiricado</th>
-                        <th class="">Opcines</th>
+    <div class="mx-[20px] md:mx-[100px]">
+        <div class="overflow-x-auto mb-4">
+            <table class="table-auto w-full text-left align-middle">
+                <thead class="bg-[#CE9568]">
+                    <tr class="">
+                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Nombre</th>
+                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Apellidos</th>
+                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Dni</th>
+                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Fecha de alistamiento</th>
+                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Verificado</th>
+                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Opciones</th>
                     </tr>
                 </thead>
-                <tbody class="list form-check-all">
+                <tbody class="list">
                     @forelse ($allUsers as $item)
-                        <tr>
-                            <td>
-                                {{ $item->name }}
-                            </td>
-                            <td>
-                                {{ $item->surname }}
-                            </td>
-                            <td>
-                                {{ $item->DNI }}
-                            </td>
-                            <td class="text-center">
-                                {{ $item->entry_army_date }}
-                            </td>
-                            <td class="text-center">
-                                <form action="/verificarUser/{{ $item->id }}" method="post">
+                        <tr class="" >
+                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">{{ $item->name }}</td>
+                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">{{ $item->surname }}</td>
+                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">{{ $item->DNI }}</td>
+                            <td class="text-start">{{ $item->entry_army_date }}</td>
+                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-start">
+                                <form action="/verificarUser/{{ $item->id }}" method="post" class="m-1 ml-2">
                                     @csrf
                                     @method('post')
-                                    <input type="checkbox" class="verificar" data-id="{{ $item->id }}"
-                                        {{ $item->verified ? 'checked' : '' }}>
+                                    <input type="checkbox" class="verificar" data-id="{{ $item->id }}" {{ $item->verified ? 'checked' : '' }}>
                                 </form>
                             </td>
-                            <td class="text-center">
-                                <form action="/deleteUser/{{ $item->id }}" method="delete">
+                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-start">
+                                <form action="/deleteUser/{{ $item->id }}" method="delete" class="m-1">
                                     @csrf
                                     @method('delete')
                                     <button class="btn_deleteUser rounded-xl" type="button"
@@ -86,13 +75,11 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="13" class="text-center text-danger text-5xl">No se encontraron resultados
-                                para : {{ $search }}
-                            </td>
+                            <td colspan="13" class="text-center text-red-500 text-5xl">No se encontraron resultados para : {{ $search }}</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
     </div>
-    </div>
+</section>

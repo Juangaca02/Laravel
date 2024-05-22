@@ -21,6 +21,11 @@ class UserTable extends Component
     public $tecnico = '';
     public $paginacion = 8;
 
+    public $buscar;
+    public $campoOrden = "name";
+    public $orden = "asc";
+    public $mostrar = false;
+
     public function render()
     {
         // Obtén el usuario autenticado
@@ -35,6 +40,10 @@ class UserTable extends Component
         return view('livewire.user-table')->with('allUsers', $allUsers);
     }
 
+    public function mostrarForm()
+    {
+        $this->mostrar = !$this->mostrar;
+    }
     public function ordenar($valor)
     {
         $this->campoOrden = $valor;

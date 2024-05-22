@@ -1,19 +1,19 @@
 /*----------------------------------------------------------------NavBar----------------------------------------------------------------*/
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: transparent;
+    position: fixed !important; 
+    top: 0 !important; 
+    left: 0 !important; 
+    width: 100% !important; 
+    background-color: transparent !important; 
     /* Fondo inicialmente transparente */
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease !important; 
     /* Transición suave */
-    z-index: 1000;
+    z-index: 1000 !important; 
     /* Asegurar que la barra de navegación esté por encima de otros elementos */
 }
 
 .navbar.opaque {
-    background-color: rgb(24, 24, 28, 0.8);
+    background-color: rgb(24, 24, 28, 0.8) !important; 
 }
 
 /*----------------------------------------------------------------Home-Principal----------------------------------------------------------------*/

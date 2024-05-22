@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ $title ?? 'Bienvenido a MilitaryWeb' }}</title>
 
@@ -11,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
     <!-- Styles -->
     <style>
         /* ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com */
@@ -839,6 +841,10 @@
             z-index: 9999;
         }
     </style> --}}
+    
+    {{-- No se si hace algo peor aqui esta --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buttonDeleteUser.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
