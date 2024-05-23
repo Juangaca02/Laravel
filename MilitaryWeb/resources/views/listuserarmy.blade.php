@@ -6,7 +6,7 @@
             alt="">
         {{-- <figcaption class="text-2xl italic mt-2">Buque insignia de la Armada</figcaption> --}}
     </figure>
-    <div class="m-5 " >
+    <div class="m-5">
         @livewire('user-table')
     </div>
     

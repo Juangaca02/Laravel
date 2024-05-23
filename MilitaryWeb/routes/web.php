@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MissionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,10 @@ Route::get('/home', function () {
     return view('index');
 });
 
-Route::get('/prueba', function () {
+// Ruta para mostrar soldados verificados en los ejercitos y no verificados que pertenecen al ejercito del usuario
+Route::get('/listSoldier', function () {
     return view('listuserarmy');
-});
+})->middleware(['range.more16','auth', 'verified'])->name('listSoldier');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -36,6 +38,9 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::get('/prueba', function () {
+    return view('createMissions');
+});
 
 
 

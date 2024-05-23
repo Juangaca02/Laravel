@@ -1,3 +1,5 @@
+@props(['navbarType' => 'white'])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -841,9 +843,9 @@
             z-index: 9999;
         }
     </style> --}}
-    
+
     {{-- No se si hace algo peor aqui esta --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buttonDeleteUser.css') }}">
@@ -855,7 +857,16 @@
 
 
 <body>
-    @include('layouts.navigation2')
+    @php
+        $navbarType = $navbarType ?? 'white';
+    @endphp
+
+    @if ($navbarType == 'black')
+        @include('layouts.navigationBlack', ['navbarType' => $navbarType])
+    @else
+        @include('layouts.navigation2')
+    @endif
+    {{-- @include('layouts.navigation2') --}}
     {{-- <div class="loading" id="loading">Loading...</div>
 
     <div id="main-content" style="display: none;"> --}}

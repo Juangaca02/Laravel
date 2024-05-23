@@ -77,7 +77,9 @@ function confirmDelete(userId) {
                             '¡Hecho!',
                             response.success,
                             'success'
-                        );
+                        ).then(()=>{
+                            location.reload();
+                        });
                     }
                 },
                 error: function (xhr, status, error) {

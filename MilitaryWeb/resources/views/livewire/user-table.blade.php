@@ -4,8 +4,13 @@
         <div class="grid gap-3">
             <div class="col-span-full xl:col-span-5">
                 <div class="relative">
-                    <input type="text" class="bg-[#CE9568] w-full p-2 rounded border-white placeholder-white" wire:model="search" placeholder="Buscar...">
-                </div>                
+                    <br>
+                    {{ $buscar }}
+                    <br>
+                    {{-- <input type="text" class="bg-[#CE9568] w-full p-2 rounded border-white placeholder-white"
+                        wire:model.live="buscar" placeholder="Buscar..."> --}}
+                        <input type="text" name="" id="" wire:model.live="buscar">
+                </div>
             </div>
         </div>
     </div>
@@ -14,29 +19,53 @@
             <table class="table-auto w-full text-left align-middle">
                 <thead class="bg-[#CE9568]">
                     <tr class="">
-                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Nombre</th>
-                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Apellidos</th>
-                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Dni</th>
-                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Fecha de alistamiento</th>
-                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Verificado</th>
-                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Opciones</th>
+                        <th scope="col" wire:click="ordenar('name')"
+                            class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer">
+                            @if ($campoOrden == 'name')
+                                <p>Nombre ⬇</p>
+                            @else
+                                <p>Nombre ⬆</p>
+                            @endif
+                        </th>
+                        <th scope="col" wire:click="ordenar('name')"
+                            class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer">
+                            @if ($campoOrden == 'surname')
+                                <p>Apellidos ⬇</p>
+                            @else
+                                <p>Apellidos ⬆</p>
+                            @endif
+                        </th>
+                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">Dni
+                        </th>
+                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">
+                            Fecha de alistamiento</th>
+                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">
+                            Verificado</th>
+                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">
+                            Opciones</th>
                     </tr>
                 </thead>
                 <tbody class="list">
                     @forelse ($allUsers as $item)
-                        <tr class="" >
-                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">{{ $item->name }}</td>
-                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">{{ $item->surname }}</td>
-                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">{{ $item->DNI }}</td>
+                        <tr class="">
+                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
+                                {{ $item->name }}</td>
+                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
+                                {{ $item->surname }}</td>
+                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
+                                {{ $item->DNI }}</td>
                             <td class="text-start">{{ $item->entry_army_date }}</td>
-                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-start">
+                            <td
+                                class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-start">
                                 <form action="/verificarUser/{{ $item->id }}" method="post" class="m-1 ml-2">
                                     @csrf
                                     @method('post')
-                                    <input type="checkbox" class="verificar" data-id="{{ $item->id }}" {{ $item->verified ? 'checked' : '' }}>
+                                    <input type="checkbox" class="verificar" data-id="{{ $item->id }}"
+                                        {{ $item->verified ? 'checked' : '' }}>
                                 </form>
                             </td>
-                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-start">
+                            <td
+                                class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-start">
                                 <form action="/deleteUser/{{ $item->id }}" method="delete" class="m-1">
                                     @csrf
                                     @method('delete')
@@ -75,11 +104,17 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="13" class="text-center text-red-500 text-5xl">No se encontraron resultados para : {{ $search }}</td>
+                            <td colspan="13" class="text-center text-red-500 text-5xl">No se encontraron resultados</td>
                         </tr>
                     @endforelse
+                    
                 </tbody>
             </table>
+            @if ($allUsers->hasPages())
+                        <div>
+                            {{ $allUsers->links() }}
+                        </div>
+                    @endif
         </div>
     </div>
 </section>
