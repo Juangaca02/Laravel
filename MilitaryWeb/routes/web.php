@@ -38,9 +38,11 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/prueba', function () {
-    return view('createMissions');
-});
+// Route::get('/prueba', function () {
+//     return view('createMissions');
+// });
+
+Route::get('/prueba', [MissionController::class, 'index'])->name('prueba');
 
 
 
