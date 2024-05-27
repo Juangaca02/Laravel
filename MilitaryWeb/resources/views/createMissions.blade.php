@@ -44,6 +44,10 @@
                             <input type="text" name="title" id="title">
                         </td>
                         <td>
+                            <label for="subtitle">Subtitulo</label>
+                            <input type="text" name="subtitle" id="subtitle">
+                        </td>
+                        <td>
                             <label for="description">Descripción</label>
                             <textarea name="description" id="description" cols="1" rows="1"></textarea>
                         </td>
@@ -52,10 +56,6 @@
                         <td>
                             <label for="date">Fecha</label>
                             <input type="date" name="date" id="date">
-                        </td>
-                        <td>
-                            <label for="subtitle">Subtitulo</label>
-                            <input type="subtitle" name="subtitle" id="subtitle">
                         </td>
                     </tr>
                     <tr>

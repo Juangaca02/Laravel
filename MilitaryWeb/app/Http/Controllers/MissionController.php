@@ -15,26 +15,21 @@ class MissionController extends Controller
      */
     public function index()
     {
-        $loggedInUser = Auth::user();
-        $loggedInUserArmyId = $loggedInUser->army_id;
-        $loggedInUserRangeId = $loggedInUser->range_id;
-
-        // Depuración: verificar los valores del usuario autenticado
-        $usersInRange = User::where('army_id', $loggedInUserArmyId)
-            ->whereBetween('range_id', [$loggedInUserRangeId, 9])
+        // Obtener los usuarios que están dentro del rango especificado (excluyendo los límites) y pertenecen a la misma army
+        $usersInRange = User::where('army_id', Auth::user()->army_id)
+            ->where('range_id', '>', 9)
+            ->where('range_id', '<', Auth::user()->range_id)
             ->get();
 
-        // Depuración: verificar los resultados de la consulta
-        // dd($usersInRange);
-        // Obtener los usuarios que están dentro del rango especificado y pertenecen a la misma army
-        $usersInRange = User::where('army_id', Auth::user()->army_id)
-            ->whereBetween('range_id', [Auth::user()->range_id, 9]);
-
-        // dd($usersInRange);
+        // Obtener todos los destinos
         $destination = Destination::all();
 
-        return view("createMissions", compact('destination', 'usersInRange'));
+        // Devolver la vista con los datos necesarios
+        return view("createMissions")
+            ->with('destination', $destination)
+            ->with('usersInRange', $usersInRange);
     }
+
 
     /**
      * Show the form for creating a new resource.
