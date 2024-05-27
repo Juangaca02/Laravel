@@ -25,12 +25,12 @@ class MissionController extends Controller
             ->get();
 
         // Depuración: verificar los resultados de la consulta
-        dd($usersInRange);
+        // dd($usersInRange);
         // Obtener los usuarios que están dentro del rango especificado y pertenecen a la misma army
         $usersInRange = User::where('army_id', Auth::user()->army_id)
             ->whereBetween('range_id', [Auth::user()->range_id, 9]);
 
-        dd($usersInRange);
+        // dd($usersInRange);
         $destination = Destination::all();
 
         return view("createMissions", compact('destination', 'usersInRange'));

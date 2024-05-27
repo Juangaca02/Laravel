@@ -66,3 +66,8 @@ Route::get('/createMission', function () {
 
 
 require __DIR__ . '/auth.php';
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    
+});
