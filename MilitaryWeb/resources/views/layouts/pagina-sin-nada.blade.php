@@ -845,7 +845,7 @@
     </style> --}}
 
     {{-- No se si hace algo peor aqui esta --}}
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <link rel="stylesheet" href="{{ asset('css/buttonLogin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">

@@ -9,7 +9,7 @@
                     <br>
                     {{-- <input type="text" class="bg-[#CE9568] w-full p-2 rounded border-white placeholder-white"
                         wire:model.live="buscar" placeholder="Buscar..."> --}}
-                        <input type="text" name="" id="" wire:model.live="buscar">
+                    <input type="text" name="" id="" wire:model.live="buscar">
                 </div>
             </div>
         </div>
@@ -19,6 +19,10 @@
             <table class="table-auto w-full text-left align-middle">
                 <thead class="bg-[#CE9568]">
                     <tr class="">
+                        <th scope="col"
+                            class="min-w-[70px] max-w-[300px] whitespace-nowrap overflow-hidden text-center pb-2">
+                            <p>Foto</p>
+                        </th>
                         <th scope="col" wire:click="ordenar('name')"
                             class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer">
                             @if ($campoOrden == 'name')
@@ -48,6 +52,10 @@
                 <tbody class="list">
                     @forelse ($allUsers as $item)
                         <tr class="">
+                            <td class="flex justify-center items-center">
+                                <img src="{{ $item->profile_photo_path }}" alt="profile_photo_path"
+                                    class="w-[50px] h-[50px] object-cover">
+                            </td>
                             <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
                                 {{ $item->name }}</td>
                             <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
@@ -104,17 +112,13 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="13" class="text-center text-red-500 text-5xl">No se encontraron resultados</td>
+                            <td colspan="13" class="text-center text-red-500 text-5xl">No se encontraron resultados
+                            </td>
                         </tr>
                     @endforelse
-                    
                 </tbody>
             </table>
-            @if ($allUsers->hasPages())
-                        <div>
-                            {{ $allUsers->links() }}
-                        </div>
-                    @endif
+            {{ $allUsers->links() }}
         </div>
     </div>
 </section>

@@ -21,8 +21,7 @@
                     </div>
                     <div class="lg:flex">
                         <figure class="mx-10 flex flex-col justify-center text-center "><!--- max-w-[800px] --->
-                            <img class="rounded-3xl" src="{{ asset('/storage/Images/ImagesRelleno/barco.jpg') }}"
-                                alt="">
+                            <img class="rounded-3xl" src="{{ $mission->photo }}" alt="{{ $mission->title }}" style="max-width: 100%; height: auto;">
                             <figcaption class="text-2xl italic mt-2">Buque insignia de la Armada</figcaption>
                         </figure>
                         <div class="overflow-auto max-w-[1100px] min-w-0">

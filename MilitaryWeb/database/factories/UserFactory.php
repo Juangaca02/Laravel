@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserFactory extends Factory
@@ -34,7 +35,7 @@ class UserFactory extends Factory
             'town' => $this->faker->city,
             'municipality' => $this->faker->city,
             'entry_army_date' => $this->faker->date('Y-m-d', '-10 years'),
-            'profile_photo_path' => 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+            'profile_photo_path' => Storage::url('Images/imagesUsers/fotoUsers.png'),
             'verified' => $this->faker->boolean(50), // 90% de probabilidad de que estén verificados
             'range_id' => $this->faker->numberBetween(1, 15), // ID del rango del usuario
             'rol_id' => 1, // ID del rol del usuario

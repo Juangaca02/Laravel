@@ -6,20 +6,17 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
-use Livewire\Features\SupportPagination\WithoutUrlPagination;
 use Livewire\WithPagination;
 
 class UserTable extends Component
 {
-    use WithPagination, WithoutUrlPagination;
-    public $paginacion = 4;
+    use WithPagination;
 
-    public $buscar;
+    public $paginacion = 4;
+    public $buscar = '';
     public $campoOrden = "name";
     public $orden = "desc";
     public $mostrar = false;
-
-    #[On('updatelist')]
 
     public function mostrarForm()
     {
@@ -46,18 +43,15 @@ class UserTable extends Component
             ->orderBy($this->campoOrden, $this->orden)
             ->paginate($this->paginacion);
 
-        // return view('livewire.user-table')->with('allUsers', $allUsers);
         return view('livewire.user-table', compact('allUsers'));
     }
 
-    #[On('updatelist')]
     public function ordenar($valor)
     {
         $this->campoOrden = $valor;
         $this->orden = ($this->orden == 'asc') ? 'desc' : 'asc';
     }
 
-    #[On('updatelist')]
     public function updatingBuscar()
     {
         $this->resetPage();
