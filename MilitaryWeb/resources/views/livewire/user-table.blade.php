@@ -7,9 +7,13 @@
                     <br>
                     {{ $buscar }}
                     <br>
+                    <div class="inputGroup">
+                        <input type="text" required="" autocomplete="off" class="input" wire:model.live="buscar">
+                        <label for="name">Nombre-Apellido-Dni</label>
+                    </div>
                     {{-- <input type="text" class="bg-[#CE9568] w-full p-2 rounded border-white placeholder-white"
                         wire:model.live="buscar" placeholder="Buscar..."> --}}
-                    <input type="text" name="" id="" wire:model.live="buscar">
+                    {{-- <input type="text" name="" id="" wire:model.live="buscar"> --}}
                 </div>
             </div>
         </div>
@@ -50,7 +54,8 @@
                     </tr>
                 </thead>
                 <tbody class="list">
-                    @forelse ($allUsers as $item)
+                    {{-- @forelse --}}
+                    @foreach ($allUsers as $item)
                         <tr class="">
                             <td class="flex justify-center items-center">
                                 <img src="{{ $item->profile_photo_path }}" alt="profile_photo_path"
@@ -110,15 +115,20 @@
                                 </form>
                             </td>
                         </tr>
-                    @empty
+                    @endforeach
+                    {{-- @empty
                         <tr>
                             <td colspan="13" class="text-center text-red-500 text-5xl">No se encontraron resultados
                             </td>
                         </tr>
-                    @endforelse
+                    @endforelse --}}
                 </tbody>
             </table>
-            {{ $allUsers->links() }}
+            @if ($allUsers->hasPages())
+                <div>
+                    {{ $allUsers->links() }}
+                </div>
+            @endif
         </div>
     </div>
 </section>

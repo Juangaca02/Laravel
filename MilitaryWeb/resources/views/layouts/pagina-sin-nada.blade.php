@@ -850,6 +850,7 @@
     <link rel="stylesheet" href="{{ asset('css/buttonLogin.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buttonDeleteUser.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/inputLivewire.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/index.js') }}"></script>
