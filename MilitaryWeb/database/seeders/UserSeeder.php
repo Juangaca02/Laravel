@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
                 'verified' => true,
                 'range_id' => 17, // ID del rango del usuario
                 'rol_id' => 2, // ID del rol del usuario
-                'army_id' => 2, // ID del ejército al que pertenece el usuario
+                'army_id' => 3, // ID del ejército al que pertenece el usuario
             ],
             [
                 'DNI' => '12345678B',
@@ -48,7 +48,7 @@ class UserSeeder extends Seeder
                 'verified' => true,
                 'range_id' => 17, // ID del rango del usuario
                 'rol_id' => 2, // ID del rol del usuario
-                'army_id' => 3, // ID del ejército al que pertenece el usuario
+                'army_id' => 2, // ID del ejército al que pertenece el usuario
             ],
             [
                 'DNI' => '12345678C',
