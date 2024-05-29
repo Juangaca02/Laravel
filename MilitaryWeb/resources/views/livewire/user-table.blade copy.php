@@ -1,34 +1,16 @@
+{{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
 <section class="bg-[#dbb186] border rounded-3xl border-transparent">
     <div class="py-4 mx-[20px] md:mx-[100px]">
-        <div class="flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <span class="text-white text-2xl">Filtros:</span>
-                <div class="relative w-full max-w-lg">
-                    <div class="inputGroup">
-                        <input type="text" required="" autocomplete="off" class="input w-full min-w-[300px]"
-                            wire:model.live="buscar">
-                        <label for="name">Nombre-Apellido-Dni</label>
-                    </div>
+        <div class="flex justify-center">
+            <div class="relative w-full max-w-lg">
+                <div class="inputGroup">
+                    <input type="text" required="" autocomplete="off" class="input w-full" wire:model.live="buscar">
+                    <label for="name">Nombre-Apellido-Dni</label>
                 </div>
-            </div>
-            <div class="flex space-x-2">
-                <button class="px-4 py-2 bg-blue-500 text-white rounded" wire:click="toggleVerificados">
-                    @if ($soloVerificados === null)
-                        Mostrar Verificados
-                    @elseif ($soloVerificados)
-                        Mostrar No Verificados
-                    @else
-                        Mostrar Verificados
-                    @endif
-                </button>
-                <button class="px-4 py-2 bg-green-500 text-white rounded" wire:click="mostrarTodos">
-                    Mostrar Todos
-                </button>
             </div>
         </div>
     </div>
     <div class="mx-[20px] md:mx-[100px]">
-
         <div class="overflow-x-auto mb-4">
             <table class="table-auto w-full text-left align-middle">
                 <thead class="bg-[#CE9568]">
@@ -45,7 +27,7 @@
                                 <p>Nombre ⬆</p>
                             @endif
                         </th>
-                        <th scope="col" wire:click="ordenar('surname')"
+                        <th scope="col" wire:click="ordenar('name')"
                             class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer">
                             @if ($campoOrden == 'surname')
                                 <p>Apellidos ⬇</p>
@@ -57,42 +39,43 @@
                         </th>
                         <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">
                             Fecha de alistamiento</th>
-                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-center pb-2">
+                        <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">
                             Verificado</th>
                         <th class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2">
                             Opciones</th>
                     </tr>
                 </thead>
                 <tbody class="list">
-                    @forelse  ($allUsers as $User)
+                    {{-- @forelse --}}
+                    @foreach ($allUsers as $item)
                         <tr class="">
                             <td class="flex justify-center items-center">
-                                <img src="{{ Storage::url('Images/imagesUsers/' . $User->profile_photo_path) }}"
-                                    alt="profile_photo" class="w-[50px] h-[50px] object-cover">
+                                <img src="{{ $item->profile_photo_path }}" alt="profile_photo_path"
+                                    class="w-[50px] h-[50px] object-cover">
                             </td>
                             <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
-                                {{ $User->name }}</td>
+                                {{ $item->name }}</td>
                             <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
-                                {{ $User->surname }}</td>
+                                {{ $item->surname }}</td>
                             <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
-                                {{ $User->DNI }}</td>
-                            <td class="text-start">{{ $User->entry_army_date }}</td>
+                                {{ $item->DNI }}</td>
+                            <td class="text-start">{{ $item->entry_army_date }}</td>
                             <td
-                                class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-center">
-                                <form action="/verificarUser/{{ $User->id }}" method="post" class="m-1 ml-2">
+                                class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-start">
+                                <form action="/verificarUser/{{ $item->id }}" method="post" class="m-1 ml-2">
                                     @csrf
                                     @method('post')
-                                    <input type="checkbox" class="verificar" data-id="{{ $User->id }}"
-                                        {{ $User->verified ? 'checked' : '' }}>
+                                    <input type="checkbox" class="verificar" data-id="{{ $item->id }}"
+                                        {{ $item->verified ? 'checked' : '' }}>
                                 </form>
                             </td>
                             <td
                                 class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-start">
-                                <form action="/deleteUser/{{ $User->id }}" method="delete" class="m-1">
+                                <form action="/deleteUser/{{ $item->id }}" method="delete" class="m-1">
                                     @csrf
                                     @method('delete')
                                     <button class="btn_deleteUser rounded-xl" type="button"
-                                        onclick="confirmDelete({{ $User->id }})">
+                                        onclick="confirmDelete({{ $item->id }})">
                                         <span class="btn_deleteUser__text">Delete</span>
                                         <span class="btn_deleteUser__icon">
                                             <svg class="svg" height="512" viewBox="0 0 512 512" width="512"
@@ -124,12 +107,13 @@
                                 </form>
                             </td>
                         </tr>
-                    @empty
-                        <tr class="m-5">
+                    @endforeach
+                    {{-- @empty
+                        <tr>
                             <td colspan="13" class="text-center text-red-500 text-5xl">No se encontraron resultados
-                                para : {{ $buscar }}</td>
+                            </td>
                         </tr>
-                    @endforelse
+                    @endforelse --}}
                 </tbody>
             </table>
             @if ($allUsers->hasPages())

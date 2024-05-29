@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Carbon;
@@ -55,7 +56,7 @@ class RegisteredUserController extends Controller
             'entry_army_date' => Carbon::parse($request->entry_army_date), // Carbon::now(),
             'town' => $request->town,
             'municipality' => $request->municipality,
-            'profile_photo_path' => 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+            'profile_photo_path' => 'fotoUsers.png',
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'verified' => false,

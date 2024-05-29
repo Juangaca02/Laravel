@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
                 'town' => 'Madrid',
                 'municipality' => 'Madrid',
                 'entry_army_date' => '2010-07-20',
-                'profile_photo_path' => Storage::url('Images/imagesUsers/fotoJuan.jpg'),
+                'profile_photo_path' => 'fotoJuan.jpg',
                 'verified' => true,
                 'range_id' => 17, // ID del rango del usuario
                 'rol_id' => 2, // ID del rol del usuario
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
                 'town' => 'Malaga',
                 'municipality' => 'Malaga',
                 'entry_army_date' => '2010-07-20',
-                'profile_photo_path' => Storage::url('Images/imagesUsers/fotoPino.jpg'),
+                'profile_photo_path' => 'fotoPino.jpg',
                 'verified' => true,
                 'range_id' => 17, // ID del rango del usuario
                 'rol_id' => 2, // ID del rol del usuario
@@ -63,7 +63,7 @@ class UserSeeder extends Seeder
                 'town' => 'Barcelona',
                 'municipality' => 'Barcelona',
                 'entry_army_date' => '2015-06-02',
-                'profile_photo_path' => Storage::url('Images/imagesUsers/fotoAguayo.jpg'),
+                'profile_photo_path' => 'fotoAguayo.jpg',
                 'verified' => true,
                 'range_id' => 17, // ID del rango del usuario
                 'rol_id' => 2, // ID del rol del usuario
@@ -81,7 +81,7 @@ class UserSeeder extends Seeder
                 'town' => 'Bilbao',
                 'municipality' => 'Bilbao',
                 'entry_army_date' => '2012-04-10',
-                'profile_photo_path' => Storage::url('Images/imagesUsers/fotoUsers.png'),
+                'profile_photo_path' => 'fotoUsers.png',
                 'verified' => true,
                 'range_id' => 2,
                 'rol_id' => 1,

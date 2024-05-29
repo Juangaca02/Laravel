@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('index');
-});
+})->name('home');
 
 // Ruta para mostrar soldados verificados en los ejercitos y no verificados que pertenecen al ejercito del usuario
 Route::get('/listSoldier', function () {
@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
     // Nuevo
     Route::post('/verificarUser/{id}', [ProfileController::class, 'verificarUser'])->name('verificarUser');
     Route::delete('/deleteUser/{id}', [ProfileController::class, 'deleteUser'])->name('deleteUser');
+    Route::patch('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
 });
 
 

@@ -17,7 +17,6 @@ class UserTable extends Component
     public $campoOrden = "name";
     public $orden = "desc";
     public $mostrar = false;
-    public $soloVerificados = null; // Nueva propiedad para el filtro
 
     public function mostrarForm()
     {
@@ -27,23 +26,21 @@ class UserTable extends Component
     #[On('updatelist')]
     public function render()
     {
+        // Obtén el usuario autenticado
         $currentUser = Auth::user();
 
+        // Filtra los usuarios para excluir al usuario autenticado
+        // y solo mostrar usuarios del mismo ejército
         $allUsers = User::where('army_id', $currentUser->army_id)
-            ->where('id', '!=', $currentUser->id)
-            ->where('range_id', '<', $currentUser->range_id)
+            ->where('id', '!=', $currentUser->id)               // Excluye al usuario autenticado
+            ->where('range_id', '<', $currentUser->range_id)    // Filtra por el rango del usuario autenticado
             ->where(function ($query) {
                 $query->where('name', 'like', '%' . $this->buscar . '%')
                     ->orWhere('surname', 'like', '%' . $this->buscar . '%')
                     ->orWhere('DNI', 'like', '%' . $this->buscar . '%')
                     ->orWhere('entry_army_date', 'like', '%' . $this->buscar . '%');
-            });
-
-        if ($this->soloVerificados !== null) {
-            $allUsers = $allUsers->where('verified', $this->soloVerificados);
-        }
-
-        $allUsers = $allUsers->orderBy($this->campoOrden, $this->orden)
+            })
+            ->orderBy($this->campoOrden, $this->orden)
             ->paginate($this->paginacion);
 
         return view('livewire.user-table', compact('allUsers'));
@@ -57,18 +54,6 @@ class UserTable extends Component
 
     public function updatingBuscar()
     {
-        $this->resetPage();
-    }
-
-    public function toggleVerificados()
-    {
-        $this->soloVerificados = $this->soloVerificados === null ? true : ($this->soloVerificados ? false : null);
-        $this->resetPage();
-    }
-
-    public function mostrarTodos()
-    {
-        $this->soloVerificados = null;
         $this->resetPage();
     }
 }

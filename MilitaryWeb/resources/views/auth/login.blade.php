@@ -106,7 +106,7 @@
                         <div class="line"></div>
                     </div>
                 </div>
-                {{-- Botones de Logien -> Actualemnte no se usa --}}
+                {{-- Botones de Logins -> Actualemnte no se usa --}}
                 <div class="flex justify-center gap-6 p-5">
                     <a href="#"
                         class="social twitter flex items-center justify-center w-12 h-12 rounded-full border border-gray-300">
