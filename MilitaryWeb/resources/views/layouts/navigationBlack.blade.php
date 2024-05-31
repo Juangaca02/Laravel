@@ -31,7 +31,7 @@
                     @endif
                     @if (Auth::user()->range_id >= 11)
                         <li>
-                            <a href=""
+                            <a href="{{ route('createMission') }}"
                                 class="cursor-pointer block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
                                 Create Mission
                             </a>
@@ -42,6 +42,10 @@
                             <x-slot name="trigger">
                                 <button
                                     class="inline-flex items-center text-black px-3 py-2 text-sm leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
+                                    <div class="mr-2 rounded-full">
+                                        <img src="{{ Storage::url('Images/imagesUsers/' . Auth::user()->profile_photo_path) }}"
+                                        alt="profile_photo" class="w-[30px] h-[30px] object-cover rounded-full">
+                                    </div>
                                     <div>{{ Auth::user()->name }}</div>
 
                                     <div class="ms-1">

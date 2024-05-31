@@ -15,14 +15,15 @@
     @else
         <div class="space-y-[100px] m-5">
             @foreach ($missions as $mission)
-                <div class="flex flex-col space-y-5 p-5">
+                <section class="flex flex-col space-y-5 p-5">
                     <div class="flex-grow text-center mb-5">
                         <h3 class="text-5xl font-bold">{{ $mission->title }}</h3>
                     </div>
                     <div class="lg:flex">
                         <figure class="mx-10 flex flex-col justify-center text-center "><!--- max-w-[800px] --->
-                            <img class="rounded-3xl" src="{{ $mission->photo }}" alt="{{ $mission->title }}" style="max-width: 100%; height: auto;">
-                            <figcaption class="text-2xl italic mt-2">Buque insignia de la Armada</figcaption>
+                            <img class="rounded-3xl" src="{{ asset('storage/Images/Images-Home-Naval/' . $mission->photo) }}" alt="{{ $mission->title }}" style="max-width: 700px; height: auto;">
+                            {{-- <figcaption class="text-2xl italic mt-2">Buque insignia de la Armada</figcaption> --}}
+                            <figcaption class="text-2xl italic mt-2">{{ $mission->title }}</figcaption>
                         </figure>
                         <div class="overflow-auto max-w-[1100px] min-w-0">
                             <table class="text-white">
@@ -89,7 +90,6 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan="3">
-                                            <!-- Botón en el pie de la tabla -->
                                             <button
                                                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                                 Tu Opción
@@ -98,34 +98,9 @@
                                     </tr>
                                 </tfoot>
                             </table>
-
-                            {{-- <p><strong>Fecha:</strong> {{ $mission->date->format('d-m-Y') }}</p> --}}
-                            {{-- <p><strong>Fecha:</strong> {{ $mission->date->formatLocalizd('%d de %B de %Y') }}</p>  --}}
-
-
-
                         </div>
                     </div>
-                </div>
-                {{-- <div class="flex">
-                <figure class="ml-10 flex-col justify-center text-center">
-                    <img class="rounded-3xl max-w-[500px]" src="{{ asset('/storage/Images/Images-Relleno/barco.jpg') }}"
-                        alt="">
-                    <figcaption class="">Buque insignia de la Armada</figcaption>
-                </figure>
-                <div>
-                    <p><strong>Subtítulo:</strong> {{ $mission->subtitle }}</p>
-                    <p><strong>Descripción:</strong> {{ $mission->description }}</p>
-                    <p><strong>Fecha:</strong> {{ $mission->date }}</p>
-                    <p><strong>Horas:</strong> {{ $mission->hours }}</p>
-                    <p><strong>Estado:</strong> {{ $mission->status }}</p>
-                    <p><strong>Tipo:</strong> {{ $mission->type }}</p>
-                    <p><strong>Prioridad:</strong> {{ $mission->priority }}</p>
-                    <p><strong>Objetivo de la mision:</strong> {{ $mission->objective }}</p>
-                    <p><strong>Intervencion:</strong> {{ $mission->action }}</p>
-                    <p><strong>Resultado:</strong> {{ $mission->result }}</p>
-                </div>
-            </div> --}}
+                </section>
             @endforeach
         </div>
     @endif

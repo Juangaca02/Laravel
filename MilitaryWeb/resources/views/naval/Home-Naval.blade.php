@@ -1,4 +1,7 @@
 <section class="home-Naval flex flex-col text-white">
+    @livewire('available-missions')
+    @include('layouts.footer')
+</section>
     {{-- <article class="m-[100px] flex flex-col-reverse lg:flex-row items-center space-x-5 ">
         <div class="w-full lg:w-2/3">
             <p class="text-white text-[27px] font-bold">
@@ -52,6 +55,4 @@
         </div>
     </article>
     <hr class="mx-[100px]"> --}}
-    @livewire('available-missions')
-    @include('layouts.footer')
-</section>
+    

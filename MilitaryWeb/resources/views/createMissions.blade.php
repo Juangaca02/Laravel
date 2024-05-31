@@ -1,115 +1,269 @@
-{{-- <x-pagina-sin-nada-layout navbarType="black">
-    <figure class="">
-        <img src="{{ asset('/storage/Images/ImagesRelleno/createMission.png') }}" alt="">
-    </figure>
-    <form class="" action="" method="POST">
-        @csrf
-        @method('POST')
-        <table>
-            <tr>
-                <td>
-                    <label for="title">Titulo</label>
-                    <input type="text" name="title" id="title">
-                </td>
-                <td>
-                    <label for="description">Descripción</label>
-                    <textarea name="description" id="description" cols="5" rows="5"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="date">Fecha</label>
-                    <input type="date" name="date" id="date">
-                </td>
-                <td>
-                    <label for="subtitle">Subtitulo</label>
-                    <input type="subtitle" name="subtitle" id="subtitle">
-                </td>
-            </tr>
-        </table>
-    </form>
-</x-pagina-sin-nada-layout> --}}
-
 <x-pagina-sin-nada-layout navbarType="black">
     <div class="relative h-screen overflow-hidden">
         <figure class="w-full h-full">
             <img src="{{ asset('/storage/Images/ImagesRelleno/createMission.png') }}" alt=""
                 class="object-cover w-full h-full">
         </figure>
-        <div class="absolute inset-0 flex items-center justify-center">
-            <form class="bg-opacity-50 backdrop-blur-md p-8 rounded-lg shadow-md w-full max-w-4xl">
-                @csrf
-                @method('POST')
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label for="title">Título</label>
-                        <input type="text" name="title" id="title" class="w-full mt-1 p-2 rounded">
-                    </div>
-                    <div>
-                        <label for="subtitle">Subtítulo</label>
-                        <input type="text" name="subtitle" id="subtitle" class="w-full mt-1 p-2 rounded">
-                    </div>
-                    <div>
-                        <label for="date">Fecha</label>
-                        <input type="date" name="date" id="date" class="w-full mt-1 p-2 rounded">
-                    </div>
-                    <div class="md:col-span-3">
-                        <label for="description">Descripción</label>
-                        <textarea name="description" id="description" cols="1" rows="3" class="w-full mt-1 p-2 rounded"></textarea>
-                    </div>
-                    <div>
-                        <label for="action">Acción</label>
-                        <input type="text" name="action" id="action" class="w-full mt-1 p-2 rounded">
-                    </div>
-                    <div>
-                        <label for="type">Tipo de misión</label>
-                        <select name="type" id="type" class="w-full mt-1 p-2 rounded">
-                            <option value=""></option>
-                            <option value="Reconocimiento">Reconocimiento</option>
-                            <option value="Patrulla">Patrulla</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="priority">Prioridad</label>
-                        <select name="priority" id="priority" class="w-full mt-1 p-2 rounded">
-                            <option value=""></option>
-                            <option value="Alta">Alta</option>
-                            <option value="Media">Media</option>
-                            <option value="Baja">Baja</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="objective">Objetivo</label>
-                        <input type="text" name="objective" id="objective" class="w-full mt-1 p-2 rounded">
-                    </div>
-                    <div>
-                        <label for="destination_id">Destino</label>
-                        <select name="destination_id" id="destination_id" class="w-full mt-1 p-2 rounded">
-                            <option value=""></option>
-                            @foreach ($destination as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="flex items-end">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
-                            type="submit">
-                            Crear Destino
-                        </button>
-                    </div>
-                    <div class="md:col-span-3">
-                        <label for="user_id">Persona a cargo</label>
-                        <select name="user_id" id="user_id" class="w-full mt-1 p-2 rounded">
-                            <option value=""></option>
-                            @foreach ($usersInRange as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <input type="text" name="status" id="status" value="En espera de ejecución" hidden>
-                    <input type="text" name="result" id="result" value="En espera de ejecución" hidden>
+        <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <div class="text-black text-4xl font-bold">
+                Crear Mision
+            </div>
+            @if (session('success'))
+                <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
+                    {{ session('success') }}
                 </div>
-            </form>
+            @endif
+            <div class="flex space-x-5">
+                <form class="bg-opacity-50 backdrop-blur-md p-8 rounded-lg shadow-md w-full max-w-4xl flex"
+                    enctype="multipart/form-data" method="post" action="{{ route('storeMission') }}">
+                    {{-- <form class="bg-opacity-50 backdrop-blur-md p-8 rounded-lg shadow-md w-full max-w-4xl flex" enctype="multipart/form-datas" wire:submit.prevent="submit">    --}}
+                    <div class="w-full">
+                        @csrf
+                        @method('POST')
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label for="titulo">
+                                    Título
+                                    @error('titulo')
+                                        <span class="text-red-500 text-xl">*</span>
+                                    @enderror
+                                </label>
+                                <input value="{{ old('titulo') }}" type="text" name="titulo" id="titulo"
+                                    class="w-full mt-1 p-2 rounded">
+                                {{-- @error('titulo')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror --}}
+                            </div>
+                            <div>
+                                <label for="subtitulo">
+                                    Subtítulo
+                                    @error('subtitulo')
+                                        <span class="text-red-500 text-xl">*</span>
+                                    @enderror
+                                </label>
+                                <input value="{{ old('subtitulo') }} " type="text" name="subtitulo" id="subtitulo"
+                                    class="w-full mt-1 p-2 rounded">
+                                {{-- @error('subtitulo')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror --}}
+                            </div>
+                            <div>
+                                <label for="fecha">
+                                    Fecha
+                                    @error('fecha')
+                                        <span class="text-red-500 text-xl">*</span>
+                                    @enderror
+                                </label>
+                                <input value="{{ old('fecha') }}" type="date" name="fecha" id="fecha"
+                                    class="w-full mt-1 p-2 rounded">
+                            </div>
+                            <div class="md:col-span-3">
+                                <label for="descripcion">
+                                    Descripción
+                                    @error('descripcion')
+                                        <span class="text-red-500 text-xl">*</span>
+                                    @enderror
+                                </label>
+                                <textarea name="descripcion" id="descripcion" cols="1" rows="3" class="w-full mt-1 p-2 rounded">{{ old('descripcion') }}</textarea>
+                            </div>
+                            <div>
+                                <label for="accion">
+                                    Acción
+                                    @error('accion')
+                                        <span class="text-red-500 text-xl">*</span>
+                                    @enderror
+                                </label>
+                                <input value="{{ old('accion') }}" type="text" name="accion" id="accion"
+                                    class="w-full mt-1 p-2 rounded">
+                            </div>
+                            <div>
+                                <label for="tipo">
+                                    Tipo de misión
+                                    @error('tipo')
+                                        <span class="text-red-500 text-xl">*</span>
+                                    @enderror
+                                </label>
+                                <select name="tipo" id="tipo" class="w-full mt-1 p-2 rounded">
+                                    <option value=""></option>
+                                    <option value="Reconocimiento"
+                                        {{ old('tipo') == 'Reconocimiento' ? 'selected' : '' }}>
+                                        Reconocimiento
+                                    </option>
+                                    <option value="Patrulla" {{ old('tipo') == 'Patrulla' ? 'selected' : '' }}>
+                                        Patrulla
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="prioridad">
+                                    Prioridad
+                                    @error('prioridad')
+                                        <span class="text-red-500 text-xl">*</span>
+                                    @enderror
+                                </label>
+                                <select name="prioridad" id="prioridad" class="w-full mt-1 p-2 rounded">
+                                    <option value=""></option>
+                                    <option value="Alta" {{ old('prioridad') == 'Alta' ? 'selected' : '' }}>
+                                        Alta
+                                    </option>
+                                    <option value="Media" {{ old('prioridad') == 'Media' ? 'selected' : '' }}>
+                                        Media
+                                    </option>
+                                    <option value="Baja" {{ old('prioridad') == 'Baja' ? 'selected' : '' }}>
+                                        Baja
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="objetivo">
+                                    Objetivo
+                                    @error('objetivo')
+                                        <span class="text-red-500 text-xl">*</span>
+                                    @enderror
+                                </label>
+                                <input value="{{ old('objetivo') }}" type="text" name="objetivo" id="objetivo"
+                                    class="w-full mt-1 p-2 rounded">
+                            </div>
+                            <div>
+                                <label for="destination_id">
+                                    Destino
+                                    @error('destination_id')
+                                        <span class="text-red-500 text-xl">*</span>
+                                    @enderror
+                                </label>
+                                <select name="destination_id" id="destination_id" class="w-full mt-1 p-2 rounded">
+                                    <option value=""></option>
+                                    @foreach ($destination as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ old('destination_id') == $item->id ? 'selected' : '' }}>
+                                            {{ $item->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label for="user_id">
+                                    Persona a cargo
+                                    @error('user_id')
+                                        <span class="text-red-500 text-xl">*</span>
+                                    @enderror
+                                </label>
+                                <select name="user_id" id="user_id" class="w-full mt-1 p-2 rounded">
+                                    
+                                    <option value=""></option>
+                                    {{-- Verificar si hay usuarios en el rango --}}
+                                    @if ($usersInRange->isEmpty())
+                                        {{-- Si no hay usuarios en el rango, mostrar el usuario actualmente autenticado --}}
+                                        <option value="{{ auth()->id() }}">{{ auth()->user()->name }}
+                                        </option>
+                                    @else
+                                        {{-- Mostrar las opciones de los usuarios en el rango --}}
+                                        @foreach ($usersInRange as $item)
+                                            <option value="{{ $item->id }}"
+                                                {{ old('user_id') == $item->id ? 'selected' : '' }}>
+                                                {{ $item->name }}
+                                            </option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                            <input type="text" name="estado" id="estado" value="En espera de ejecución" hidden>
+                            <input type="text" name="resultado" id="resultado" value="En espera de ejecución"
+                                hidden>
+                            <input type="number" name="army_id" id="army_id" value="{{ Auth::user()->army_id }}"
+                                hidden>
+                            <x-custom.custom-button type="submit" class="md:col-span-3 w-full">
+                                Guardar
+                            </x-custom.custom-button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center m-6">
+                        <label for="foto">
+                            Imagen
+                            @error('foto')
+                                <span class="text-red-500 text-xl">*</span>
+                            @enderror
+                        </label>
+                        <img id="imagePreview" src="#" alt="Vista previa de la imagen"
+                            class="hidden w-full max-w-xs h-auto mt-1 p-2 rounded border border-gray-300">
+                        <input value="{{ old('foto') }}" type="file" name="foto" id="foto"
+                            class="w-full mt-1 p-2 rounded" onchange="previewImage(event)">
+                    </div>
+                </form>
+                <div
+                    class="h-auto min-h-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 ml-5 rounded relative @if ($errors->any()) block @else hidden @endif">
+                    <ol>
+                        @error('titulo')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('subtitulo')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('accion')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('fecha')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('descripcion')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('tipo')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('prioridad')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('objetivo')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('destination_id')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('user_id')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('status')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('foto')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('result')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                    <ol>
+                        @error('army_id')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </ol>
+                </div>
+            </div>
         </div>
         <div class="absolute inset-x-0 bottom-0">
             <div class="absolute inset-0 bg-black opacity-50"></div>
@@ -118,6 +272,17 @@
             </div>
         </div>
     </div>
-
-
 </x-pagina-sin-nada-layout>
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function() {
+            var dataURL = reader.result;
+            var output = document.getElementById('imagePreview');
+            output.src = dataURL;
+            output.classList.remove('hidden');
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>

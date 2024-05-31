@@ -26,7 +26,7 @@ Route::get('/home', function () {
 // Ruta para mostrar soldados verificados en los ejercitos y no verificados que pertenecen al ejercito del usuario
 Route::get('/listSoldier', function () {
     return view('listuserarmy');
-})->middleware(['range.more16','auth', 'verified'])->name('listSoldier');
+})->middleware(['range.more16', 'auth', 'verified'])->name('listSoldier');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,26 +38,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
 });
 
-
-// Route::get('/prueba', function () {
-//     return view('createMissions');
-// });
-
-Route::get('/prueba', [MissionController::class, 'index'])->name('prueba');
-
+// Middleware para verificación de usuario    ---->>> Añadir validacion de Correo
+Route::middleware(['auth', 'verifiedUser'])->group(function () {
+    Route::get('/createMission', [MissionController::class, 'create'])->name('createMission');
+    Route::post('/storeMission', [MissionController::class, 'store'])->name('storeMission');
+});
 
 
 
-
-
-
-Route::get('/createMission', function () {
-    return view('createMission');
-})->name('createMission');
-
-Route::get('/createMission', function () {
-    return view('mission.create');
-})->middleware(['auth', 'verified'])->name('createMission');
 
 
 // Route::get('/dashboard', function () {
@@ -69,6 +57,4 @@ Route::get('/createMission', function () {
 require __DIR__ . '/auth.php';
 
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    
-});
+

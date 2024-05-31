@@ -9,6 +9,24 @@ class Mission extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'subtitle',
+        'description',
+        'date',
+        'status',
+        'type',
+        'priority',
+        'objective',
+        'action',
+        'result',
+        'photo',
+        'army_id',
+        'destination_id',
+        'user_id',
+    ];
+
+
     /**
      * 
      */
