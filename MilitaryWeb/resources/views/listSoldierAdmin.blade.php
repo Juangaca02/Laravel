@@ -1,8 +1,9 @@
-<x-pagina-sin-nada-layout navbarType="black">
+<x-pagina-sin-nada-layout>
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"> --}}
     <div class="relative h-screen overflow-hidden">
         <figure class="w-full h-full">
-            <img src="{{ asset('/storage/Images/ImagesRelleno/Soldados.jpg') }}" alt="" class="object-cover w-full h-full">
+            <img src="{{ asset('/storage/Images/ImagesRelleno/listAdminSoldier.png') }}" alt=""
+                class="object-cover w-full h-full">
         </figure>
         <div class="absolute inset-0 flex flex-col items-center justify-center space-y-2">
             <div class="text-black text-4xl font-bold p-2">
