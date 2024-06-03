@@ -17,9 +17,7 @@
 
                     {{-- Carousel Tierra --}}
                     @case(2)
-                        <figure>
-                            <img src="{{ asset('/storage/Images/Images-Home-Naval/TopHome.png') }}" alt="">
-                        </figure>
+                        @include('tierra.carousel')
                     @break
 
                     {{-- Carousel Naval --}}
@@ -29,9 +27,7 @@
 
                     {{-- Carousel Aire --}}
                     @case(4)
-                        <figure>
-                            <img src="{{ asset('/storage/Images/Images-Home-Aire/TopHome.png') }}" alt="">
-                        </figure>
+                    @include('aire.carousel')
                     @break
                 @endswitch
             @endif
@@ -52,8 +48,7 @@
 
                 {{-- Home Tierra --}}
                 @case(2)
-                    <section>
-                    </section>
+                    @include('tierra.Home-Tierra')
                 @break
 
                 {{-- Home Naval --}}
@@ -63,8 +58,7 @@
 
                 {{-- Home Aire --}}
                 @case(4)
-                    <section>
-                    </section>
+                @include('aire.Home-Aire')
                 @break
             @endswitch
         @endif

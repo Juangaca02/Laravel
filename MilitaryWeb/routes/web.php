@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ArmyController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,27 +26,39 @@ Route::get('/home', function () {
 })->name('home');
 
 // Ruta para mostrar soldados verificados en los ejercitos y no verificados que pertenecen al ejercito del usuario
-Route::get('/listSoldier', function () {
-    return view('listuserarmy');
-})->middleware(['range.more16', 'auth', 'verified'])->name('listSoldier');
+// Route::get('/listSoldier', function () {
+//     return view('listuserarmy');
+// })->middleware(['auth', 'verified'])->name('listSoldier');
+// Tenia puesto range.more16 en la lista de soldados
 
+
+// Middleware para usuarios logueados
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    // Nuevo
-    Route::post('/verificarUser/{id}', [ProfileController::class, 'verificarUser'])->name('verificarUser');
-    Route::delete('/deleteUser/{id}', [ProfileController::class, 'deleteUser'])->name('deleteUser');
     Route::patch('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
 });
 
-// Middleware para verificación de usuario    ---->>> Añadir validacion de Correo
+// Middleware para usuarios logueados y verificados    ---->>> Añadir validacion de Correo
 Route::middleware(['auth', 'verifiedUser'])->group(function () {
+    // Ejercitos
+    Route::get('/listSoldier', [ArmyController::class, 'index'])->name('listSoldier');
+    // Misiones
     Route::get('/createMission', [MissionController::class, 'create'])->name('createMission');
     Route::post('/storeMission', [MissionController::class, 'store'])->name('storeMission');
+    // Usuarios
+    Route::get('/getUserDetails/{id}', [UserController::class, 'getUserDetails']);
+    Route::get('/editUser/{id}', [UserController::class, 'edit'])->name('editUser');
+    Route::patch('/updateUser', [UserController::class, 'update'])->name('updateUser');
+    Route::post('/verificarUser/{id}', [UserController::class, 'verificarUser'])->name('verificarUser');
+    Route::delete('/deleteUser/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
 });
 
-
+// Middleware para Admins
+Route::middleware(['admin', 'auth', 'verifiedUser'])->group(function () {
+    Route::get('/listSoldierAdmin', [ArmyController::class, 'indexAdmin'])->name('listSoldierAdmin');
+});
 
 
 

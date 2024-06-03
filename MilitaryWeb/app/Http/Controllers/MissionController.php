@@ -60,13 +60,13 @@ class MissionController extends Controller
         // $mission->photo = time() . "-" . $request->file("foto")->getClientOriginalName();
         // $mission->photo = $request->foto;
 
-       $originalFileName = $request->file('foto')->getClientOriginalName();
+        $originalFileName = $request->file('foto')->getClientOriginalName();
 
-// Guardar el archivo en la carpeta de almacenamiento con el nombre original
-$storedFilePath = $request->file('foto')->storeAs('public/images/images-home-naval', $originalFileName);
+        // Guardar el archivo en la carpeta de almacenamiento con el nombre original
+        $storedFilePath = $request->file('foto')->storeAs('public/images/images-home-naval', $originalFileName);
 
-// Guardar el nombre del archivo original en la base de datos
-$mission->photo = $originalFileName;
+        // Guardar el nombre del archivo original en la base de datos
+        $mission->photo = $originalFileName;
 
         $mission->army_id = $request->army_id;
         $mission->destination_id = $request->destination_id;

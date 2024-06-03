@@ -35,7 +35,7 @@ class UserFactory extends Factory
             'town' => $this->faker->city,
             'municipality' => $this->faker->city,
             'entry_army_date' => $this->faker->date('Y-m-d', '-10 years'),
-            'profile_photo_path' => Storage::url('Images/imagesUsers/fotoUsers.png'),
+            'profile_photo_path' => 'fotoUsers.png',
             'verified' => $this->faker->boolean(50), // 90% de probabilidad de que estén verificados
             'range_id' => $this->faker->numberBetween(1, 15), // ID del rango del usuario
             'rol_id' => 1, // ID del rol del usuario

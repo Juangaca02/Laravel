@@ -7,76 +7,125 @@
         <div class="hidden sm:flex sm:items-center sm:ms-6">
             <ul class="flex font-medium p-4 md:p-0 mt-4 rounded-lg md:space-x-8 rtl:space-x-reverse items-center">
                 @auth
-                    <li>
-                        <a href="{{ route('home') }}"
-                            class="cursor-pointer block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
-                            Home
-                        </a>
-                    </li>
-                    @if (Auth::user()->rol_id == 2)
+                    @if (Auth::user()->verified == 1)
                         <li>
-                            <a href=""
+                            <a href="{{ route('home') }}"
                                 class="cursor-pointer block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
-                                List Admin
+                                Inicio
                             </a>
                         </li>
-                    @endif
-                    @if (Auth::user()->range_id >= 5)
-                        <li>
-                            <a href="{{ route('listSoldier') }}"
-                                class="cursor-pointer block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
-                                List Soldier
-                            </a>
-                        </li>
-                    @endif
-                    @if (Auth::user()->range_id >= 11)
-                        <li>
-                            <a href="{{ route('createMission') }}"
-                                class="cursor-pointer block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
-                                Create Mission
-                            </a>
-                        </li>
-                    @endif
-                    <div class="hidden sm:flex sm:items-center sm:ms-6">
-                        <x-dropdown align="right" width="48">
-                            <x-slot name="trigger">
-                                <button
-                                    class="inline-flex items-center text-black px-3 py-2 text-sm leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
-                                    <div class="mr-2 rounded-full">
-                                        <img src="{{ Storage::url('Images/imagesUsers/' . Auth::user()->profile_photo_path) }}"
-                                        alt="profile_photo" class="w-[30px] h-[30px] object-cover rounded-full">
-                                    </div>
-                                    <div>{{ Auth::user()->name }}</div>
+                        @if (Auth::user()->rol_id == 2)
+                            <li>
+                                <a href="{{ route('listSoldierAdmin')}} "
+                                    class="cursor-pointer block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
+                                    Lista Admin
+                                </a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->range_id >= 5)
+                            <li>
+                                <a href="{{ route('listSoldier') }}"
+                                    class="cursor-pointer block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
+                                    Lista de Soldados
+                                </a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->range_id >= 11)
+                            <li>
+                                <a href="{{ route('createMission') }}"
+                                    class="cursor-pointer block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
+                                    Crear Misiones
+                                </a>
+                            </li>
+                        @endif
+                        <div class="hidden sm:flex sm:items-center sm:ms-6">
+                            <x-dropdown align="right" width="48">
+                                <x-slot name="trigger">
+                                    <button
+                                        class="inline-flex items-center text-black px-3 py-2 text-sm leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
+                                        <div class="mr-2 rounded-full">
+                                            <img src="{{ Storage::url('Images/imagesUsers/' . Auth::user()->profile_photo_path) }}"
+                                                alt="profile_photo" class="w-[30px] h-[30px] object-cover rounded-full">
+                                        </div>
+                                        <div>{{ Auth::user()->name }}</div>
 
-                                    <div class="ms-1">
-                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                </button>
-                            </x-slot>
+                                        <div class="ms-1">
+                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </x-slot>
 
-                            <x-slot name="content">
-                                <x-dropdown-link :href="route('profile.edit')">
-                                    {{ __('Profile') }}
-                                </x-dropdown-link>
-
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
-                                        {{ __('Log Out') }}
+                                <x-slot name="content">
+                                    <x-dropdown-link :href="route('profile.edit')">
+                                        {{ __('Perfil') }}
                                     </x-dropdown-link>
-                                </form>
-                            </x-slot>
-                        </x-dropdown>
-                    </div>
+
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                            {{ __('Log Out') }}
+                                        </x-dropdown-link>
+                                    </form>
+                                </x-slot>
+                            </x-dropdown>
+                        </div>
+                    @else
+                        <li>
+                            <a href="{{ route('home') }}"
+                                class="cursor-pointer block py-2 px-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
+                                Inicio
+                            </a>
+                        </li>
+                        <div class="hidden sm:flex sm:items-center sm:ms-6">
+                            <x-dropdown align="right" width="48">
+                                <x-slot name="trigger">
+                                    <button
+                                        class="inline-flex items-center text-black px-3 py-2 text-sm leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
+                                        <div class="mr-2 rounded-full">
+                                            <img src="{{ Storage::url('Images/imagesUsers/' . Auth::user()->profile_photo_path) }}"
+                                                alt="profile_photo" class="w-[30px] h-[30px] object-cover rounded-full">
+                                        </div>
+                                        <div>{{ Auth::user()->name }}</div>
+
+                                        <div class="ms-1">
+                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </x-slot>
+
+                                <x-slot name="content">
+                                    <x-dropdown-link :href="route('profile.edit')">
+                                        {{ __('Perfil') }}
+                                    </x-dropdown-link>
+
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                            {{ __('Log Out') }}
+                                        </x-dropdown-link>
+                                    </form>
+                                </x-slot>
+                            </x-dropdown>
+                        </div>
+                    @endif
                 @else
                     <a href="{{ route('login') }}"
                         class="font-semibold text-black hover:text-yellow-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">

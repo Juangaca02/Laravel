@@ -8,11 +8,19 @@ use Illuminate\Http\Request;
 class ArmyController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Vista de los soldados pertenecientes a un ejercito
      */
     public function index()
     {
-        //
+        return view('listuserarmy');
+    }
+
+    /**
+     * Vista de todos los soldados
+     */
+    public function indexAdmin()
+    {
+        return view('listSoldierAdmin');
     }
 
     /**
