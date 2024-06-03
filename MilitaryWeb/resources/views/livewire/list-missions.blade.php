@@ -7,79 +7,64 @@
                     <div class="inputGroup">
                         <input type="text" required="" autocomplete="off" class="input w-full min-w-[300px]"
                             wire:model.live="buscar">
-                        <label for="name">Nombre-Apellido-Dni</label>
+                        <label for="name">Titulo-Apellido-Dni</label>
                     </div>
                 </div>
-            </div>
-            <div class="flex space-x-2">
-                <button class="px-4 py-2 bg-blue-500 text-white rounded" wire:click="toggleVerificados">
-                    @if ($soloVerificados === null)
-                        Mostrar Verificados
-                    @elseif ($soloVerificados)
-                        Mostrar No Verificados
-                    @else
-                        Mostrar Verificados
-                    @endif
-                </button>
-                <button class="px-4 py-2 bg-green-500 text-white rounded" wire:click="mostrarTodos">
-                    Mostrar Todos
-                </button>
             </div>
         </div>
     </div>
     <div class="mx-[20px] md:mx-[100px]">
-
         <div class="overflow-x-auto mb-4">
             <table class="table-auto w-full text-left align-middle">
                 <thead class="bg-[#CE9568]">
                     <tr>
-                        <th scope="col"
-                            class="min-w-[70px] max-w-[300px] whitespace-nowrap overflow-hidden text-center pb-2">
-                            <p>Foto</p>
-                        </th>
-                        <th scope="col" wire:click="ordenar('name')"
+                        <th scope="col" wire:click="ordenar('title')"
                             class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer">
-                            @if ($campoOrden == 'name' && $orden)
+                            @if ($campoOrden == 'title' && $orden)
                                 @if ($orden == 'asc')
-                                    <p class="text-[#E50000]">Nombre ⬆</p>
+                                    <p class="text-[#E50000]">Titulo ⬆</p>
                                 @else
-                                    <p class="text-[#E50000]">Nombre ⬇</p>
+                                    <p class="text-[#E50000]">Titulo ⬇</p>
                                 @endif
                             @else
-                                <p>Nombre</p>
+                                <p>Titulo</p>
                             @endif
                         </th>
-                        <th scope="col" wire:click="ordenar('surname')"
+                        <th scope="col" wire:click="ordenar('date')"
                             class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer">
-                            @if ($campoOrden == 'surname' && $orden)
+                            @if ($campoOrden == 'date' && $orden)
                                 @if ($orden == 'asc')
-                                    <p class="text-[#E50000]">Apellidos ⬆</p>
+                                    <p class="text-[#E50000]">Fecha ⬆</p>
                                 @else
-                                    <p class="text-[#E50000]">Apellidos ⬇</p>
+                                    <p class="text-[#E50000]">Fecha ⬇</p>
                                 @endif
                             @else
-                                <p>Apellidos</p>
+                                <p>Fecha</p>
                             @endif
                         </th>
-                        <th scope="col" wire:click="ordenar('dni')"
+                        <th scope="col" wire:click="ordenar('status')"
                             class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer">
-                            @if ($campoOrden == 'dni' && $orden)
+                            @if ($campoOrden == 'status' && $orden)
                                 @if ($orden == 'asc')
-                                    <p class="text-[#E50000]">Dni ⬆</p>
+                                    <p class="text-[#E50000]">Estado ⬆</p>
                                 @else
-                                    <p class="text-[#E50000]">Dni ⬇</p>
+                                    <p class="text-[#E50000]">Estado ⬇</p>
                                 @endif
                             @else
-                                <p>Dni</p>
+                                <p>Estado</p>
                             @endif
                         </th>
                         <th
                             class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-center pb-2">
-                            Fecha de alistamiento
+                            Prioridad
                         </th>
                         <th
                             class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-center pb-2">
-                            Verificado
+                            Tipo
+                        </th>
+                        <th
+                            class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-center pb-2">
+                            Resultado
                         </th>
                         <th
                             class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-center pb-2">
@@ -89,38 +74,35 @@
                 </thead>
 
                 <tbody class="list">
-                    @forelse  ($allUsers as $User)
+                    @forelse  ($allMissions as $Missions)
                         <tr class="m-2">
-                            <td class="">
-                                <img src="{{ Storage::url('Images/imagesUsers/' . $User->profile_photo_path) }}"
-                                    alt="profile_photo" class="w-[50px] h-[50px] object-cover">
+                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
+                                {{ $Missions->title }}
                             </td>
                             <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
-                                {{ $User->name }}</td>
+                                {{ $Missions->date }}
+                            </td>
                             <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
-                                {{ $User->surname }}</td>
-                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis">
-                                {{ $User->DNI }}</td>
+                                {{ $Missions->status }}
+                            </td>
                             <td
                                 class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-center">
-                                {{ $User->entry_army_date }}</td>
-                            <td
-                                class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis text-center">
-                                <form action="/verificarUser/{{ $User->id }}" method="post" class="m-1 ml-2">
-                                    @csrf
-                                    @method('post')
-                                    <input type="checkbox" class="verificar" data-id="{{ $User->id }}"
-                                        {{ $User->verified ? 'checked' : '' }}>
-                                </form>
+                                {{ $Missions->priority }}
+                            </td>
+                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis ">
+                                {{ $Missions->type }}
+                            </td>
+                            <td class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis ">
+                                {{ $Missions->result }}
                             </td>
                             <td
                                 class="flex justify-center items-center min-w-[350px] max-w-[350px] whitespace-nowrap overflow-hidden text-ellipsis text-center">
                                 <button class="px-4 py-2 bg-indigo-500 text-white rounded"
-                                    onclick="showUserDetails({{ $User->id }})">
+                                    onclick="showMissionsDetails({{ $Missions->id }})">
                                     Detalles
                                 </button>
                                 @if (Auth::user()->range_id >= 11)
-                                    <a href="{{ route('editUser', ['id' => $User->id]) }}">
+                                    <a href="{{ route('editMission', ['id' => $Missions->id]) }}">
                                         <button class="BtnEdit-Details m-2 min-w-[90px]">Edit
                                             <svg class="svgBtnEdit" viewBox="0 0 512 512">
                                                 <path
@@ -129,11 +111,11 @@
                                             </svg>
                                         </button>
                                     </a>
-                                    <form action="/deleteUser/{{ $User->id }}" method="delete" class="m-1">
+                                    <form action="/deleteUser/{{ $Missions->id }}" method="delete" class="m-1">
                                         @csrf
                                         @method('delete')
                                         <button class="btn_deleteUser rounded-xl" type="button"
-                                            onclick="confirmDelete({{ $User->id }})">
+                                            onclick="confirmDelete({{ $Missions->id }})">
                                             <span class="btn_deleteUser__text">Delete</span>
                                             <span class="btn_deleteUser__icon">
                                                 <svg class="svg" height="512" viewBox="0 0 512 512" width="512"
@@ -178,9 +160,9 @@
                     @endforelse
                 </tbody>
             </table>
-            @if ($allUsers->hasPages())
+            @if ($allMissions->hasPages())
                 <div>
-                    {{ $allUsers->links() }}
+                    {{ $allMissions->links() }}
                 </div>
             @endif
         </div>

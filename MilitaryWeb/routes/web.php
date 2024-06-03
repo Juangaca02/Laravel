@@ -45,6 +45,8 @@ Route::middleware(['auth', 'verifiedUser'])->group(function () {
     // Ejercitos
     Route::get('/listSoldier', [ArmyController::class, 'index'])->name('listSoldier');
     // Misiones
+    Route::get('/getMissionsDetails/{id}', [MissionController::class, 'getMissionsDetails']);
+    Route::get('/editMission/{id}', [MissionController::class, 'edit'])->name('editMission');
     Route::get('/createMission', [MissionController::class, 'create'])->name('createMission');
     Route::post('/storeMission', [MissionController::class, 'store'])->name('storeMission');
     // Usuarios
@@ -60,7 +62,9 @@ Route::middleware(['admin', 'auth', 'verifiedUser'])->group(function () {
     Route::get('/listSoldierAdmin', [ArmyController::class, 'indexAdmin'])->name('listSoldierAdmin');
 });
 
-
+Route::get('/prueba', function () {
+    return view('listMissions');
+})->name('prueba');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

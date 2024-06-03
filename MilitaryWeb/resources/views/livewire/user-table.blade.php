@@ -38,26 +38,37 @@
                             <p>Foto</p>
                         </th>
                         <th scope="col" wire:click="ordenar('name')"
-                            class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer {{ $campoOrden == 'name' ? ($orden ? 'text-[#E50000]' : '') : '' }}
-                            ">
-                            @if ($campoOrden == 'name')
-                                <p>Nombre {!! $orden ? '⬆' : '⬇' !!}</p>
+                            class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer">
+                            @if ($campoOrden == 'name' && $orden)
+                                @if ($orden == 'asc')
+                                    <p class="text-[#E50000]">Nombre ⬆</p>
+                                @else
+                                    <p class="text-[#E50000]">Nombre ⬇</p>
+                                @endif
                             @else
                                 <p>Nombre</p>
                             @endif
                         </th>
                         <th scope="col" wire:click="ordenar('surname')"
-                            class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer {{ $campoOrden == 'surname' ? ($orden ? 'text-[#E50000]' : '') : '' }}">
-                            @if ($campoOrden == 'surname')
-                                <p>Apellidos {!! $orden ? '⬆' : '⬇' !!}</p>
+                            class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer">
+                            @if ($campoOrden == 'surname' && $orden)
+                                @if ($orden == 'asc')
+                                    <p class="text-[#E50000]">Apellidos ⬆</p>
+                                @else
+                                    <p class="text-[#E50000]">Apellidos ⬇</p>
+                                @endif
                             @else
                                 <p>Apellidos</p>
                             @endif
                         </th>
                         <th scope="col" wire:click="ordenar('dni')"
-                            class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer {{ $campoOrden == 'dni' ? ($orden ? 'text-[#E50000]' : '') : '' }}">
-                            @if ($campoOrden == 'dni')
-                                <p>Dni {!! $orden ? '⬆' : '⬇' !!}</p>
+                            class="min-w-[150px] max-w-[300px] whitespace-nowrap overflow-hidden text-ellipsis pb-2 cursor-pointer">
+                            @if ($campoOrden == 'dni' && $orden)
+                                @if ($orden == 'asc')
+                                    <p class="text-[#E50000]">Dni ⬆</p>
+                                @else
+                                    <p class="text-[#E50000]">Dni ⬇</p>
+                                @endif
                             @else
                                 <p>Dni</p>
                             @endif

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateMissionRequest;
+use App\Models\Army;
 use App\Models\Destination;
 use App\Models\Mission;
+use App\Models\Range;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,9 +102,18 @@ class MissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Mission $mission)
+    public function edit(string $id)
     {
-        //
+        $mission = Mission::find($id);
+
+        $users = User::all();
+
+        $ranges = Range::all();
+        $armies = Army::all();
+        $destinations = Destination::all();
+
+
+        return view('editMission', compact('mission', 'users', 'destinations', 'armies'));
     }
 
     /**
@@ -119,5 +130,20 @@ class MissionController extends Controller
     public function destroy(Mission $mission)
     {
         //
+    }
+
+    public function getMissionsDetails($id)
+    {
+        $mission = Mission::with(['army', 'destination'])->find($id);
+        $userName = User::find($mission->user_id)->name;
+        $armyName = $mission->army->name;
+        $destinationName = $mission->destination->name;
+
+        return response()->json([
+            'mission' => $mission,
+            'userName' => $userName,
+            'armyName' => $armyName,
+            'destinationName' => $destinationName
+        ]);
     }
 }

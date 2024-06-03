@@ -1,0 +1,2 @@
+Rango >= 5(Sargento) ----> Lista de Soldados
+Rango >= 11(Comandante) ----> Crear Misiones

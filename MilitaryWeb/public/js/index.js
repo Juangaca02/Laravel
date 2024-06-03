@@ -96,3 +96,91 @@ async function showUserDetails(userId) {
         },
     });
 }
+
+// Modal de detalles de una Mision
+async function showMissionsDetails(MissionId) {
+    // Hacer una solicitud AJAX para obtener los detalles del usuario
+    const response = await fetch(`/getMissionsDetails/${MissionId}`);
+    const data = await response.json();
+
+    // Crear el HTML para los detalles del usuario
+    const missionDetailsHTML = `
+    <table class="table-auto w-full text-left">
+    <tr>
+        <th class="px-4 py-2 min-w-40">Campo</th>
+        <th class="px-4 py-2">Detalle</th>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Título</strong></td>
+        <td class="border px-4 py-2">${data.mission.title}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Subtítulo</strong></td>
+        <td class="border px-4 py-2">${data.mission.subtitle}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Descripción</strong></td>
+        <td class="border px-4 py-2">${data.mission.description}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Fecha</strong></td>
+        <td class="border px-4 py-2">${data.mission.date}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Estado</strong></td>
+        <td class="border px-4 py-2">${data.mission.status}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Tipo</strong></td>
+        <td class="border px-4 py-2">${data.mission.type}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Prioridad</strong></td>
+        <td class="border px-4 py-2">${data.mission.priority}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Objetivo</strong></td>
+        <td class="border px-4 py-2">${data.mission.objective}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Acción</strong></td>
+        <td class="border px-4 py-2">${data.mission.action}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Resultado</strong></td>
+        <td class="border px-4 py-2">${data.mission.result}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Foto</strong></td>
+        <td class="border px-4 py-2"><img src="${data.mission.photo}" alt="Imagen de la misión" class="w-16 h-16 object-cover"></td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Ejército</strong></td>
+        <td class="border px-4 py-2">${data.armyName}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Destino</strong></td>
+        <td class="border px-4 py-2">${data.destinationName}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Usuario</strong></td>
+        <td class="border px-4 py-2">${data.userName}</td>
+    </tr>
+</table>
+    `;
+
+    // Mostrar el modal con SweetAlert2
+    Swal.fire({
+        title: "Detalle de Mision",
+        html: missionDetailsHTML,
+        showCancelButton: false,
+        showConfirmButton: false,
+        showCloseButton: true,
+        confirmButtonText: "Cerrar",
+        width: "600px",
+        padding: "30px",
+        customClass: {
+            container: 'hidden-scroll-bar'
+        },
+    });
+}

@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 <script src="{{ asset('js/index.js') }}"></script>
-{{-- @include('layouts.navigation2') --}}
 <x-pagina-sin-nada-layout>
     {{-- <div class="bg-image"> --}}
     <div class="relative bg-center text-center text-rgb(229, 206, 182)">
@@ -27,7 +26,7 @@
 
                     {{-- Carousel Aire --}}
                     @case(4)
-                    @include('aire.carousel')
+                        @include('aire.carousel')
                     @break
                 @endswitch
             @endif
@@ -58,7 +57,7 @@
 
                 {{-- Home Aire --}}
                 @case(4)
-                @include('aire.Home-Aire')
+                    @include('aire.Home-Aire')
                 @break
             @endswitch
         @endif
