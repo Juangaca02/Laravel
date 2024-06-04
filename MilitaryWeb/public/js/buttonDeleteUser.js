@@ -50,11 +50,11 @@ $(document).ready(function () {
     });
 });
 
-function confirmDelete(userId) {
+function confirmDelete(Id, name) {
     // Mostrar SweetAlert para confirmar la acción
     Swal.fire({
         title: '¿Estás seguro?',
-        text: '¿Estás seguro de eliminar este usuario?',
+        text: '¿Estás seguro de eliminar ' + name + '?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
@@ -64,7 +64,7 @@ function confirmDelete(userId) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: '/deleteUser/' + userId,
+                url: '/deleteUser/' + Id,
                 type: 'DELETE',
                 data: {
                     _token: $('input[name="_token"]').val(),
@@ -77,7 +77,7 @@ function confirmDelete(userId) {
                             '¡Hecho!',
                             response.success,
                             'success'
-                        ).then(()=>{
+                        ).then(() => {
                             location.reload();
                         });
                     }

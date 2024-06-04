@@ -115,7 +115,7 @@
                                         @csrf
                                         @method('delete')
                                         <button class="btn_deleteUser rounded-xl" type="button"
-                                            onclick="confirmDelete({{ $Missions->id }})">
+                                            onclick="confirmDelete({{ $Missions->id }}, 'la mision {{ $Missions->title }}')">
                                             <span class="btn_deleteUser__text">Delete</span>
                                             <span class="btn_deleteUser__icon">
                                                 <svg class="svg" height="512" viewBox="0 0 512 512" width="512"
