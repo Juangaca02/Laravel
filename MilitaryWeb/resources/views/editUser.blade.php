@@ -15,7 +15,7 @@
             @endif
             <div class="flex space-x-5">
                 <form class="bg-opacity-50 backdrop-blur-md p-8 rounded-lg shadow-md w-full max-w-4xl flex"
-                    enctype="multipart/form-data" method="post" action="{{ route('updateUser') }}" >
+                    enctype="multipart/form-data" method="post" action="{{ route('updateUser') }}">
                     <!-- <form class="bg-opacity-50 backdrop-blur-md p-8 rounded-lg shadow-md w-full max-w-4xl flex" enctype="multipart/form-datas" wire:submit.prevent="submit">    -->
                     <div class="w-full">
                         @csrf
@@ -24,61 +24,104 @@
                             <tr>
                                 <td>
                                     <!-- Nombre -->
-                                    <label for="name" class="block text-black font-bold">Nombre</label>
-                                    <input type="text" name="name" id="name" value="{{ $user->name }}"
+                                    <label for="nombre" class="block text-black font-bold">
+                                        Nombre
+                                        @error('nombre')
+                                            <span class="text-red-500 text-xl">*</span>
+                                        @enderror
+                                    </label>
+                                    <input type="text" name="nombre" id="nombre" value="{{ $user->name }}"
                                         class="form-input mt-1 block w-full">
                                 </td>
                                 <td>
                                     <!-- Apellidos -->
-                                    <label for="surname" class="block text-black font-bold">Apellidos</label>
-                                    <input type="text" name="surname" id="surname" value="{{ $user->surname }}"
+                                    <label for="apellidos" class="block text-black font-bold">
+                                        Apellidos
+                                        @error('apellidos')
+                                            <span class="text-red-500 text-xl">*</span>
+                                        @enderror
+                                    </label>
+                                    <input type="text" name="apellidos" id="apellidos" value="{{ $user->surname }}"
                                         class="form-input mt-1 block w-full">
                                 </td>
                                 <td>
                                     <!-- Dni -->
-                                    <label for="DNI" class="block text-black font-bold">DNI</label>
+                                    <label for="DNI" class="block text-black font-bold">
+                                        DNI
+                                        @error('DNI')
+                                            <span class="text-red-500 text-xl">*</span>
+                                        @enderror
+                                    </label>
                                     <input type="text" name="DNI" id="DNI" value="{{ $user->DNI }}"
                                         class="form-input mt-1 block w-full">
                                 </td>
                                 <td>
                                     <!-- Phone -->
-                                    <label for="phone" class="block text-black font-bold">Phone</label>
-                                    <input type="text" name="phone" id="phone" value="{{ $user->phone }}"
+                                    <label for="telefono" class="block text-black font-bold">
+                                        Telefono
+                                        @error('telefono')
+                                            <span class="text-red-500 text-xl">*</span>
+                                        @enderror
+                                    </label>
+                                    <input type="text" name="telefono" id="telefono" value="{{ $user->phone }}"
                                         class="form-input mt-1 block w-full">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <!-- Town -->
-                                    <label for="town" class="block text-black font-bold">Ciudad</label>
-                                    <input type="text" name="town" id="town" value="{{ $user->town }}"
+                                    <label for="ciudad" class="block text-black font-bold">
+                                        Ciudad
+                                        @error('ciudad')
+                                            <span class="text-red-500 text-xl">*</span>
+                                        @enderror
+                                    </label>
+                                    <input type="text" name="ciudad" id="ciudad" value="{{ $user->town }}"
                                         class="form-input mt-1 block w-full">
                                 </td>
-                                <td><!-- Municipality -->
-                                    <label for="municipality" class="block text-black font-bold">Municipio</label>
-                                    <input type="text" name="municipality" id="municipality"
-                                        value="{{ $user->municipality }}" class="form-input mt-1 block w-full">
+                                <td><!-- province -->
+                                    <label for="provincia" class="block text-black font-bold">
+                                        Provincia
+                                        @error('provincia')
+                                            <span class="text-red-500 text-xl">*</span>
+                                        @enderror
+                                    </label>
+                                    <input type="text" name="provincia" id="provincia"
+                                        value="{{ $user->province }}" class="form-input mt-1 block w-full">
                                 </td>
                                 <td>
                                     <!-- Fecha de Nacimiento -->
-                                    <label for="birthdate" class="block text-black font-bold">Fecha de
-                                        Nacimiento</label>
-                                    <input type="date" name="birthdate" id="birthdate" value="{{ $user->birthdate }}"
-                                        class="form-input mt-1 block w-full">
+                                    <label for="Fecha_de_Nacimiento" class="block text-black font-bold">
+                                        Fecha de Nacimiento
+                                        @error('Fecha_de_Nacimiento')
+                                            <span class="text-red-500 text-xl">*</span>
+                                        @enderror
+                                    </label>
+                                    <input type="date" name="Fecha_de_Nacimiento" id="Fecha_de_Nacimiento"
+                                        value="{{ $user->birthdate }}" class="form-input mt-1 block w-full">
                                 </td>
                                 <td>
                                     <!-- Entry_army_date -->
-                                    <label for="entry_army_date" class="block text-black font-bold">Fecha de
-                                        Ingreso</label>
-                                    <input type="date" name="entry_army_date" id="entry_army_date"
+                                    <label for="fecha_de_ingreso" class="block text-black font-bold">
+                                        Fecha de Ingreso
+                                        @error('fecha_de_ingreso')
+                                            <span class="text-red-500 text-xl">*</span>
+                                        @enderror
+                                    </label>
+                                    <input type="date" name="fecha_de_ingreso" id="fecha_de_ingreso"
                                         value="{{ $user->entry_army_date }}" class="form-input mt-1 block w-full">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <!-- Sexo -->
-                                    <label for="sex" class="block text-black font-bold">Sexo</label>
-                                    <select name="sex" id="sex" class="form-select mt-1 block w-full">
+                                    <label for="sexo" class="block text-black font-bold">
+                                        Sexo
+                                        @error('sexo')
+                                            <span class="text-red-500 text-xl">*</span>
+                                        @enderror
+                                    </label>
+                                    <select name="sexo" id="sexo" class="form-select mt-1 block w-full">
                                         <option value="H" {{ $user->sex === 'H' ? 'selected' : '' }}>Hombre
                                         </option>
                                         <option value="M" {{ $user->sex === 'M' ? 'selected' : '' }}>Mujer
@@ -87,7 +130,12 @@
                                 </td>
                                 <td>
                                     <!-- range_id -->
-                                    <label for="range_id" class="block text-black font-bold">Rango</label>
+                                    <label for="range_id" class="block text-black font-bold">
+                                        Rango
+                                        @error('range_id')
+                                            <span class="text-red-500 text-xl">*</span>
+                                        @enderror
+                                    </label>
                                     <select name="range_id" id="range_id" class="form-select mt-1 block w-full">
                                         @foreach ($ranges as $range)
                                             <!-- Verificar si el rol_id del usuario logueado es 1 para permitir solo rango por debajo -->
@@ -112,7 +160,12 @@
                                 @if (Auth::user()->rol_id == 2)
                                     <td>
                                         <!-- army_id -->
-                                        <label for="army_id" class="block text-black font-bold">Armada</label>
+                                        <label for="army_id" class="block text-black font-bold">
+                                            Armada
+                                            @error('army_id')
+                                                <span class="text-red-500 text-xl">*</span>
+                                            @enderror
+                                        </label>
                                         <select name="army_id" id="army_id" class="form-select mt-1 block w-full">
                                             @foreach ($armies as $army)
                                                 <option value="{{ $army->id }}"
@@ -124,7 +177,12 @@
                                 @else
                                     <td>
                                         <!-- army_id -->
-                                        <label for="army_id" class="block text-black font-bold">Armada</label>
+                                        <label for="army_id" class="block text-black font-bold">
+                                            Armada
+                                            @error('army_id')
+                                                <span class="text-red-500 text-xl">*</span>
+                                            @enderror
+                                        </label>
                                         @foreach ($armies as $army)
                                             @if ($user->army_id == $army->id)
                                                 <input type="text" name="army_id" id="army_id"
@@ -137,7 +195,7 @@
                             </tr>
                         </table>
                         <input type="hidden" name="id" id="id" value="{{ $user->id }}">
-                        
+
                         <x-custom.custom-button type="submit" class="md:col-span-3 w-full mt-4">
                             Actualizar
                         </x-custom.custom-button>
@@ -146,67 +204,52 @@
                 <div
                     class="h-auto min-h-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 ml-5 rounded relative @if ($errors->any()) block @else hidden @endif">
                     <ol>
-                        @error('titulo')
+                        @error('nombre')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </ol>
                     <ol>
-                        @error('subtitulo')
+                        @error('apellidos')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </ol>
                     <ol>
-                        @error('accion')
+                        @error('DNI')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </ol>
                     <ol>
-                        @error('fecha')
+                        @error('telefono')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </ol>
                     <ol>
-                        @error('descripcion')
+                        @error('ciudad')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </ol>
                     <ol>
-                        @error('tipo')
+                        @error('provincia')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </ol>
                     <ol>
-                        @error('prioridad')
+                        @error('Fecha_de_Nacimiento')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </ol>
                     <ol>
-                        @error('objetivo')
+                        @error('fecha_de_ingreso')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </ol>
                     <ol>
-                        @error('destination_id')
+                        @error('sexo')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </ol>
                     <ol>
-                        @error('user_id')
-                            <span class="text-red-500">{{ $message }}</span>
-                        @enderror
-                    </ol>
-                    <ol>
-                        @error('status')
-                            <span class="text-red-500">{{ $message }}</span>
-                        @enderror
-                    </ol>
-                    <ol>
-                        @error('foto')
-                            <span class="text-red-500">{{ $message }}</span>
-                        @enderror
-                    </ol>
-                    <ol>
-                        @error('result')
+                        @error('range_id')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </ol>

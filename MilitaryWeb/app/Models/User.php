@@ -28,7 +28,7 @@ class User extends Authenticatable
         'email',
         'password',
         'town',
-        'municipality',
+        'province',
         'entry_army_date',
         'profile_photo_path',
         'verified',

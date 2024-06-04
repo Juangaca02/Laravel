@@ -41,7 +41,7 @@
                             <button data-toggle="tooltip" data-placement="top" title="Añadir imputación"
                                 class="acciones-btn bg-transparent text-success border-0" data-bs-toggle="modal" data-bs-target="#imputacionModal"
                                 data-idcliente="{{ $part->IdCliente }}" data-codigocliente="{{ $part->CodigoCliente }}" data-razonsocial="{{ $part->RazonSocial }}"
-                                data-domicilio="{{ $part->Domicilio }}"data-codigopostal="{{ $part->CodigoPostal }}" data-municipio="{{ $part->Municipio }}"
+                                data-domicilio="{{ $part->Domicilio }}"data-codigopostal="{{ $part->CodigoPostal }}" data-Provincia="{{ $part->Provincia }}"
                                 data-provincia="{{ $part->Provincia }}" data-nacion="{{ $part->Nacion }}" data-telefono="{{ $part->Telefono }}"
                                 data-ejercicio="{{ $part->Ejercicio }}" data-serie="{{ $part->Serie }}" 
                                 {{-- Messi --}}

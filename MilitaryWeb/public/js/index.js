@@ -8,6 +8,35 @@ document.addEventListener("scroll", function () {
     }
 });
 
+// Funciones para cargar las fotos autimaticamente
+function previewImage(event) {
+    var input = event.target;
+    var reader = new FileReader();
+    reader.onload = function () {
+        var dataURL = reader.result;
+        var output = document.getElementById('imagePreview');
+        output.src = dataURL;
+        output.classList.remove('hidden');
+    };
+    reader.readAsDataURL(input.files[0]);
+}
+
+function previewImage(event) {
+    var preview = document.getElementById('missionImage');
+    var file = event.target.files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+        preview.src = reader.result;
+    }
+
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = '#';
+    }
+}
+
 
 // Modal de detalles de usuarios
 async function showUserDetails(userId) {
@@ -72,7 +101,7 @@ async function showUserDetails(userId) {
     </tr>
     <tr>
         <td class="border px-4 py-2"><strong>Ciudad</strong></td>
-        <td class="border px-4 py-2">${data.user.municipality}</td>
+        <td class="border px-4 py-2">${data.user.province}</td>
     </tr>
     <tr>
         <td class="border px-4 py-2"><strong>Imagen</strong></td>
@@ -163,7 +192,7 @@ async function showMissionsDetails(MissionId) {
         <td class="border px-4 py-2">${data.destinationName}</td>
     </tr>
     <tr>
-        <td class="border px-4 py-2"><strong>Usuario</strong></td>
+        <td class="border px-4 py-2"><strong>Persona a cargo</strong></td>
         <td class="border px-4 py-2">${data.userName}</td>
     </tr>
 </table>
@@ -173,6 +202,55 @@ async function showMissionsDetails(MissionId) {
     Swal.fire({
         title: "Detalle de Mision",
         html: missionDetailsHTML,
+        showCancelButton: false,
+        showConfirmButton: false,
+        showCloseButton: true,
+        confirmButtonText: "Cerrar",
+        width: "600px",
+        padding: "30px",
+        customClass: {
+            container: 'hidden-scroll-bar'
+        },
+    });
+}
+
+
+// Modal de detalles de una Destinos
+async function showDestinationsDetails(DestinationId) {
+    // Hacer una solicitud AJAX para obtener los detalles del usuario
+    const response = await fetch(`/getDestinationsDetails/${DestinationId}`);
+    const data = await response.json();
+
+    // Crear el HTML para los detalles del usuario
+    const destinationDetailsHTML = `
+    <table class="table-auto w-full text-left">
+    <tr>
+        <th class="px-4 py-2 min-w-40">Campo</th>
+        <th class="px-4 py-2">Detalle</th>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Nombre</strong></td>
+        <td class="border px-4 py-2">${data.destination.name}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Descripción</strong></td>
+        <td class="border px-4 py-2">${data.destination.description}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Nombre Pais</strong></td>
+        <td class="border px-4 py-2">${data.countryName}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Descripción Pais</strong></td>
+        <td class="border px-4 py-2">${data.countryDescription}</td>
+    </tr>
+</table>
+    `;
+
+    // Mostrar el modal con SweetAlert2
+    Swal.fire({
+        title: "Detalle de Mision",
+        html: destinationDetailsHTML,
         showCancelButton: false,
         showConfirmButton: false,
         showCloseButton: true,

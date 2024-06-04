@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArmyController;
+use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -45,8 +46,10 @@ Route::middleware(['auth', 'verifiedUser'])->group(function () {
     // Ejercitos
     Route::get('/listSoldier', [ArmyController::class, 'index'])->name('listSoldier');
     // Misiones
+    Route::get('/listMissions', [MissionController::class, 'index'])->name('listMissions');
     Route::get('/getMissionsDetails/{id}', [MissionController::class, 'getMissionsDetails']);
     Route::get('/editMission/{id}', [MissionController::class, 'edit'])->name('editMission');
+    Route::patch('/updateMission', [MissionController::class, 'update'])->name('updateMission');
     Route::get('/createMission', [MissionController::class, 'create'])->name('createMission');
     Route::post('/storeMission', [MissionController::class, 'store'])->name('storeMission');
     // Usuarios
@@ -55,6 +58,9 @@ Route::middleware(['auth', 'verifiedUser'])->group(function () {
     Route::patch('/updateUser', [UserController::class, 'update'])->name('updateUser');
     Route::post('/verificarUser/{id}', [UserController::class, 'verificarUser'])->name('verificarUser');
     Route::delete('/deleteUser/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
+    //Destinos
+    Route::get('/getDestinationsDetails/{id}', [DestinationController::class, 'getDestinationsDetails']);
+
 });
 
 // Middleware para Admins
@@ -63,7 +69,7 @@ Route::middleware(['admin', 'auth', 'verifiedUser'])->group(function () {
 });
 
 Route::get('/prueba', function () {
-    return view('listMissions');
+    return view('listDestination');
 })->name('prueba');
 
 // Route::get('/dashboard', function () {

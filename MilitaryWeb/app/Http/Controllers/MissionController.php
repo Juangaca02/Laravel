@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateMissionRequest;
+use App\Http\Requests\MissionRequest;
 use App\Models\Army;
 use App\Models\Destination;
 use App\Models\Mission;
@@ -10,6 +11,7 @@ use App\Models\Range;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MissionController extends Controller
 {
@@ -18,6 +20,7 @@ class MissionController extends Controller
      */
     public function index()
     {
+        return view("listMissions");
     }
 
 
@@ -65,7 +68,7 @@ class MissionController extends Controller
         $originalFileName = $request->file('foto')->getClientOriginalName();
 
         // Guardar el archivo en la carpeta de almacenamiento con el nombre original
-        $storedFilePath = $request->file('foto')->storeAs('public/images/images-home-naval', $originalFileName);
+        $storedFilePath = $request->file('foto')->storeAs('public/images/images-Missions', $originalFileName);
 
         // Guardar el nombre del archivo original en la base de datos
         $mission->photo = $originalFileName;
@@ -106,7 +109,8 @@ class MissionController extends Controller
     {
         $mission = Mission::find($id);
 
-        $users = User::all();
+        $users = User::all()
+            ->where('army_id', Auth::user()->army_id);
 
         $ranges = Range::all();
         $armies = Army::all();
@@ -119,11 +123,28 @@ class MissionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Mission $mission)
+    public function update(MissionRequest $request) // Mission $mission
     {
-        //
-    }
+        $request->validated();
+        $mission = Mission::find($request->id);
+        if ($request->hasFile('photo')) {
+            // Eliminar la foto existente si hay una
+            if ($mission->photo) {
+                Storage::delete("public/Images/images-Missions/" . $mission->photo);
+            }
 
+            // Guardar la nueva foto
+            $originalFileName = $request->file('photo')->getClientOriginalName();
+            $request->file('photo')->storeAs('public/Images/images-Missions/', $originalFileName);
+            $mission->photo = $originalFileName;
+        }
+        // Actualizar otros campos de la misión si es necesario
+        $mission->update($request->validated());
+
+        $mission->save();
+
+        return redirect()->route('editMission', ['id' => $request->id])->with('success', 'Misión Actualizada Correctamente');
+    }
     /**
      * Remove the specified resource from storage.
      */

@@ -123,13 +123,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td> <!-- Municipality -->
+                            <td> <!-- province -->
                                 <div class="mt-4">
-                                    <x-input-label for="municipality" :value="__('Municipio')" />
-                                    <x-text-input id="municipality" class="block mt-1 w-full" type="text"
-                                        name="municipality" :value="old('municipality')" required autofocus
-                                        autocomplete="municipality" />
-                                    <x-input-error :messages="$errors->get('municipality')" class="mt-2" />
+                                    <x-input-label for="province" :value="__('Provincia')" />
+                                    <x-text-input id="province" class="block mt-1 w-full" type="text"
+                                        name="province" :value="old('province')" required autofocus
+                                        autocomplete="province" />
+                                    <x-input-error :messages="$errors->get('province')" class="mt-2" />
                                 </div>
                             </td>
                             <td> <!-- Town -->

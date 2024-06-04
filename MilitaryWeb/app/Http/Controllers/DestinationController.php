@@ -62,4 +62,17 @@ class DestinationController extends Controller
     {
         //
     }
+
+    public function getDestinationsDetails($id)
+    {
+        $destination = Destination::with(['country'])->find($id);
+        $countryName = $destination->country->name;
+        $countryDescription = $destination->country->description;
+
+        return response()->json([
+            'destination' => $destination,
+            'countryName' => $countryName,
+            'countryDescription'=> $countryDescription
+        ]);
+    }
 }

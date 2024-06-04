@@ -21,7 +21,7 @@
                     </div>
                     <div class="lg:flex">
                         <figure class="mx-10 flex flex-col justify-center text-center "><!--- max-w-[800px] --->
-                            <img class="rounded-3xl" src="{{ asset('storage/Images/Images-Home-Naval/' . $mission->photo) }}" alt="{{ $mission->title }}" style="max-width: 700px; height: auto;">
+                            <img class="rounded-3xl" src="{{ asset('storage/Images/images-Missions/' . $mission->photo) }}" alt="{{ $mission->title }}" style="max-width: 700px; height: auto;">
                             {{-- <figcaption class="text-2xl italic mt-2">Buque insignia de la Armada</figcaption> --}}
                             <figcaption class="text-2xl italic mt-2">{{ $mission->title }}</figcaption>
                         </figure>

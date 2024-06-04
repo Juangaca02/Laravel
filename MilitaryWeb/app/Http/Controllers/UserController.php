@@ -45,7 +45,7 @@ class UserController extends Controller
         $user->DNI = $request->DNI;
         $user->phone = $request->phone;
         $user->town = $request->town;
-        $user->municipality = $request->municipality;
+        $user->province = $request->province;
         $user->birthdate = $request->birthdate;
         $user->entry_army_date = $request->entry_army_date;
         $user->sex = $request->sex;

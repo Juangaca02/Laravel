@@ -92,6 +92,57 @@
                                     <option value="Patrulla" {{ old('tipo') == 'Patrulla' ? 'selected' : '' }}>
                                         Patrulla
                                     </option>
+                                    <option value="Combate" {{ old('tipo') == 'Combate' ? 'selected' : '' }}>
+                                        Combate
+                                    </option>
+                                    <option value="Guerra de Minas"
+                                        {{ old('tipo') == 'Guerra de Minas' ? 'selected' : '' }}>
+                                        Guerra de Minas
+                                    </option>
+                                    <option value="Apoyo" {{ old('tipo') == 'Apoyo' ? 'selected' : '' }}>
+                                        Apoyo
+                                    </option>
+                                    <option value="Defensa" {{ old('tipo') == 'Defensa' ? 'selected' : '' }}>
+                                        Defensa
+                                    </option>
+                                    <option value="Rescate" {{ old('tipo') == 'Rescate' ? 'selected' : '' }}>
+                                        Rescate
+                                    </option>
+                                    <option value="Reparación" {{ old('tipo') == 'Reparación' ? 'selected' : '' }}>
+                                        Reparación
+                                    </option>
+                                    <option value="Entrenamiento"
+                                        {{ old('tipo') == 'Entrenamiento' ? 'selected' : '' }}>
+                                        Entrenamiento
+                                    </option>
+                                    <option value="Humanitaria"{{ old('tipo') == 'Humanitaria' ? 'selected' : '' }}>
+                                        Humanitaria
+                                    </option>
+                                    @switch((Auth::user()->army_id))
+                                        {{-- Carousel Tierra --}}
+                                        @case(2)
+                                            <option value="Seguridad terrestre"{{ old('tipo') == 'Seguridad terrestre' ? 'selected' : '' }}>
+                                                Seguridad terrestre
+                                            </option>
+                                        @break
+
+                                        {{-- Carousel Naval --}}
+                                        @case(3)
+                                            <option value="Seguridad Marítima"{{ old('tipo') == 'Seguridad Marítima' ? 'selected' : '' }}>
+                                                Seguridad Marítima
+                                            </option>
+                                        @break
+
+                                        {{-- Carousel Aire --}}
+                                        @case(4)
+                                            <option value="Seguridad Aerea"{{ old('tipo') == 'Seguridad Aerea' ? 'selected' : '' }}>
+                                                Seguridad Aerea
+                                            </option>
+                                        @break
+                                    @endswitch
+                                    <option value="Otros" {{ old('tipo') == 'Otros' ? 'selected' : '' }}>
+                                        Otros
+                                    </option>
                                 </select>
                             </div>
                             <div>
@@ -103,14 +154,14 @@
                                 </label>
                                 <select name="prioridad" id="prioridad" class="w-full mt-1 p-2 rounded">
                                     <option value=""></option>
-                                    <option value="Alta" {{ old('prioridad') == 'Alta' ? 'selected' : '' }}>
-                                        Alta
+                                    <option value="Baja" {{ old('prioridad') == 'Baja' ? 'selected' : '' }}>
+                                        Baja
                                     </option>
                                     <option value="Media" {{ old('prioridad') == 'Media' ? 'selected' : '' }}>
                                         Media
                                     </option>
-                                    <option value="Baja" {{ old('prioridad') == 'Baja' ? 'selected' : '' }}>
-                                        Baja
+                                    <option value="Alta" {{ old('prioridad') == 'Alta' ? 'selected' : '' }}>
+                                        Alta
                                     </option>
                                 </select>
                             </div>
@@ -149,7 +200,7 @@
                                     @enderror
                                 </label>
                                 <select name="user_id" id="user_id" class="w-full mt-1 p-2 rounded">
-                                    
+
                                     <option value=""></option>
                                     {{-- Verificar si hay usuarios en el rango --}}
                                     @if ($usersInRange->isEmpty())
@@ -167,7 +218,8 @@
                                     @endif
                                 </select>
                             </div>
-                            <input type="text" name="estado" id="estado" value="En espera de ejecución" hidden>
+                            <input type="text" name="estado" id="estado" value="En espera de ejecución"
+                                hidden>
                             <input type="text" name="resultado" id="resultado" value="En espera de ejecución"
                                 hidden>
                             <input type="number" name="army_id" id="army_id" value="{{ Auth::user()->army_id }}"
@@ -273,16 +325,3 @@
         </div>
     </div>
 </x-pagina-sin-nada-layout>
-<script>
-    function previewImage(event) {
-        var input = event.target;
-        var reader = new FileReader();
-        reader.onload = function() {
-            var dataURL = reader.result;
-            var output = document.getElementById('imagePreview');
-            output.src = dataURL;
-            output.classList.remove('hidden');
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-</script>

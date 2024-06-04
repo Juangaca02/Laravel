@@ -10,14 +10,14 @@
                     @if (Auth::user()->verified == 1)
                         <li>
                             <a href="{{ route('home') }}"
-                                class="cursor-pointer block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
+                                class="cursor-pointer block py-2 px-3 text-white rounded md:hover:bg-transparent md:border-0 hover:text-yellow-600 md:p-0">
                                 Inicio
                             </a>
                         </li>
                         @if (Auth::user()->rol_id == 2)
                             <li>
                                 <a href="{{ route('listSoldierAdmin') }} "
-                                    class="cursor-pointer block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
+                                    class="cursor-pointer block py-2 px-3 text-white rounded md:hover:bg-transparent md:border-0 hover:text-yellow-600 md:p-0">
                                     Lista Admin
                                 </a>
                             </li>
@@ -25,24 +25,23 @@
                         @if (Auth::user()->range_id >= 5)
                             <li>
                                 <a href="{{ route('listSoldier') }}"
-                                    class="cursor-pointer block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
+                                    class="cursor-pointer block py-2 px-3 text-white rounded md:hover:bg-transparent md:border-0 hover:text-yellow-600 md:p-0">
                                     Lista de Soldados
                                 </a>
                             </li>
                         @endif
                         @if (Auth::user()->range_id >= 11)
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('createMission') }}"
                                     class="cursor-pointer block py-2 px-3 text-white rounded md:hover:bg-transparent md:border-0 hover:text-yellow-600 md:p-0">
                                     Crear Misiones
                                 </a>
-                            </li>
-
+                            </li> --}}
                             <div class="hidden sm:flex sm:items-center sm:ms-6">
                                 <x-dropdown align="right" width="48">
                                     <x-slot name="trigger">
                                         <button
-                                            class="inline-flex items-center text-white px-3 py-2 text-sm leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
+                                            class="inline-flex items-center text-white px-3 py-2 text-md leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
                                             <div>Misiones</div>
                                             <div class="ms-1">
                                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +58,7 @@
                                         <x-dropdown-link :href="route('createMission')">
                                             {{ __('Crear Mision') }}
                                         </x-dropdown-link>
-                                        <x-dropdown-link :href="route('home')">
+                                        <x-dropdown-link :href="route('listMissions')">
                                             {{ __('Lista de Misiones') }}
                                         </x-dropdown-link>
 
@@ -71,7 +70,7 @@
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
                                     <button
-                                        class="inline-flex items-center text-white px-3 py-2 text-sm leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
+                                        class="inline-flex items-center text-white px-3 py-2 text-md leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
                                         <div class="mr-2 rounded-full">
                                             <img src="{{ Storage::url('Images/imagesUsers/' . Auth::user()->profile_photo_path) }}"
                                                 alt="profile_photo" class="w-[30px] h-[30px] object-cover rounded-full">
@@ -110,7 +109,7 @@
                     @else
                         <li>
                             <a href="{{ route('home') }}"
-                                class="cursor-pointer block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 md:p-0">
+                                class="cursor-pointer block py-2 px-3 text-white rounded md:hover:bg-transparent md:border-0 hover:text-yellow-600 md:p-0">
                                 Inicio
                             </a>
                         </li>

@@ -16,4 +16,9 @@ class Destination extends Model
     {
         return $this->hasMany(Mission::class);
     }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }

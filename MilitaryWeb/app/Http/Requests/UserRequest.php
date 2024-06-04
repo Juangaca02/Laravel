@@ -22,18 +22,26 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
-            'DNI' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:255'],
-            'town' => ['required', 'string', 'max:255'],
-            'municipality' => ['required', 'string', 'max:255'],
-            'birthdate' => ['required', 'date'],
-            'entry_army_date' => ['required', 'date'],
-            'sex' => ['required', 'string', 'max:255'],
+            'nombre' => ['required', 'string', 'max:50'],
+            'apellidos' => ['required', 'string', 'max:50'],
+            'DNI' => ['required', 'string', 'max:9'],
+            'telefono' => ['required', 'string', 'max:20'],
+            'ciudad' => ['required', 'string', 'max:255'],
+            'provincia' => ['required', 'string', 'max:255'],
+            'Fecha_de_Nacimiento' => ['required', 'date'],
+            'fecha_de_ingreso' => ['required', 'date'],
+            'sexo' => ['required', 'string', 'max:255'],
             'range_id' => ['required', 'string', 'max:255'],
             'army_id' => ['required', 'string', 'max:255'],
             // 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'El Campo :attribute es obligatorio.',
+            'max' => 'El Campo :attribute no puede superar los :max caracteres.',
         ];
     }
 }

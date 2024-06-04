@@ -111,11 +111,11 @@
                 </div>
 
                 <div>
-                    {{-- municipality --}}
-                    <x-input-label for="municipality" :value="__('Municipio')" />
-                    <x-text-input id="municipality" name="municipality" type="text" class="mt-1 block w-full"
-                        :value="old('municipality', $user->municipality)" required autofocus autocomplete="municipality" />
-                    <x-input-error class="mt-2" :messages="$errors->get('municipality')" />
+                    {{-- province --}}
+                    <x-input-label for="province" :value="__('Provincia')" />
+                    <x-text-input id="province" name="province" type="text" class="mt-1 block w-full"
+                        :value="old('province', $user->province)" required autofocus autocomplete="province" />
+                    <x-input-error class="mt-2" :messages="$errors->get('province')" />
                 </div>
 
                 <div>

@@ -33,7 +33,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->numerify('#########'),
             'town' => $this->faker->city,
-            'municipality' => $this->faker->city,
+            'province' => $this->faker->city,
             'entry_army_date' => $this->faker->date('Y-m-d', '-10 years'),
             'profile_photo_path' => 'fotoUsers.png',
             'verified' => $this->faker->boolean(50), // 90% de probabilidad de que estén verificados

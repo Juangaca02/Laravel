@@ -24,7 +24,7 @@ class ProfileUpdateRequest extends FormRequest
             'sex' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'town' => ['required', 'string', 'max:255'],
-            'municipality' => ['required', 'string', 'max:255'],
+            'province' => ['required', 'string', 'max:255'],
             'entry_army_date' => ['required', 'date'],
         ];
     }
