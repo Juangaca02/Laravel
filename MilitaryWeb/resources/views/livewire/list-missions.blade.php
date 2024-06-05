@@ -111,11 +111,11 @@
                                             </svg>
                                         </button>
                                     </a>
-                                    <form action="/deleteUser/{{ $Missions->id }}" method="delete" class="m-1">
+                                    <form action="/deleteMission/{{ $Missions->id }}" method="delete" class="m-1">
                                         @csrf
                                         @method('delete')
                                         <button class="btn_deleteUser rounded-xl" type="button"
-                                            onclick="confirmDelete({{ $Missions->id }}, 'la mision {{ $Missions->title }}')">
+                                            onclick="confirmDelete({{ $Missions->id }}, 'la mision {{ $Missions->title }}','mission')">
                                             <span class="btn_deleteUser__text">Delete</span>
                                             <span class="btn_deleteUser__icon">
                                                 <svg class="svg" height="512" viewBox="0 0 512 512" width="512"

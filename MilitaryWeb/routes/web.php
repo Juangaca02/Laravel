@@ -52,6 +52,7 @@ Route::middleware(['auth', 'verifiedUser'])->group(function () {
     Route::patch('/updateMission', [MissionController::class, 'update'])->name('updateMission');
     Route::get('/createMission', [MissionController::class, 'create'])->name('createMission');
     Route::post('/storeMission', [MissionController::class, 'store'])->name('storeMission');
+    Route::delete('/deleteMission/{id}', [MissionController::class, 'deleteMission'])->name('deleteMission');
     // Usuarios
     Route::get('/getUserDetails/{id}', [UserController::class, 'getUserDetails']);
     Route::get('/editUser/{id}', [UserController::class, 'edit'])->name('editUser');
@@ -59,7 +60,14 @@ Route::middleware(['auth', 'verifiedUser'])->group(function () {
     Route::post('/verificarUser/{id}', [UserController::class, 'verificarUser'])->name('verificarUser');
     Route::delete('/deleteUser/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
     //Destinos
+    Route::get('/listDestinations', [DestinationController::class, 'index'])->name('listDestinations');
     Route::get('/getDestinationsDetails/{id}', [DestinationController::class, 'getDestinationsDetails']);
+    
+    Route::get('/createDestination', [DestinationController::class, 'create'])->name('createDestination');
+    Route::delete('/deleteDestination/{id}', [DestinationController::class, 'deleteDestination'])->name('deleteDestination');
+    Route::get('/editDestination/{id}', [DestinationController::class, 'edit'])->name('editDestination');
+    Route::post('/storeDestination', [DestinationController::class, 'store'])->name('storeDestination');
+    Route::patch('/updateDestination', [DestinationController::class, 'update'])->name('updateDestination');
 
 });
 
@@ -69,7 +77,7 @@ Route::middleware(['admin', 'auth', 'verifiedUser'])->group(function () {
 });
 
 Route::get('/prueba', function () {
-    return view('listDestination');
+    return view('');
 })->name('prueba');
 
 // Route::get('/dashboard', function () {

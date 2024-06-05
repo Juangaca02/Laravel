@@ -867,7 +867,7 @@
     @if ($navbarType == 'black')
         @include('layouts.navigationBlack', ['navbarType' => $navbarType])
     @else
-        @include('layouts.navigation2')
+        @include('layouts.navigationWhite')
     @endif
     {{-- @include('layouts.navigation2') --}}
     {{-- <div class="loading" id="loading">Loading...</div>

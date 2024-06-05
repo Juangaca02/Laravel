@@ -20,7 +20,7 @@ class MissionController extends Controller
      */
     public function index()
     {
-        return view("listMissions");
+        return view("mission.listMissions");
     }
 
 
@@ -39,7 +39,7 @@ class MissionController extends Controller
         $destination = Destination::all();
 
         // Devolver la vista con los datos necesarios
-        return view("createMissions")
+        return view("mission.createMissions")
             ->with('destination', $destination)
             ->with('usersInRange', $usersInRange);
     }
@@ -68,7 +68,7 @@ class MissionController extends Controller
         $originalFileName = $request->file('foto')->getClientOriginalName();
 
         // Guardar el archivo en la carpeta de almacenamiento con el nombre original
-        $storedFilePath = $request->file('foto')->storeAs('public/images/images-Missions', $originalFileName);
+        $storedFilePath = $request->file('foto')->storeAs('public/images/images-Missions/missions/', $originalFileName);
 
         // Guardar el nombre del archivo original en la base de datos
         $mission->photo = $originalFileName;
@@ -90,7 +90,7 @@ class MissionController extends Controller
 
         $mission->save();
 
-        return redirect()->route('createMission')->with('success', 'Mision Creada Correctamente');
+        return redirect()->route('mission.createMission')->with('success', 'Mision Creada Correctamente');
 
     }
 
@@ -117,7 +117,7 @@ class MissionController extends Controller
         $destinations = Destination::all();
 
 
-        return view('editMission', compact('mission', 'users', 'destinations', 'armies'));
+        return view('mission.editMission', compact('mission', 'users', 'destinations', 'armies'));
     }
 
     /**
@@ -130,12 +130,12 @@ class MissionController extends Controller
         if ($request->hasFile('photo')) {
             // Eliminar la foto existente si hay una
             if ($mission->photo) {
-                Storage::delete("public/Images/images-Missions/" . $mission->photo);
+                Storage::delete("public/Images/images-Missions/missions/" . $mission->photo);
             }
 
             // Guardar la nueva foto
             $originalFileName = $request->file('photo')->getClientOriginalName();
-            $request->file('photo')->storeAs('public/Images/images-Missions/', $originalFileName);
+            $request->file('photo')->storeAs('public/Images/images-Missions/missions/', $originalFileName);
             $mission->photo = $originalFileName;
         }
         // Actualizar otros campos de la misión si es necesario
@@ -151,6 +151,16 @@ class MissionController extends Controller
     public function destroy(Mission $mission)
     {
         //
+    }
+
+    public function deleteMission($id)
+    {
+        $Mission = Mission::find($id);
+        if (!$Mission) {
+            return response()->json(['error' => 'Mission no encontrado'], 404);
+        }
+        $Mission->delete();
+        return response()->json(['success' => 'Mission eliminado correctamente']);
     }
 
     public function getMissionsDetails($id)

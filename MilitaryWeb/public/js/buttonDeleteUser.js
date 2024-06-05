@@ -50,8 +50,17 @@ $(document).ready(function () {
     });
 });
 
-function confirmDelete(Id, name) {
-    // Mostrar SweetAlert para confirmar la acción
+function confirmDelete(Id, name, type) {
+    // Dependiendo de que lista provenga el usuario, redireccionar a la ruta correspondiente
+    let urlType;
+    if (type === 'user') {
+        urlType = '/deleteUser/' + Id;
+    } else if (type === 'mission') {
+        urlType = '/deleteMission/' + Id;
+    } else if (type === 'destination') {
+        urlType = '/deleteDestination/' + Id;
+    }
+
     Swal.fire({
         title: '¿Estás seguro?',
         text: '¿Estás seguro de eliminar ' + name + '?',
@@ -64,7 +73,7 @@ function confirmDelete(Id, name) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: '/deleteUser/' + Id,
+                url: urlType,
                 type: 'DELETE',
                 data: {
                     _token: $('input[name="_token"]').val(),

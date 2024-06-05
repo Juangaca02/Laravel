@@ -8,7 +8,7 @@
         </div>
 
         <div class="relative flex flex-col sm:flex-row mt-6 shadow-md overflow-hidden sm:rounded-lg bg-cover bg-center h-[550px] w-[1100px]"
-            style="background-image: url('storage/images/imagesRelleno/ArmadaEspañola.jpg');">
+            style="background-image: url('storage/images/images-Login_Register/ArmadaEspañola.jpg');">
 
             <!-- Capa oscura -->
             <div class="absolute inset-0 bg-black opacity-30"></div>

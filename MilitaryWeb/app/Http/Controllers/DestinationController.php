@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DestinationRequest;
+use App\Models\Country;
 use App\Models\Destination;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,7 @@ class DestinationController extends Controller
      */
     public function index()
     {
-        //
+        return view('destination.listDestination');
     }
 
     /**
@@ -20,15 +22,22 @@ class DestinationController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::all();
+        return view('destination.createDestinations', compact('countries'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DestinationRequest $request)
     {
-        //
+        $request->validated();
+        $destination = new Destination();
+        $destination->name = $request->nombre;
+        $destination->country_id = $request->identificardor_pais;
+        $destination->description = $request->descripcion;
+        $destination->save();
+        return redirect()->route('destination.editDestination', ['id' => $destination->id])->with('success', 'Destino Creado Correctamente');
     }
 
     /**
@@ -42,17 +51,31 @@ class DestinationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Destination $destination)
+    public function edit(string $id)
     {
-        //
+        $destination = Destination::find($id);
+
+        $countries = Country::all();
+
+
+        return view('destination.editDestination', compact('destination', 'countries'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Destination $destination)
+    public function update(DestinationRequest $request)
     {
-        //
+        $request->validated();
+        $destination = Destination::find($request->id);
+        
+        $destination->name = $request->nombre;
+        $destination->country_id = $request->identificardor_pais;
+        $destination->description = $request->descripcion;
+
+        $destination->save();
+
+        return redirect()->route('editDestination', ['id' => $request->id])->with('success', 'Destino Actualizado Correctamente');
     }
 
     /**
@@ -61,6 +84,16 @@ class DestinationController extends Controller
     public function destroy(Destination $destination)
     {
         //
+    }
+
+    public function deleteDestination($id)
+    {
+        $Destination = Destination::find($id);
+        if (!$Destination) {
+            return response()->json(['error' => 'Destination no encontrado'], 404);
+        }
+        $Destination->delete();
+        return response()->json(['success' => 'Destination eliminado correctamente']);
     }
 
     public function getDestinationsDetails($id)

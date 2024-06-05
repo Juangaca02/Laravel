@@ -85,7 +85,7 @@
                                     Detalles
                                 </button>
                                 @if (Auth::user()->range_id >= 11)
-                                    {{-- <a href="{{ route('editDestination', ['id' => $Destination->id]) }}">
+                                    <a href="{{ route('editDestination', ['id' => $Destination->id]) }}">
                                         <button class="BtnEdit-Details m-2 min-w-[90px]">Edit
                                             <svg class="svgBtnEdit" viewBox="0 0 512 512">
                                                 <path
@@ -93,12 +93,12 @@
                                                 </path>
                                             </svg>
                                         </button>
-                                    </a> --}}
-                                    <form action="/deleteUser/{{ $Destination->id }}" method="delete" class="m-1">
+                                    </a>
+                                    <form action="/deleteDestination/{{ $Destination->id }}" method="delete" class="m-1">
                                         @csrf
                                         @method('delete')
                                         <button class="btn_deleteUser rounded-xl" type="button"
-                                            onclick="confirmDelete({{ $Destination->id }}, 'el destino {{ $Destination->name }}')">
+                                            onclick="confirmDelete({{ $Destination->id }}, 'el destino {{ $Destination->name }}','destination')">
                                             <span class="btn_deleteUser__text">Delete</span>
                                             <span class="btn_deleteUser__icon">
                                                 <svg class="svg" height="512" viewBox="0 0 512 512" width="512"
