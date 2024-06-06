@@ -19,12 +19,12 @@ class IsAdmin
     {
         // Obtener el usuario autenticado
         $user = Auth::user();
-        
+
         // Verificar si el usuario está autenticado y su rol es de administrador (rol_id = 2)
-        if ($user && $user->rol_id === 2) {
+        if ($user && $user->rol_id == 2) {
             return $next($request);
         }
-        
+
         // Redireccionar o devolver un error
         return redirect()->route('home')->with('error', 'No tienes permisos de administrador.');
     }

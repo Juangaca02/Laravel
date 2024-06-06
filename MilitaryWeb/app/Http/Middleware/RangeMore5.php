@@ -7,14 +7,12 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class RangeMore16
+class RangeMore5
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -31,9 +29,9 @@ class RangeMore16
         if ($user->rol_id == 2) {
             return $next($request);
         } else {
-            // Comprueba si el rango del usuario es mayor o igual a 16
-            if ($user->range_id <= 16) {
-                // Si el rango es menor a 16, redirige o devuelve un error
+            // Comprueba si el rango del usuario es mayor 5
+            if ($user->range_id < 5) {
+                // Si el rango es mayor a 5, redirige o devuelve un error
                 return redirect()->route('home')->withErrors('No tienes el rango suficiente para acceder a esta página.');
             }
             return $next($request);

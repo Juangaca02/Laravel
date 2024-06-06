@@ -865,9 +865,9 @@
     @endphp
 
     @if ($navbarType == 'black')
-        @include('layouts.navigationBlack', ['navbarType' => $navbarType])
+        @include('layouts.navbarBlack', ['navbarType' => $navbarType])
     @else
-        @include('layouts.navigationWhite')
+        @include('layouts.navbarWhite')
     @endif
     {{-- @include('layouts.navigation2') --}}
     {{-- <div class="loading" id="loading">Loading...</div>

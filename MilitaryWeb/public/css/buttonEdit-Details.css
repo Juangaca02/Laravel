@@ -1,4 +1,5 @@
-.BtnEdit-Details {
+/* Boton Editar */
+.BtnEdit {
     position: relative;
     display: flex;
     align-items: center;
@@ -25,11 +26,11 @@
     transition-duration: .3s;
 }
 
-.BtnEdit-Details:hover {
+.BtnEdit:hover {
     color: transparent;
 }
 
-.BtnEdit-Details:hover svg {
+.BtnEdit:hover svg {
     right: 43%;
     margin: 0;
     padding: 0;
@@ -37,7 +38,54 @@
     transition-duration: .3s;
 }
 
-.BtnEdit-Details:active {
+.BtnEdit:active {
+    transform: translate(3px, 3px);
+    transition-duration: .3s;
+    box-shadow: 2px 2px 0px rgb(140, 32, 212);
+}
+
+
+/* Boton Detalles */
+.BtnDetalles {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 120px;
+    height: 40px;
+    border: none;
+    padding: 0px 20px;
+    background-color: rgb(58, 167, 31);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0px rgb(46, 131, 24);
+    transition-duration: .3s;
+}
+
+.svgBtnDetalles {
+    width: 17px;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    transition-duration: .3s;
+}
+
+.BtnDetalles:hover {
+    color: transparent;
+}
+
+.BtnDetalles:hover svg {
+    right: 43%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    color: white;
+    transition-duration: .3s;
+}
+
+.BtnDetalles:active {
     transform: translate(3px, 3px);
     transition-duration: .3s;
     box-shadow: 2px 2px 0px rgb(140, 32, 212);

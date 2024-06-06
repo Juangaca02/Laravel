@@ -42,8 +42,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
 });
 
-// Middleware para usuarios logueados y verificados    ---->>> Añadir validacion de Correo
-Route::middleware(['auth', 'verifiedUser'])->group(function () {
+// Middleware para usuarios con rango mayor a 5 pero inferior a 11
+Route::middleware(['auth', 'verifiedUser', 'range.more5'])->group(function () {
+    Route::get('/listSoldier', [ArmyController::class, 'index'])->name('listSoldier');
+    Route::get('/getUserDetails/{id}', [UserController::class, 'getUserDetails']);
+    Route::post('/verificarUser/{id}', [UserController::class, 'verificarUser'])->name('verificarUser');
+});
+
+// Middleware para usuarios con rango mayor a 11  ---->>> Añadir validacion de Correo
+Route::middleware(['auth', 'verifiedUser', 'range.more11'])->group(function () {
+
     // Misiones
     Route::get('/listMissions', [MissionController::class, 'index'])->name('listMissions');
     Route::get('/getMissionsDetails/{id}', [MissionController::class, 'getMissionsDetails']);
@@ -54,12 +62,12 @@ Route::middleware(['auth', 'verifiedUser'])->group(function () {
     Route::delete('/deleteMission/{id}', [MissionController::class, 'deleteMission'])->name('deleteMission');
 
     // Usuarios
-    Route::get('/listSoldier', [ArmyController::class, 'index'])->name('listSoldier');
-    Route::get('/getUserDetails/{id}', [UserController::class, 'getUserDetails']);
     Route::get('/editUser/{id}', [UserController::class, 'edit'])->name('editUser');
-    Route::post('/verificarUser/{id}', [UserController::class, 'verificarUser'])->name('verificarUser');
     Route::patch('/updateUser', [UserController::class, 'update'])->name('updateUser');
     Route::delete('/deleteUser/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
+    // Route::get('/listSoldier', [ArmyController::class, 'index'])->name('listSoldier');
+    // Route::get('/getUserDetails/{id}', [UserController::class, 'getUserDetails']);
+    // Route::post('/verificarUser/{id}', [UserController::class, 'verificarUser'])->name('verificarUser');
 
     //Destinos
     Route::get('/listDestinations', [DestinationController::class, 'index'])->name('listDestinations');
@@ -93,9 +101,4 @@ Route::get('/prueba', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-
 require __DIR__ . '/auth.php';
-
-
-
