@@ -37,7 +37,7 @@ class DestinationController extends Controller
         $destination->country_id = $request->identificardor_pais;
         $destination->description = $request->descripcion;
         $destination->save();
-        return redirect()->route('destination.createDestination')->with('success', 'Destino Creado Correctamente');
+        return redirect()->route('createDestination')->with('success', 'Destino Creado Correctamente');
     }
 
     /**

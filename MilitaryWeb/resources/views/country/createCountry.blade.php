@@ -1,7 +1,7 @@
 <x-pagina-sin-nada-layout>
     <div class="relative h-screen overflow-hidden">
         <figure class="w-full h-full">
-            <img src="{{ asset('/storage/Images/images-Country/createCountry.jpg') }}" alt=""
+            <img src="{{ asset('/storage/Images/images-Country/createCountry.png') }}" alt=""
                 class="object-cover w-full h-full">
         </figure>
         <div class="absolute inset-0 flex flex-col items-center justify-center">

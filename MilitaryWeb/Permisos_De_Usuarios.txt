@@ -1,16 +1,19 @@
 Vista De listar Destinos
             Mostrar ✅
-            Editar ❌
-            Eliminar ❌
-            crear ❌
+            Editar ✅
+            Eliminar ✅
+            crear ✅
 
 Vista de lista de paises
-            Mostrar ❌
-            Editar ❌
-            Eliminar ❌
-            crear ❌
+            Mostrar ✅
+            Editar ✅
+            Eliminar ✅
+            crear ✅
 
 Para la solicitud ajax de elimar,pasar un parametro mas, para identificar si es una mision, destino, usuario....
+
+Hacer funcionalidad de Seguir una mision y mostrar en otra vista
+
 
 
 Rango >= 5(Sargento) ----> Lista de Soldados
