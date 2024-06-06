@@ -9,32 +9,16 @@ document.addEventListener("scroll", function () {
 });
 
 // Funciones para cargar las fotos autimaticamente
-function previewImage(event) {
+function previewImage(event, imageId) {
     var input = event.target;
     var reader = new FileReader();
     reader.onload = function () {
         var dataURL = reader.result;
-        var output = document.getElementById('imagePreview');
+        var output = document.getElementById(imageId);
         output.src = dataURL;
         output.classList.remove('hidden');
     };
     reader.readAsDataURL(input.files[0]);
-}
-
-function previewImage(event) {
-    var preview = document.getElementById('missionImage');
-    var file = event.target.files[0];
-    var reader = new FileReader();
-
-    reader.onloadend = function () {
-        preview.src = reader.result;
-    }
-
-    if (file) {
-        reader.readAsDataURL(file);
-    } else {
-        preview.src = '#';
-    }
 }
 
 
@@ -249,8 +233,49 @@ async function showDestinationsDetails(DestinationId) {
 
     // Mostrar el modal con SweetAlert2
     Swal.fire({
-        title: "Detalle de Mision",
+        title: "Detalle de Destino",
         html: destinationDetailsHTML,
+        showCancelButton: false,
+        showConfirmButton: false,
+        showCloseButton: true,
+        confirmButtonText: "Cerrar",
+        width: "600px",
+        padding: "30px",
+        customClass: {
+            container: 'hidden-scroll-bar'
+        },
+    });
+}
+
+
+// Modal de detalles de una Destinos
+async function showCountryDetails(CountryId) {
+    // Hacer una solicitud AJAX para obtener los detalles del usuario
+    const response = await fetch(`/getCountryDetails/${CountryId}`);
+    const data = await response.json();
+
+    // Crear el HTML para los detalles del usuario
+    const countryDetailsHTML = `
+    <table class="table-auto w-full text-left">
+    <tr>
+        <th class="px-4 py-2 min-w-40">Campo</th>
+        <th class="px-4 py-2">Detalle</th>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Nombre</strong></td>
+        <td class="border px-4 py-2">${data.country.name}</td>
+    </tr>
+    <tr>
+        <td class="border px-4 py-2"><strong>Descripción</strong></td>
+        <td class="border px-4 py-2">${data.country.description}</td>
+    </tr>
+</table>
+    `;
+
+    // Mostrar el modal con SweetAlert2
+    Swal.fire({
+        title: "Detalle del Pais",
+        html: countryDetailsHTML,
         showCancelButton: false,
         showConfirmButton: false,
         showCloseButton: true,

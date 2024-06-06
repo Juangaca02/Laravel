@@ -280,7 +280,8 @@
                             </label>
                             <!-- Input para seleccionar la foto -->
                             <input type="file" name="photo" id="photo" class="form-input mt-1 block"
-                                @if (!$mission->photo) required @endif onchange="previewImage(event)">
+                                @if (!$mission->photo) required @endif
+                                onchange="previewImage(event, 'missionImage')">
                             <!-- Vista previa de la imagen -->
                             <img id="missionImage"
                                 src="{{ $mission->photo ? asset('storage/images/images-Missions/missions/' . $mission->photo) : '#' }}"

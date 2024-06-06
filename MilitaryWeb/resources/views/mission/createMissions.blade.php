@@ -121,21 +121,24 @@
                                     @switch((Auth::user()->army_id))
                                         {{-- Carousel Tierra --}}
                                         @case(2)
-                                            <option value="Seguridad terrestre"{{ old('tipo') == 'Seguridad terrestre' ? 'selected' : '' }}>
+                                            <option
+                                                value="Seguridad terrestre"{{ old('tipo') == 'Seguridad terrestre' ? 'selected' : '' }}>
                                                 Seguridad terrestre
                                             </option>
                                         @break
 
                                         {{-- Carousel Naval --}}
                                         @case(3)
-                                            <option value="Seguridad Marítima"{{ old('tipo') == 'Seguridad Marítima' ? 'selected' : '' }}>
+                                            <option
+                                                value="Seguridad Marítima"{{ old('tipo') == 'Seguridad Marítima' ? 'selected' : '' }}>
                                                 Seguridad Marítima
                                             </option>
                                         @break
 
                                         {{-- Carousel Aire --}}
                                         @case(4)
-                                            <option value="Seguridad Aerea"{{ old('tipo') == 'Seguridad Aerea' ? 'selected' : '' }}>
+                                            <option
+                                                value="Seguridad Aerea"{{ old('tipo') == 'Seguridad Aerea' ? 'selected' : '' }}>
                                                 Seguridad Aerea
                                             </option>
                                         @break
@@ -239,7 +242,7 @@
                         <img id="imagePreview" src="#" alt="Vista previa de la imagen"
                             class="hidden w-full max-w-xs h-auto mt-1 p-2 rounded border border-gray-300">
                         <input value="{{ old('foto') }}" type="file" name="foto" id="foto"
-                            class="w-full mt-1 p-2 rounded" onchange="previewImage(event)">
+                            class="w-full mt-1 p-2 rounded" onchange="previewImage(event, 'imagePreview')">
                     </div>
                 </form>
                 <div

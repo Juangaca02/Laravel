@@ -59,6 +59,8 @@ function confirmDelete(Id, name, type) {
         urlType = '/deleteMission/' + Id;
     } else if (type === 'destination') {
         urlType = '/deleteDestination/' + Id;
+    } else if (type === 'country') {
+        urlType = '/deleteCountry/' + Id;
     }
 
     Swal.fire({
