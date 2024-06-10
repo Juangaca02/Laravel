@@ -14,7 +14,7 @@ Para la solicitud ajax de elimar,pasar un parametro mas, para identificar si es 
 
 Hacer funcionalidad de Seguir una mision y mostrar en otra vista
 
-
+Eliminar footer de las vistas
 
 Rango >= 5(Sargento) ----> Lista de Soldados
 Rango >= 11(Comandante) ----> Crear Misiones

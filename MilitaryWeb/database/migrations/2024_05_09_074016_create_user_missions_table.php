@@ -17,6 +17,9 @@ return new class extends Migration {
             $table->unsignedBigInteger('mission_id');
             $table->foreign('mission_id')->references('id')->on('missions');
             $table->timestamps();
+
+            // Agregar restricción única para user_id y mission_id
+            $table->unique(['user_id', 'mission_id']);
         });
     }
 

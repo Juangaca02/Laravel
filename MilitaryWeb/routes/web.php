@@ -61,6 +61,11 @@ Route::middleware(['auth', 'verifiedUser', 'range.more11'])->group(function () {
     Route::patch('/updateMission', [MissionController::class, 'update'])->name('updateMission');
     Route::delete('/deleteMission/{id}', [MissionController::class, 'deleteMission'])->name('deleteMission');
 
+    // Seguir Misiones
+    Route::post('/missions/{id}/follow', [MissionController::class, 'follow'])->name('missions.follow');
+    Route::post('/missions/{id}/unfollow', [MissionController::class, 'unfollow'])->name('missions.unfollow');
+    Route::get('/missions/followed', [MissionController::class, 'followedMissions'])->name('missions.followed');
+
     // Usuarios
     Route::get('/editUser/{id}', [UserController::class, 'edit'])->name('editUser');
     Route::patch('/updateUser', [UserController::class, 'update'])->name('updateUser');

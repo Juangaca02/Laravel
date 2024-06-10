@@ -1,4 +1,4 @@
-<x-pagina-sin-nada-layout>
+<x-pagina-sin-nada-layout navbarType="black">
     <div class="relative h-screen overflow-hidden">
         <figure class="w-full h-full">
             <img src="{{ asset('/storage/Images/images-Country/createCountry.png') }}" alt=""
@@ -21,7 +21,7 @@
                         @method('POST')
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
-                                <label for="nombre">
+                                <label for="nombre" class="text-xl font-bold">
                                     Nombre
                                     @error('nombre')
                                         <span class="text-red-500 text-xl">*</span>
@@ -31,7 +31,7 @@
                                     class="w-full mt-1 p-2 rounded">
                             </div>
                             <div class="md:col-span-3">
-                                <label for="descripcion">
+                                <label for="descripcion" class="text-xl font-bold">
                                     Descripción
                                     @error('descripcion')
                                         <span class="text-red-500 text-xl">*</span>

@@ -1,11 +1,11 @@
 <x-pagina-sin-nada-layout>
     <div
         class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900 bg-gradient-to-t from-black via-slate-800 to-slate-800">
-        <div>
+        {{-- <div>
             <a href="/">
                 <img src="{{ asset('storage/images/MilitaryWebLogo.png') }}" class="h-30" alt="Flowbite Logo" />
             </a>
-        </div>
+        </div> --}}
 
         <div class="relative flex flex-col sm:flex-row mt-6 shadow-md overflow-hidden sm:rounded-lg bg-cover bg-center h-[550px] w-[1100px]"
             style="background-image: url('storage/images/images-Login_Register/ArmadaEspañola.jpg');">

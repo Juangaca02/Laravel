@@ -23,6 +23,9 @@
             <x-dropdown-link :href="route('listSoldier')">
                 {{ __('Lista de Soldados') }}
             </x-dropdown-link>
+            <x-dropdown-link :href="route('missions.followed')">
+                {{ __('Mis Misiones') }}
+            </x-dropdown-link>
             <x-dropdown-link :href="route('listSoldierAdmin')">
                 {{ __('Lista Admin') }}
             </x-dropdown-link>

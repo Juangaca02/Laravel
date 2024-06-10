@@ -2,7 +2,7 @@
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="{{ route('home') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="{{ asset('storage/images/MilitaryWebLogo.png') }}" class="h-20" alt="Flowbite Logo" />
-            <span class="text-black text-2xl font-semibold ">MilitaryWeb</span>
+            <span class="text-black font-bold text-2xl">MilitaryWeb</span>
         </a>
         <div class="hidden sm:flex sm:items-center sm:ms-6">
             <ul class="flex font-medium p-4 md:p-0 mt-4 rounded-lg md:space-x-8 rtl:space-x-reverse items-center">
@@ -16,7 +16,7 @@
                     @else
                         <li>
                             <a href="{{ route('home') }}"
-                                class="cursor-pointer block py-2 px-3 text-black rounded md:hover:bg-transparent md:border-0 hover:text-yellow-600 md:p-0">
+                                class="cursor-pointer block py-2 px-3 text-black font-bold rounded md:hover:bg-transparent md:border-0 hover:text-yellow-600 md:p-0">
                                 Inicio
                             </a>
                         </li>
@@ -24,7 +24,7 @@
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
                                     <button
-                                        class="inline-flex items-center text-black px-3 py-2 text-sm leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
+                                        class="inline-flex items-center text-black font-bold px-3 py-2 text-sm leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
                                         <div class="mr-2 rounded-full">
                                             <img src="{{ Storage::url('Images/imagesUsers/' . Auth::user()->profile_photo_path) }}"
                                                 alt="profile_photo" class="w-[30px] h-[30px] object-cover rounded-full">
@@ -63,11 +63,11 @@
                     @endif
                 @else
                     <a href="{{ route('login') }}"
-                        class="font-semibold text-black hover:text-yellow-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                        class="font-semibold text-black font-bold hover:text-yellow-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                         Login</a>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
-                            class="ml-4 font-semibold text-black hover:text-yellow-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                            class="ml-4 font-semibold text-black font-bold hover:text-yellow-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                             Register
                         </a>
                     @endif

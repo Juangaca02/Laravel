@@ -287,3 +287,49 @@ async function showCountryDetails(CountryId) {
         },
     });
 }
+
+
+// Boton de seguir
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.follow-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const missionId = button.dataset.id;
+            const followed = button.dataset.followed === 'true';
+
+            fetch(`/missions/${missionId}/${followed ? 'unfollow' : 'follow'}`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    button.dataset.followed = !followed;
+                    button.textContent = !followed ? 'Dejar de Seguir' : 'Seguir';
+                    // button.classList.toggle('bg-blue-500', !followed);
+                    // button.classList.toggle('bg-red-500', followed);
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+
+    document.querySelectorAll('.unfollow-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const missionId = button.dataset.id;
+
+            fetch(`/missions/${missionId}/unfollow`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    button.closest('div').remove();
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+});

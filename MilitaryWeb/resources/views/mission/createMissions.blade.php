@@ -22,7 +22,7 @@
                         @method('POST')
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
-                                <label for="titulo">
+                                <label for="titulo" class="text-xl font-bold">
                                     Título
                                     @error('titulo')
                                         <span class="text-red-500 text-xl">*</span>
@@ -35,7 +35,7 @@
                             @enderror --}}
                             </div>
                             <div>
-                                <label for="subtitulo">
+                                <label for="subtitulo" class="text-xl font-bold">
                                     Subtítulo
                                     @error('subtitulo')
                                         <span class="text-red-500 text-xl">*</span>
@@ -48,7 +48,7 @@
                             @enderror --}}
                             </div>
                             <div>
-                                <label for="fecha">
+                                <label for="fecha" class="text-xl font-bold">
                                     Fecha
                                     @error('fecha')
                                         <span class="text-red-500 text-xl">*</span>
@@ -58,7 +58,7 @@
                                     class="w-full mt-1 p-2 rounded">
                             </div>
                             <div class="md:col-span-3">
-                                <label for="descripcion">
+                                <label for="descripcion" class="text-xl font-bold">
                                     Descripción
                                     @error('descripcion')
                                         <span class="text-red-500 text-xl">*</span>
@@ -67,7 +67,7 @@
                                 <textarea name="descripcion" id="descripcion" cols="1" rows="3" class="w-full mt-1 p-2 rounded">{{ old('descripcion') }}</textarea>
                             </div>
                             <div>
-                                <label for="accion">
+                                <label for="accion" class="text-xl font-bold">
                                     Acción
                                     @error('accion')
                                         <span class="text-red-500 text-xl">*</span>
@@ -77,7 +77,7 @@
                                     class="w-full mt-1 p-2 rounded">
                             </div>
                             <div>
-                                <label for="tipo">
+                                <label for="tipo" class="text-xl font-bold">
                                     Tipo de misión
                                     @error('tipo')
                                         <span class="text-red-500 text-xl">*</span>
@@ -149,7 +149,7 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="prioridad">
+                                <label for="prioridad" class="text-xl font-bold">
                                     Prioridad
                                     @error('prioridad')
                                         <span class="text-red-500 text-xl">*</span>
@@ -169,7 +169,7 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="objetivo">
+                                <label for="objetivo" class="text-xl font-bold">
                                     Objetivo
                                     @error('objetivo')
                                         <span class="text-red-500 text-xl">*</span>
@@ -179,7 +179,7 @@
                                     class="w-full mt-1 p-2 rounded">
                             </div>
                             <div>
-                                <label for="destination_id">
+                                <label for="destination_id" class="text-xl font-bold">
                                     Destino
                                     @error('destination_id')
                                         <span class="text-red-500 text-xl">*</span>
@@ -196,14 +196,13 @@
                                 </select>
                             </div>
                             <div>
-                                <label for="user_id">
+                                <label for="user_id" class="text-xl font-bold">
                                     Persona a cargo
                                     @error('user_id')
                                         <span class="text-red-500 text-xl">*</span>
                                     @enderror
                                 </label>
                                 <select name="user_id" id="user_id" class="w-full mt-1 p-2 rounded">
-
                                     <option value=""></option>
                                     {{-- Verificar si hay usuarios en el rango --}}
                                     @if ($usersInRange->isEmpty())
@@ -233,7 +232,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col justify-center m-6">
-                        <label for="foto">
+                        <label for="foto" class="text-xl font-bold">
                             Imagen
                             @error('foto')
                                 <span class="text-red-500 text-xl">*</span>

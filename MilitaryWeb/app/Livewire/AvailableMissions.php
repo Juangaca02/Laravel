@@ -12,6 +12,8 @@ class AvailableMissions extends Component
     {
         $army_id = Auth::user()->army_id;
         $missions = Mission::where('army_id', $army_id)->get();
-        return view('livewire.available-missions')->with('missions', $missions);
+        $userMissions = Auth::user()->missions->pluck('id')->toArray();
+        // return view('livewire.available-missions')->with('missions', $missions);
+        return view('livewire.available-missions', compact('missions', 'userMissions'));
     }
 }

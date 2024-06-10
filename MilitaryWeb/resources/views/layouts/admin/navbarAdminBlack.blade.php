@@ -1,6 +1,6 @@
 <li>
     <a href="{{ route('home') }}"
-        class="cursor-pointer block py-2 px-3 text-black rounded md:hover:bg-transparent md:border-0 hover:text-yellow-600 md:p-0">
+        class="cursor-pointer block py-2 px-3 text-black font-bold rounded md:hover:bg-transparent md:border-0 hover:text-yellow-600 md:p-0">
         Inicio
     </a>
 </li>
@@ -8,7 +8,7 @@
     <x-dropdown align="right" width="48">
         <x-slot name="trigger">
             <button
-                class="inline-flex items-center text-black px-3 py-2 text-md leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
+                class="inline-flex items-center text-black font-bold px-3 py-2 text-md leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
                 <div>Listas</div>
                 <div class="ms-1">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -23,6 +23,9 @@
             <x-dropdown-link :href="route('listSoldier')">
                 {{ __('Lista de Soldados') }}
             </x-dropdown-link>
+            <x-dropdown-link :href="route('missions.followed')">
+                {{ __('Mis Misiones') }}
+            </x-dropdown-link>
             <x-dropdown-link :href="route('listSoldierAdmin')">
                 {{ __('Lista Admin') }}
             </x-dropdown-link>
@@ -33,7 +36,7 @@
     <x-dropdown align="right" width="48">
         <x-slot name="trigger">
             <button
-                class="inline-flex items-center text-black px-3 py-2 text-md leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
+                class="inline-flex items-center text-black font-bold px-3 py-2 text-md leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
                 <div>Paises</div>
                 <div class="ms-1">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -58,7 +61,7 @@
     <x-dropdown align="right" width="48">
         <x-slot name="trigger">
             <button
-                class="inline-flex items-center text-black px-3 py-2 text-md leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
+                class="inline-flex items-center text-black font-bold px-3 py-2 text-md leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
                 <div>Destinos</div>
                 <div class="ms-1">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -83,7 +86,7 @@
     <x-dropdown align="right" width="48">
         <x-slot name="trigger">
             <button
-                class="inline-flex items-center text-black px-3 py-2 text-md leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
+                class="inline-flex items-center text-black font-bold px-3 py-2 text-md leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
                 <div>Misiones</div>
                 <div class="ms-1">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -108,7 +111,7 @@
     <x-dropdown align="right" width="48">
         <x-slot name="trigger">
             <button
-                class="inline-flex items-center text-black px-3 py-2 text-md leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
+                class="inline-flex items-center text-black font-bold px-3 py-2 text-md leading-4 rounded-md hover:text-yellow-600 focus:outline-none transition ease-in-out duration-150">
                 <div class="mr-2 rounded-full">
                     <img src="{{ Storage::url('Images/imagesUsers/' . Auth::user()->profile_photo_path) }}"
                         alt="profile_photo" class="w-[30px] h-[30px] object-cover rounded-full">

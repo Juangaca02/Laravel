@@ -177,4 +177,28 @@ class MissionController extends Controller
             'destinationName' => $destinationName
         ]);
     }
+
+    public function follow($id)
+    {
+        $mission = Mission::findOrFail($id);
+        Auth::user()->missions()->attach($mission);
+
+        return response()->json(['status' => 'Mission followed successfully']);
+    }
+
+    public function unfollow($id)
+    {
+        $mission = Mission::findOrFail($id);
+        Auth::user()->missions()->detach($mission);
+
+        return response()->json(['status' => 'Mission unfollowed successfully']);
+    }
+
+    public function followedMissions()
+    {
+        $missions = Auth::user()->missions;
+        return view('mission.missionsFollowed', compact('missions'));
+    }
+
+
 }
