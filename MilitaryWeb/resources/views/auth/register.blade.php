@@ -1,7 +1,7 @@
 {{-- <x-guest-layout> --}}
 <x-pagina-sin-nada-layout>
     <div
-        class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900 bg-gradient-to-t from-black via-slate-800 to-slate-800">
+        class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-900 bg-gradient-to-t from-black via-slate-800 to-slate-800">
         {{-- <div>
             <a href="/">
                 <img src="{{ asset('storage/images/MilitaryWebLogo.png') }}" class="h-30" alt="Flowbite Logo" />
@@ -27,7 +27,7 @@
                                 <div class="mt-4">
                                     <x-input-label for="name" :value="__('Nombre')" />
                                     <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
-                                        :value="old('name')" required autofocus autocomplete="name" />
+                                        :value="old('name')" autofocus autocomplete="name" />
                                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                 </div>
                                 <!-- Surname -->
@@ -68,7 +68,7 @@
                             </div>
                         </tr>
                         <tr>
-                            <div class="grid grid-cols-2 gap-4">
+                            <div class="grid grid-cols-3 gap-4">
                                 <!-- Entry_army_date -->
                                 <div class="mt-4">
                                     <x-input-label for="entry_army_date" :value="__('Fecha de Entrada al Ejercito')" />
@@ -82,17 +82,59 @@
                                     <!-- Campo "Armada" -->
                                     <x-input-label for="army_id" :value="__('Armada')" />
                                     <select id="army_id" name="army_id"
-                                        class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                                        class="block mt-1 w-full border-gray-700 bg-gray-900 text-gray-300 focus:border-indigo-600 focus:ring-indigo-600 rounded-md shadow-sm">
                                         <option value="" disabled selected>Selecciona una opción</option>
-                                        <option value="2" {{ old('army_id') == 'Tierra' ? 'selected' : '' }}>Tierra
+                                        <option value="2" {{ old('army_id') == '2' ? 'selected' : '' }}>Tierra
                                         </option>
-                                        <option value="4" {{ old('army_id') == 'Aire' ? 'selected' : '' }}>Aire
+                                        <option value="4" {{ old('army_id') == '4' ? 'selected' : '' }}>Aire
                                         </option>
-                                        <option value="3" {{ old('army_id') == 'Naval' ? 'selected' : '' }}>Naval
+                                        <option value="3" {{ old('army_id') == '3' ? 'selected' : '' }}>Naval
                                         </option>
                                     </select>
-                                    <x-input-error :messages="$errors->get('sex')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('army_id')" class="mt-2" />
                                 </div>
+                                {{-- Range_id --}}
+                                <div class="mt-4">
+                                    <x-input-label for="range_id" :value="__('Rango')" />
+                                    <select id="range_id" name="range_id"
+                                        class="block mt-1 w-full border-gray-700 bg-gray-900 text-gray-300 focus:border-indigo-600 focus:ring-indigo-600 rounded-md shadow-sm">
+                                        <option value="" disabled selected>Selecciona un rango</option>
+                                        <option value="2" {{ old('range_id') == '2' ? 'selected' : '' }}>Soldado
+                                        </option>
+                                        <option value="3" {{ old('range_id') == '3' ? 'selected' : '' }}>Cabo
+                                        </option>
+                                        <option value="4" {{ old('range_id') == '4' ? 'selected' : '' }}>Cabo
+                                            primero</option>
+                                        <option value="5" {{ old('range_id') == '5' ? 'selected' : '' }}>Sargento
+                                        </option>
+                                        <option value="6" {{ old('range_id') == '6' ? 'selected' : '' }}>Sargento
+                                            primero</option>
+                                        <option value="7" {{ old('range_id') == '7' ? 'selected' : '' }}>Brigada
+                                        </option>
+                                        <option value="8" {{ old('range_id') == '8' ? 'selected' : '' }}>
+                                            Subteniente</option>
+                                        <option value="9" {{ old('range_id') == '9' ? 'selected' : '' }}>Teniente
+                                        </option>
+                                        <option value="10" {{ old('range_id') == '10' ? 'selected' : '' }}>Capitán
+                                        </option>
+                                        <option value="11" {{ old('range_id') == '11' ? 'selected' : '' }}>
+                                            Comandante</option>
+                                        <option value="12" {{ old('range_id') == '12' ? 'selected' : '' }}>Teniente
+                                            coronel</option>
+                                        <option value="13" {{ old('range_id') == '13' ? 'selected' : '' }}>Coronel
+                                        </option>
+                                        <option value="14" {{ old('range_id') == '14' ? 'selected' : '' }}>General
+                                            de brigada</option>
+                                        <option value="15" {{ old('range_id') == '15' ? 'selected' : '' }}>General
+                                            de división</option>
+                                        <option value="16" {{ old('range_id') == '16' ? 'selected' : '' }}>Teniente
+                                            general</option>
+                                        <option value="17" {{ old('range_id') == '17' ? 'selected' : '' }}>General
+                                            de ejército</option>
+                                    </select>
+                                    <x-input-error :messages="$errors->get('range_id')" class="mt-2" />
+                                </div>
+
                             </div>
                         </tr>
                         <tr>
@@ -107,8 +149,8 @@
                             <td><!-- Phone -->
                                 <div class="mt-4">
                                     <x-input-label for="phone" :value="__('Telefono')" />
-                                    <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone"
-                                        :value="old('phone')" required autofocus autocomplete="phone" />
+                                    <x-text-input id="phone" class="block mt-1 w-full" type="text"
+                                        name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
                                     <x-input-error :messages="$errors->get('phone')" class="mt-2" />
                                 </div>
                             </td>
@@ -144,10 +186,12 @@
                                 <div class="mt-4">
                                     <x-input-label for="sex" :value="__('Sexo')" />
                                     <select id="sex" name="sex"
-                                        class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                                        class="border-gray-700 bg-gray-900 text-gray-300 focus:border-indigo-600 focus:ring-indigo-600 rounded-md shadow-sm">
                                         <option value="" disabled selected>Selecciona una opción</option>
-                                        <option value="M" {{ old('sex') == 'M' ? 'selected' : '' }}>Mujer</option>
-                                        <option value="H" {{ old('sex') == 'H' ? 'selected' : '' }}>Hombre</option>
+                                        <option value="M" {{ old('sex') == 'M' ? 'selected' : '' }}>Mujer
+                                        </option>
+                                        <option value="H" {{ old('sex') == 'H' ? 'selected' : '' }}>Hombre
+                                        </option>
                                         <option value="Otro" {{ old('sex') == 'Otro' ? 'selected' : '' }}>Otro
                                         </option>
                                     </select>
@@ -161,7 +205,7 @@
                         <button class="buttonLogin w-full">
                             <span class="text">{{ __('Registrarse') }}</span>
                         </button>
-                        <a class=" mt-3 hover:underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                        <a class=" mt-3 hover:underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800"
                             href="{{ route('login') }}">
                             {{ __('Already registered?') }}
                         </a>

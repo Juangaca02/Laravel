@@ -1,10 +1,13 @@
 <x-pagina-sin-nada-layout navbarType="black">
-    <div class="relative h-screen overflow-hidden">
-        <figure class="w-full h-full">
-            <img src="{{ asset('/storage/Images/images-Missions/missions/' . $mission->photo) }}" alt=""
-                class="object-cover w-full h-full">
-        </figure>
-        <div class="absolute inset-0 flex flex-col items-center justify-center space-y-2">
+    {{-- <div class="relative min-h-screen bg-cover bg-center bg-fixed"
+        style="background-image: url('{{ asset('/storage/Images/images-Missions/listUserMissions.png') }}');"> --}}
+    <div class="w-auto h-auto bg-cover bg-center bg-fixed"
+        style="background-image: url('{{ asset('/storage/Images/images-Missions/missions/' . $mission->photo) }}');">
+        {{-- <figure class="w-full h-full">
+                <img src="{{ asset('/storage/Images/images-Missions/missions/' . $mission->photo) }}" alt=""
+                    class="object-cover w-full h-full">
+            </figure> --}}
+        <div class="flex flex-col items-center justify-center space-y-2 pt-[150px]">
             <div class="text-black text-4xl font-bold">
                 Editar Misión
             </div>
@@ -14,9 +17,9 @@
                 </div>
             @endif
             <div class="flex space-x-5">
-                <form class="bg-opacity-50 backdrop-blur-md p-4 rounded-lg shadow-md w-auto max-w-[1600px]"
-                    enctype="multipart/form-data" method="post" action="{{ route('updateMission') }}">
-                    <div class="w-full flex">
+                <form class="bg-opacity-50 backdrop-blur-md p-4 rounded-lg shadow-md " enctype="multipart/form-data"
+                    method="post" action="{{ route('updateMission') }}">
+                    <div class="w-full flex flex-col">
                         <div class="">
                             @csrf
                             @method('PATCH')
@@ -34,7 +37,8 @@
                                     </td>
                                     <td class="p-2">
                                         <!-- Subtítulo -->
-                                        <label for="subtitle" class="block text-black font-bold">Subtítulo
+                                        <label for="subtitle" class="block text-black font-bold">
+                                            Subtítulo
                                             @error('subtitle')
                                                 <span class="text-red-500 text-xl">*</span>
                                             @enderror
@@ -44,15 +48,19 @@
                                     </td>
                                     <td class="p-2">
                                         <!-- Acción -->
-                                        <label for="action" class="block text-black font-bold">Acción</label>
+                                        <label for="action" class="block text-black font-bold">
+                                            Acción
+                                            @error('action')
+                                                <span class="text-red-500 text-xl">*</span>
+                                            @enderror
+                                        </label>
                                         <textarea name="action" id="action" cols="22" rows="3">{{ $mission->action }}</textarea>
-                                        @error('action')
-                                            <span class="text-red-500 text-xl">*</span>
-                                        @enderror
+
                                     </td>
                                     <td class="p-2">
                                         <!-- Objetivo -->
-                                        <label for="objective" class="block text-black font-bold">Objetivo
+                                        <label for="objective" class="block text-black font-bold">
+                                            Objetivo
                                             @error('objective')
                                                 <span class="text-red-500 text-xl">*</span>
                                             @enderror
@@ -174,7 +182,8 @@
                                     </td>
                                     <td class="p-2">
                                         <!-- Estado -->
-                                        <label for="status" class="block text-black font-bold">Estado @error('status')
+                                        <label for="status" class="block text-black font-bold">Estado
+                                            @error('status')
                                                 <span class="text-red-500 text-xl">*</span>
                                             @enderror
                                         </label>
@@ -245,47 +254,48 @@
                                                 </option>
                                             @endforeach
                                         </select>
-
                                     </td>
                                     <td class="p-2">
                                         <!-- Fecha -->
-                                        <label for="date" class="block text-black font-bold">Fecha @error('date')
+                                        <label for="date" class="block text-black font-bold">Fecha
+                                            @error('date')
                                                 <span class="text-red-500 text-xl">*</span>
                                             @enderror
                                         </label>
                                         <input type="date" name="date" id="date"
                                             value="{{ $mission->date }}" class="form-input mt-1 block">
-
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                        <div class="p-2">
-                            <!-- Descripción -->
-                            <label for="description" class="block text-black font-bold">Descripción
-                                @error('description')
-                                    <span class="text-red-500 text-xl">*</span>
-                                @enderror
-                            </label>
-                            <textarea name="description" id="description" cols="30" rows="10" class="form-input mt-1 block">{{ $mission->description }}</textarea>
-                        </div>
-                        <div class="p-2">
-                            <!-- Foto -->
-                            <label for="photo" class="block text-black font-bold mt-4 min-w-[300px]">Foto
-                                @if (!$mission->photo)
-                                    @error('photo')
+                        <div class="flex">
+                            <div class="p-2">
+                                <!-- Descripción -->
+                                <label for="description" class="block text-black font-bold">Descripción
+                                    @error('description')
                                         <span class="text-red-500 text-xl">*</span>
                                     @enderror
-                                @endif
-                            </label>
-                            <!-- Input para seleccionar la foto -->
-                            <input type="file" name="photo" id="photo" class="form-input mt-1 block"
-                                @if (!$mission->photo) required @endif
-                                onchange="previewImage(event, 'missionImage')">
-                            <!-- Vista previa de la imagen -->
-                            <img id="missionImage"
-                                src="{{ $mission->photo ? asset('storage/images/images-Missions/missions/' . $mission->photo) : '#' }}"
-                                alt="Foto de la misión" class="w-auto h-auto object-cover mt-2">
+                                </label>
+                                <textarea name="description" id="description" cols="30" rows="10" class="form-input mt-1 block">{{ $mission->description }}</textarea>
+                            </div>
+                            <div class="p-2">
+                                <!-- Foto -->
+                                <label for="photo" class="block text-black font-bold mt-4 min-w-[300px]">Foto
+                                    @if (!$mission->photo)
+                                        @error('photo')
+                                            <span class="text-red-500 text-xl">*</span>
+                                        @enderror
+                                    @endif
+                                </label>
+                                <!-- Input para seleccionar la foto -->
+                                <input type="file" name="photo" id="photo" class="form-input mt-1 block"
+                                    @if (!$mission->photo) required @endif
+                                    onchange="previewImage(event, 'missionImage')">
+                                <!-- Vista previa de la imagen -->
+                                <img id="missionImage"
+                                    src="{{ $mission->photo ? asset('storage/images/images-Missions/missions/' . $mission->photo) : '#' }}"
+                                    alt="Foto de la misión" class="w-[500px] h-[300px] object-cover mt-2">
+                            </div>
                         </div>
                     </div>
                     <x-custom.custom-button type="submit" class="md:col-span-3 w-full mt-4">
@@ -368,12 +378,11 @@
                 </div>
             </div>
         </div>
-        <div class="absolute inset-x-0 bottom-0">
-            <!-- Capa oscura transparente -->
+        {{-- <div class="absolute inset-x-0 bottom-0">
             <div class="absolute inset-0 bg-black opacity-50"></div>
             <div class="relative">
                 @include('layouts.footer')
             </div>
-        </div>
+        </div> --}}
     </div>
 </x-pagina-sin-nada-layout>

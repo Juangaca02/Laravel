@@ -28,7 +28,8 @@
                                         <span class="text-red-500 text-xl">*</span>
                                     @enderror
                                 </label>
-                                <input type="text" name="nombre" id="nombre" value="{{ $destination->name }}" class="form-input mt-1 block">
+                                <input type="text" name="nombre" id="nombre" value="{{ $destination->name }}"
+                                    class="form-input mt-1 block">
                             </div>
                             <div class="flex items-center p-2">
                                 <!-- País -->
@@ -38,7 +39,8 @@
                                         <span class="text-red-500 text-xl">*</span>
                                     @enderror
                                 </label>
-                                <select name="identificardor_pais" id="identificardor_pais" class="form-select mt-1 block">
+                                <select name="identificardor_pais" id="identificardor_pais"
+                                    class="form-select mt-1 block">
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}"
                                             {{ $destination->country_id === $country->id ? 'selected' : '' }}>
@@ -64,7 +66,8 @@
                     </x-custom.custom-button>
                     <input type="hidden" name="id" id="id" value="{{ $destination->id }}">
                 </form>
-                <div class="h-auto min-h-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 ml-5 rounded relative @if ($errors->any()) block @else hidden @endif">
+                <div
+                    class="h-auto min-h-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 ml-5 rounded relative @if ($errors->any()) block @else hidden @endif">
                     <ol>
                         @error('nombre')
                             <span class="text-red-500">{{ $message }}</span>
@@ -83,12 +86,11 @@
                 </div>
             </div>
         </div>
-        <div class="absolute inset-x-0 bottom-0">
-            <!-- Capa oscura transparente -->
+        {{-- <div class="absolute inset-x-0 bottom-0">
             <div class="absolute inset-0 bg-black opacity-50"></div>
             <div class="relative">
                 @include('layouts.footer')
             </div>
-        </div>
+        </div> --}}
     </div>
 </x-pagina-sin-nada-layout>

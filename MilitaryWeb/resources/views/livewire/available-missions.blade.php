@@ -2,10 +2,10 @@
     {{-- Do your work, then step back. --}}
     @if ($missions->isEmpty())
         <div class="text-center">
-            <p class="text-5xl">No hay misiones disponibles para tu armada.</p>
+            <p class="text-5xl my-5">No hay misiones disponibles para tu armada.</p>
         </div>
         @Auth
-            @if (Auth::user()->range_id >= 16)
+            @if (Auth::user()->range_id > 11)
                 <div class="flex justify-center my-5">
                     <button onclick="window.location.href = '{{ route('createMission') }}';" class="buttonHome">Crear
                         Mision</button>

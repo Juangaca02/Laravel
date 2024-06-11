@@ -18,7 +18,7 @@
     {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
     <h1 class="text-2xl text-center text-white font-bold my-8">Misiones Seguidas</h1>
     @if ($missions->count() == 0)
-        <p class="text-center">No tienes misiones seguidas</p>
+        <p class="text-center text-red-500 font-bold my-8 text-3xl">No sigues ninguna mision</p>
     @endif
     @foreach ($missions as $mission)
         <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-8">

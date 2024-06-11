@@ -1,4 +1,4 @@
-<x-pagina-sin-nada-layout  >
+<x-pagina-sin-nada-layout>
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"> --}}
     <div class="relative h-screen overflow-hidden">
         <figure class="w-full h-full">
@@ -13,12 +13,11 @@
                 @livewire('list-countries')
             </div>
         </div>
-        <div class="absolute inset-x-0 bottom-0">
-            <!-- Capa oscura transparente -->
+        {{-- <div class="absolute inset-x-0 bottom-0">
             <div class="absolute inset-0 bg-black opacity-50"></div>
             <div class="relative">
                 @include('layouts.footer')
             </div>
-        </div>
+        </div> --}}
     </div>
 </x-pagina-sin-nada-layout>

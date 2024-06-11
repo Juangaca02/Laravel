@@ -319,11 +319,11 @@
                 </div>
             </div>
         </div>
-        <div class="absolute inset-x-0 bottom-0">
+        {{-- <div class="absolute inset-x-0 bottom-0">
             <div class="absolute inset-0 bg-black opacity-50"></div>
             <div class="relative">
                 @include('layouts.footer')
             </div>
-        </div>
+        </div> --}}
     </div>
 </x-pagina-sin-nada-layout>

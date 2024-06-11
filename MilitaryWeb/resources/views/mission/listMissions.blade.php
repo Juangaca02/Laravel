@@ -1,4 +1,4 @@
-<x-pagina-sin-nada-layout navbarType="black" >
+<x-pagina-sin-nada-layout navbarType="black">
     <div class="relative h-screen overflow-hidden">
         <figure class="w-full h-full">
             <img src="{{ asset('/storage/Images/images-Missions/listMissions.jpg') }}" alt=""
@@ -12,12 +12,11 @@
                 @livewire('list-missions')
             </div>
         </div>
-        <div class="absolute inset-x-0 bottom-0">
-            <!-- Capa oscura transparente -->
+        {{-- <div class="absolute inset-x-0 bottom-0">
             <div class="absolute inset-0 bg-black opacity-50"></div>
             <div class="relative">
                 @include('layouts.footer')
             </div>
-        </div>
+        </div> --}}
     </div>
 </x-pagina-sin-nada-layout>

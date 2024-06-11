@@ -21,15 +21,17 @@
                 <div>
                     {{-- Nombre --}}
                     <x-input-label for="name" :value="__('Nombre')" />
-                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
+                    <x-custom.text-input id="name" name="name" type="text" class="mt-1 block w-full"
                         :value="old('name', $user->name)" required autofocus autocomplete="name" />
+                    {{-- <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
+                        :value="old('name', $user->name)" required autofocus autocomplete="name" /> --}}
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
 
                 <div>
                     {{-- Apellidos --}}
                     <x-input-label for="surname" :value="__('Apellidos')" />
-                    <x-text-input id="surname" name="surname" type="text" class="mt-1 block w-full"
+                    <x-custom.text-input id="surname" name="surname" type="text" class="mt-1 block w-full"
                         :value="old('surname', $user->surname)" required autofocus autocomplete="surname" />
                     <x-input-error class="mt-2" :messages="$errors->get('surname')" />
                 </div>
@@ -37,7 +39,7 @@
                 <div>
                     {{-- Email --}}
                     <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input id="email" name="email" type="email" class="mt-1 block w-full"
+                    <x-custom.text-input id="email" name="email" type="email" class="mt-1 block w-full"
                         :value="old('email', $user->email)" required autocomplete="username" />
                     <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
@@ -64,7 +66,7 @@
                 <div>
                     {{-- DNI --}}
                     <x-input-label for="DNI" :value="__('Dni')" />
-                    <x-text-input id="DNI" name="DNI" type="text" class="mt-1 block w-full"
+                    <x-custom.text-input id="DNI" name="DNI" type="text" class="mt-1 block w-full"
                         :value="old('DNI', $user->DNI)" required autofocus autocomplete="DNI" />
                     <x-input-error class="mt-2" :messages="$errors->get('DNI')" />
                 </div>
@@ -72,14 +74,15 @@
                 <div>
                     {{-- Telefono --}}
                     <x-input-label for="phone" :value="__('Telefono')" />
-                    <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full"
+                    <x-custom.text-input id="phone" name="phone" type="text" class="mt-1 block w-full"
                         :value="old('phone', $user->phone)" required autofocus autocomplete="phone" />
+                    <x-input-error class="mt-2" :messages="$errors->get('phone')" />
                 </div>
 
                 <div>
                     {{-- Fecha de nacimiento --}}
                     <x-input-label for="birthdate" :value="__('Fecha de nacimiento')" />
-                    <x-text-input id="birthdate" name="birthdate" type="date" class="mt-1 block w-full"
+                    <x-custom.text-input id="birthdate" name="birthdate" type="date" class="mt-1 block w-full"
                         :value="old('birthdate', $user->birthdate)" required autofocus autocomplete="birthdate" />
                     <x-input-error class="mt-2" :messages="$errors->get('birthdate')" />
                 </div>
@@ -105,7 +108,7 @@
                 <div>
                     {{-- town --}}
                     <x-input-label for="town" :value="__('Pueblo/Ciudad')" />
-                    <x-text-input id="town" name="town" type="text" class="mt-1 block w-full"
+                    <x-custom.text-input id="town" name="town" type="text" class="mt-1 block w-full"
                         :value="old('town', $user->town)" required autofocus autocomplete="town" />
                     <x-input-error class="mt-2" :messages="$errors->get('town')" />
                 </div>
@@ -113,7 +116,7 @@
                 <div>
                     {{-- province --}}
                     <x-input-label for="province" :value="__('Provincia')" />
-                    <x-text-input id="province" name="province" type="text" class="mt-1 block w-full"
+                    <x-custom.text-input id="province" name="province" type="text" class="mt-1 block w-full"
                         :value="old('province', $user->province)" required autofocus autocomplete="province" />
                     <x-input-error class="mt-2" :messages="$errors->get('province')" />
                 </div>
@@ -121,13 +124,14 @@
                 <div>
                     {{-- entry_army_date --}}
                     <x-input-label for="entry_army_date" :value="__('Fecha de ingreso al ejercito')" />
-                    <x-text-input id="entry_army_date" name="entry_army_date" type="date" class="mt-1 block w-full"
-                        :value="old('entry_army_date', $user->entry_army_date)" required autofocus autocomplete="entry_army_date" />
+                    <x-custom.text-input id="entry_army_date" name="entry_army_date" type="date"
+                        class="mt-1 block w-full" :value="old('entry_army_date', $user->entry_army_date)" required autofocus
+                        autocomplete="entry_army_date" />
                     <x-input-error class="mt-2" :messages="$errors->get('entry_army_date')" />
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <x-primary-button>{{ __('Guardar') }}</x-primary-button>
+                    <x-custom.primary-button>{{ __('Guardar') }}</x-custom.primary-button>
 
                     @if (session('status') === 'profile-updated')
                         <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"

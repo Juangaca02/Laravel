@@ -37,7 +37,8 @@
                                         <span class="text-red-500 text-xl">*</span>
                                     @enderror
                                 </label>
-                                <select name="identificardor_pais" id="identificardor_pais" class="w-full mt-1 p-2 rounded">
+                                <select name="identificardor_pais" id="identificardor_pais"
+                                    class="w-full mt-1 p-2 rounded">
                                     <option value=""></option>
                                     @foreach ($countries as $country)
                                         <option value="{{ $country->id }}"
@@ -82,11 +83,11 @@
                 </div>
             </div>
         </div>
-        <div class="absolute inset-x-0 bottom-0">
+        {{-- <div class="absolute inset-x-0 bottom-0">
             <div class="absolute inset-0 bg-black opacity-50"></div>
             <div class="relative">
                 @include('layouts.footer')
             </div>
-        </div>
+        </div> --}}
     </div>
 </x-pagina-sin-nada-layout>

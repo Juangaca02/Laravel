@@ -27,19 +27,25 @@ Route::get('/home', function () {
     return view('index');
 })->name('home');
 
-// Ruta para mostrar soldados verificados en los ejercitos y no verificados que pertenecen al ejercito del usuario
-// Route::get('/listSoldier', function () {
-//     return view('listuserarmy');
-// })->middleware(['auth', 'verified'])->name('listSoldier');
-// Tenia puesto range.more16 en la lista de soldados
+// Ruta para redirigir a la vista de inicio cuando se ingresa a una ruta que no existe
+Route::fallback(function () {
+    return redirect()->route('home');
+});
 
-
-// Middleware para usuarios logueados
+// Middleware para usuarios logueados pero no verificados
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::patch('/profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
+});
+
+// Middleware para usuarios logueados y verificados
+Route::middleware(['auth', 'verifiedUser'])->group(function () {
+    // Seguir Misiones
+    Route::post('/missions/{id}/follow', [MissionController::class, 'follow'])->name('missions.follow');
+    Route::post('/missions/{id}/unfollow', [MissionController::class, 'unfollow'])->name('missions.unfollow');
+    Route::get('/missions/followed', [MissionController::class, 'followedMissions'])->name('missions.followed');
 });
 
 // Middleware para usuarios con rango mayor a 5 pero inferior a 11
@@ -60,11 +66,6 @@ Route::middleware(['auth', 'verifiedUser', 'range.more11'])->group(function () {
     Route::post('/storeMission', [MissionController::class, 'store'])->name('storeMission');
     Route::patch('/updateMission', [MissionController::class, 'update'])->name('updateMission');
     Route::delete('/deleteMission/{id}', [MissionController::class, 'deleteMission'])->name('deleteMission');
-
-    // Seguir Misiones
-    Route::post('/missions/{id}/follow', [MissionController::class, 'follow'])->name('missions.follow');
-    Route::post('/missions/{id}/unfollow', [MissionController::class, 'unfollow'])->name('missions.unfollow');
-    Route::get('/missions/followed', [MissionController::class, 'followedMissions'])->name('missions.followed');
 
     // Usuarios
     Route::get('/editUser/{id}', [UserController::class, 'edit'])->name('editUser');
@@ -101,9 +102,5 @@ Route::middleware(['admin', 'auth', 'verifiedUser'])->group(function () {
 Route::get('/prueba', function () {
     return view('');
 })->name('prueba');
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
