@@ -1,4 +1,4 @@
-<x-pagina-sin-nada-layout navbarType="black">
+<x-pagina-sin-nada-layout>
     {{-- <div class="relative min-h-screen bg-cover bg-center bg-fixed"
         style="background-image: url('{{ asset('/storage/Images/images-Missions/listUserMissions.png') }}');"> --}}
     <div class="w-auto h-auto bg-cover bg-center bg-fixed"
@@ -154,50 +154,63 @@
                                                 <span class="text-red-500 text-xl">*</span>
                                             @enderror
                                         </label>
-                                        <input type="text" name="priority" id="priority"
-                                            value="{{ $mission->priority }}" class="form-input mt-1 block">
-
+                                        <select name="priority" id="priority">
+                                            <option value="Alta"
+                                                {{ $mission->priority == 'Alta' ? 'selected' : '' }}>
+                                                Alta
+                                            </option>
+                                            <option value="Media"
+                                                {{ $mission->priority == 'Media' ? 'selected' : '' }}>
+                                                Media
+                                            </option>
+                                            <option value="Baja"
+                                                {{ $mission->priority == 'Baja' ? 'selected' : '' }}>
+                                                Baja
+                                            </option>
+                                        </select>
                                     </td>
                                     <td class="p-2">
                                         <!-- Resultado -->
-                                        <label for="result" class="block text-black font-bold">Resultado
+                                        <label for="result" class="block text-black font-bold">
+                                            Resultado
                                             @error('result')
                                                 <span class="text-red-500 text-xl">*</span>
                                             @enderror
                                         </label>
                                         <select name="result" id="result">
-                                            <option value="En Espera de ejecuion"
-                                                {{ $mission->type == 'En Espera de ejecuion' ? 'selected' : '' }}>
-                                                En Espera de ejecuion
+                                            <option value="En espera de ejecución"
+                                                {{ $mission->result == 'En espera de ejecución' ? 'selected' : '' }}>
+                                                En espera de ejecución
                                             </option>
                                             <option value="En progreso"
-                                                {{ $mission->type == 'En progreso' ? 'selected' : '' }}>
+                                                {{ $mission->result == 'En progreso' ? 'selected' : '' }}>
                                                 En progreso
                                             </option>
                                             <option value="Concluida"
-                                                {{ $mission->type == 'Concluida' ? 'selected' : '' }}>
+                                                {{ $mission->result == 'Concluida' ? 'selected' : '' }}>
                                                 Concluida
                                             </option>
                                         </select>
                                     </td>
                                     <td class="p-2">
                                         <!-- Estado -->
-                                        <label for="status" class="block text-black font-bold">Estado
+                                        <label for="status" class="block text-black font-bold">
+                                            Estado
                                             @error('status')
                                                 <span class="text-red-500 text-xl">*</span>
                                             @enderror
                                         </label>
                                         <select name="status" id="status">
-                                            <option value="En Espera de ejecuion"
-                                                {{ $mission->type == 'En Espera de ejecuion' ? 'selected' : '' }}>
-                                                En Espera de ejecuion
+                                            <option value="En espera de ejecución"
+                                                {{ $mission->status == 'En espera de ejecución' ? 'selected' : '' }}>
+                                                En espera de ejecución
                                             </option>
                                             <option value="En progreso"
-                                                {{ $mission->type == 'En progreso' ? 'selected' : '' }}>
+                                                {{ $mission->status == 'En progreso' ? 'selected' : '' }}>
                                                 En progreso
                                             </option>
                                             <option value="Concluida"
-                                                {{ $mission->type == 'Concluida' ? 'selected' : '' }}>
+                                                {{ $mission->status == 'Concluida' ? 'selected' : '' }}>
                                                 Concluida
                                             </option>
                                         </select>
@@ -206,7 +219,8 @@
                                 <tr>
                                     <td class="p-2">
                                         <!-- Ejército -->
-                                        <label for="army_id" class="block text-black font-bold">Ejército
+                                        <label for="army_id" class="block text-black font-bold">
+                                            Ejército
                                             @error('army_id')
                                                 <span class="text-red-500 text-xl">*</span>
                                             @enderror
@@ -223,7 +237,8 @@
                                     </td>
                                     <td class="p-2">
                                         <!-- Destino -->
-                                        <label for="destination_id" class="block text-black font-bold">Destino
+                                        <label for="destination_id" class="block text-black font-bold">
+                                            Destino
                                             @error('destination_id')
                                                 <span class="text-red-500 text-xl">*</span>
                                             @enderror
@@ -241,19 +256,25 @@
                                     </td>
                                     <td class="p-2">
                                         <!-- Usuario -->
-                                        <label for="user_id" class="block text-black font-bold">Persona a Cargo
+                                        <label for="user_id" class="block text-black font-bold">
+                                            Persona a Cargo
                                             @error('user_id')
                                                 <span class="text-red-500 text-xl">*</span>
                                             @enderror
                                         </label>
                                         <select name="user_id" id="user_id" class="form-select mt-1 block">
-                                            @foreach ($users as $user)
-                                                <option value="{{ $user->id }}"
-                                                    {{ $mission->user_id === $user->id ? 'selected' : '' }}>
-                                                    {{ $user->name }}
-                                                </option>
+                                            <option value="{{ $currentUser->id }}" selected>
+                                                {{ $currentUser->name }}
+                                            </option>
+                                            @foreach ($usersInRange as $user)
+                                                @if ($user->id !== $currentUser->id)
+                                                    <option value="{{ $user->id }}">
+                                                        {{ $user->name }}
+                                                    </option>
+                                                @endif
                                             @endforeach
                                         </select>
+
                                     </td>
                                     <td class="p-2">
                                         <!-- Fecha -->

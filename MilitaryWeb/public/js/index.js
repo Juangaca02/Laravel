@@ -333,3 +333,60 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+
+
+
+// Modal para mostrar a los seguidores de una Mision
+async function showFollowers(missionId) {
+    try {
+        // Hacer una solicitud AJAX para obtener los seguidores de la misión
+        const response = await fetch(`/missions/${missionId}/followers`);
+        const followers = await response.json();
+
+        // Crear el HTML para la lista de seguidores
+        let followersHTML = `
+        <table class="table-auto w-full text-left">
+            <tr>
+                <th class="px-4 py-2">Nombre Completo</th>
+                <th class="px-4 py-2">Email</th>
+                <th class="px-4 py-2">Rango</th>
+            </tr>
+        `;
+
+        followers.forEach(follower => {
+            followersHTML += `
+            <tr>
+                <td class="border px-4 py-2">${follower.name} ${follower.surname}</td>
+                <td class="border px-4 py-2">${follower.email}</td>
+                <td class="border px-4 py-2">${follower.range.name}</td>
+            </tr>
+            `;
+        });
+
+        followersHTML += `</table>`;
+
+        // Mostrar el modal con SweetAlert2
+        Swal.fire({
+            title: "Seguidores de la Misión",
+            html: followersHTML,
+            showCancelButton: false,
+            showConfirmButton: false,
+            showCloseButton: true,
+            confirmButtonText: "Cerrar",
+            width: "800px",
+            padding: "30px",
+            customClass: {
+                container: 'hidden-scroll-bar'
+            },
+        });
+    } catch (error) {
+        console.error("Error fetching followers:", error);
+        Swal.fire({
+            title: "Error",
+            text: "No se pudieron cargar los seguidores.",
+            icon: "error",
+            confirmButtonText: "Cerrar",
+        });
+    }
+}

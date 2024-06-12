@@ -130,6 +130,7 @@
         </x-slot>
 
         <x-slot name="content">
+            <div class="px-4 py-2 text-white "><em>{{ Auth::user()->range->name }}</em></div>
             <x-dropdown-link :href="route('profile.edit')">
                 {{ __('Perfil') }}
             </x-dropdown-link>
@@ -141,7 +142,7 @@
                 <x-dropdown-link :href="route('logout')"
                     onclick="event.preventDefault();
                         this.closest('form').submit();">
-                    {{ __('Log Out') }}
+                    {{ __('Cerrar Sesion') }}
                 </x-dropdown-link>
             </form>
         </x-slot>

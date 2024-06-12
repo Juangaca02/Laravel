@@ -27,8 +27,7 @@ class ListCountries extends Component
     {
 
         $allCountries = Country::where(function ($query) {
-            $query->where('name', 'like', '%' . $this->buscar . '%')
-                ->orWhere('description', 'like', '%' . $this->buscar . '%');
+            $query->where('name', 'like', '%' . $this->buscar . '%');
         });
 
 

@@ -27,7 +27,7 @@ Prioridad->>
 - Baja
 
 Resultado ->
-1- En Espera de ejecuion
+1- En espera de ejecución
 2- En progreso
 3- Concluida
 

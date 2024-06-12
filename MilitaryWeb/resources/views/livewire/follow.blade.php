@@ -1,24 +1,7 @@
-{{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
-
-{{-- <div class="container mx-auto">
-    <h1 class="text-2xl text-center font-bold mb-4">Misiones Seguidas</h1>
-    @foreach ($missions as $mission)
-        <div class="bg-white p-4 rounded-lg shadow">
-            <h2 class="text-xl font-bold">{{ $mission->title }}</h2>
-            <p>{{ $mission->description }}</p>
-            <button wire:click="unfollow({{ $mission->id }})"
-                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                Dejar de Seguir
-            </button>
-        </div>
-    @endforeach
-</div> --}}
-
 <div class="container mx-auto pb-[200px]">
-    {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
     <h1 class="text-2xl text-center text-white font-bold my-8">Misiones Seguidas</h1>
     @if ($missions->count() == 0)
-        <p class="text-center text-red-500 font-bold my-8 text-3xl">No sigues ninguna mision</p>
+        <p class="text-center text-red-500 font-bold my-8 text-3xl">No sigues ninguna misión</p>
     @endif
     @foreach ($missions as $mission)
         <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-8">
@@ -53,12 +36,18 @@
                     <div>
                         <p><strong>Armada:</strong> {{ $mission->army->name }}</p>
                         <p><strong>Destino:</strong> {{ $mission->destination->name }}</p>
-                        <p><strong>Usuario:</strong> {{ $mission->user_id }}</p>
+                        <p><strong>Persona a cargo:</strong> {{ $mission->user->name }}</p>
                     </div>
-                    <button wire:click="unfollow({{ $mission->id }})"
-                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                        Dejar de Seguir
-                    </button>
+                    <div>
+                        <button onclick="showFollowers({{ $mission->id }})"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Ver Seguidores
+                        </button>
+                        <button wire:click="unfollow({{ $mission->id }})"
+                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            Dejar de Seguir
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

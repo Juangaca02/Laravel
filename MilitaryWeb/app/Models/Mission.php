@@ -50,4 +50,12 @@ class Mission extends Model
     {
         return $this->belongsToMany(User::class, 'user_missions');
     }
+
+    /**
+     * 
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

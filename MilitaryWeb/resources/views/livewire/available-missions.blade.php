@@ -51,14 +51,18 @@
                                     <tr>
                                         <td><strong>Estado:</strong></td>
                                         <td>
-                                            @if ($mission->status == 'Pendiente')
-                                                <span class="bg-red-500 rounded-3xl px-2">{{ $mission->status }}</span>
-                                            @elseif ($mission->status == 'En progreso')
-                                                <span
-                                                    class="bg-yellow-500 rounded-3xl px-2">{{ $mission->status }}</span>
-                                            @elseif($mission->status == 'Finalizada')
-                                                <span
-                                                    class="bg-green-500 rounded-3xl px-2">{{ $mission->status }}</span>
+                                            @if ($mission->status == 'En espera de ejecución')
+                                                <span class="bg-yellow-500 rounded-3xl px-2">
+                                                    {{ $mission->status }}
+                                                </span>
+                                            @elseif($mission->status == 'En progreso')
+                                                <span class="bg-orange-500 rounded-3xl px-2">
+                                                    {{ $mission->status }}
+                                                </span>
+                                            @elseif($mission->status == 'Concluida')
+                                                <span class="bg-red-500 rounded-3xl px-2">
+                                                    {{ $mission->status }}
+                                                </span>
                                             @endif
                                         </td>
                                     </tr>

@@ -46,6 +46,8 @@ Route::middleware(['auth', 'verifiedUser'])->group(function () {
     Route::post('/missions/{id}/follow', [MissionController::class, 'follow'])->name('missions.follow');
     Route::post('/missions/{id}/unfollow', [MissionController::class, 'unfollow'])->name('missions.unfollow');
     Route::get('/missions/followed', [MissionController::class, 'followedMissions'])->name('missions.followed');
+    Route::get('/missions/{id}/followers', [MissionController::class, 'getFollowers']);
+
 });
 
 // Middleware para usuarios con rango mayor a 5 pero inferior a 11

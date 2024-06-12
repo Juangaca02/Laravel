@@ -90,7 +90,7 @@ class MissionController extends Controller
 
         $mission->save();
 
-        return redirect()->route('mission.createMission')->with('success', 'Mision Creada Correctamente');
+        return redirect()->route('createMission')->with('success', 'Mision Creada Correctamente');
 
     }
 
@@ -108,17 +108,22 @@ class MissionController extends Controller
     public function edit(string $id)
     {
         $mission = Mission::find($id);
+        $currentUser = $mission->user_id;
+        $currentUser = User::find($currentUser);
 
-        $users = User::all()
-            ->where('army_id', Auth::user()->army_id);
+        $usersInRange = User::where('army_id', Auth::user()->army_id)
+            ->where('range_id', '>', 9)
+            ->where('range_id', '<', Auth::user()->range_id)
+            ->get();
+
 
         $ranges = Range::all();
         $armies = Army::all();
         $destinations = Destination::all();
 
-
-        return view('mission.editMission', compact('mission', 'users', 'destinations', 'armies'));
+        return view('mission.editMission', compact('mission', 'currentUser', 'usersInRange', 'destinations', 'armies'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -130,11 +135,13 @@ class MissionController extends Controller
         if ($request->hasFile('photo')) {
             // Eliminar la foto existente si hay una
             if ($mission->photo) {
-                Storage::delete("public/Images/images-Missions/missions/" . $mission->photo);
+                if ($mission->photo != "barco.jpg") {
+                    Storage::delete("public/Images/images-Missions/missions/" . $mission->photo);
+                }
             }
 
             // Guardar la nueva foto
-            $originalFileName = $request->file('photo')->getClientOriginalName();
+            $originalFileName = time() . '_' . $request->file('photo')->getClientOriginalName();
             $request->file('photo')->storeAs('public/Images/images-Missions/missions/', $originalFileName);
             $mission->photo = $originalFileName;
         }
@@ -196,9 +203,20 @@ class MissionController extends Controller
 
     public function followedMissions()
     {
-        $missions = Auth::user()->missions;
+        // $missions = Auth::user()->missions;
+        // $user = User::find($missions->user_id);
+        // return view('mission.missionsFollowed', compact('missions', 'user'));
+        $missions = Mission::with('users')->get();
         return view('mission.missionsFollowed', compact('missions'));
     }
 
+
+    public function getFollowers($id)
+    {
+        $mission = Mission::findOrFail($id);
+        $followers = $mission->users()->with('range')->get(); // Asegúrate de cargar la relación con el rango
+
+        return response()->json($followers);
+    }
 
 }

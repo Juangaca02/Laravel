@@ -66,6 +66,14 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * 
      */
+    public function mission()
+    {
+        return $this->hasMany(Mission::class, 'user_id');
+    }
+
+    /**
+     * 
+     */
     public function army()
     {
         return $this->belongsTo(Army::class);

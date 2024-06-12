@@ -1,7 +1,0 @@
-section {
-    background-color: black;
-    background-image: linear-gradient(to bottom, rgba(0, 1, 1, 0.5), rgb(34, 57, 72));
-}
-
-
- <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>

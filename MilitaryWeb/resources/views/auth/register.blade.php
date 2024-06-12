@@ -8,7 +8,7 @@
             </a>
         </div> --}}
 
-        <div class="relative flex flex-col sm:flex-row mt-[60px] shadow-md overflow-hidden sm:rounded-lg bg-cover bg-center h-[800px] w-[1280px]"
+        <div class="relative flex flex-col sm:flex-row my-[100px] shadow-md overflow-hidden sm:rounded-lg bg-cover bg-center h-[900px] w-[1400px]"
             style="background-image: url('storage/images/images-Login_Register/register.jpg');">
 
             <!-- Capa oscura -->
@@ -20,187 +20,167 @@
 
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
-                    <table>
-                        <tr>
-                            <div class="grid grid-cols-2 gap-4">
-                                <!-- Name -->
-                                <div class="mt-4">
-                                    <x-input-label for="name" :value="__('Nombre')" />
-                                    <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
-                                        :value="old('name')" autofocus autocomplete="name" />
-                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                                </div>
-                                <!-- Surname -->
-                                <div class="mt-4">
-                                    <x-input-label for="surname" :value="__('Apellidos')" />
-                                    <x-text-input id="surname" class="block mt-1 w-full" type="text" name="surname"
-                                        :value="old('surname')" required autofocus autocomplete="surname" />
-                                    <x-input-error :messages="$errors->get('surname')" class="mt-2" />
-                                </div>
-                            </div>
-                        </tr>
-                        <tr>
-                            <!-- Email Address -->
-                            <div class="mt-4">
-                                <x-input-label for="email" :value="__('Email')" />
-                                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
-                                    :value="old('email')" required autocomplete="username" />
-                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="grid grid-cols-2 gap-4">
-                                <!-- Password -->
-                                <div class="mt-4">
-                                    <x-input-label for="password" :value="__('Contraseña')" />
-                                    <x-text-input id="password" class="block mt-1 w-full" type="password"
-                                        name="password" required autocomplete="new-password" />
-                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                                </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Name -->
+                        <div class="mt-4">
+                            <x-input-label for="name" :value="__('Nombre')" />
+                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
+                                :value="old('name')" required autofocus autocomplete="name" />
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        </div>
+                        <!-- Surname -->
+                        <div class="mt-4">
+                            <x-input-label for="surname" :value="__('Apellidos')" />
+                            <x-text-input id="surname" class="block mt-1 w-full" type="text" name="surname"
+                                :value="old('surname')" required autofocus autocomplete="surname" />
+                            <x-input-error :messages="$errors->get('surname')" class="mt-2" />
+                        </div>
+                    </div>
+                    <!-- Email Address -->
+                    <div class="mt-4">
+                        <x-input-label for="email" :value="__('Email')" />
+                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
+                            :value="old('email')" required autocomplete="username" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Password -->
+                        <div class="mt-4">
+                            <x-input-label for="password" :value="__('Contraseña')" />
+                            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password"
+                                required autocomplete="new-password" />
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        </div>
 
-                                <!-- Confirm Password -->
-                                <div class="mt-4">
-                                    <x-input-label for="password_confirmation" :value="__('Confirmar Contraseña')" />
-                                    <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                                        name="password_confirmation" required autocomplete="new-password" />
-                                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                                </div>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="grid grid-cols-3 gap-4">
-                                <!-- Entry_army_date -->
-                                <div class="mt-4">
-                                    <x-input-label for="entry_army_date" :value="__('Fecha de Entrada al Ejercito')" />
-                                    <x-text-input id="entry_army_date" class="block mt-1 w-full" type="date"
-                                        name="entry_army_date" :value="old('entry_army_date')" required autofocus
-                                        autocomplete="entry_army_date" />
-                                    <x-input-error :messages="$errors->get('entry_army_date')" class="mt-2" />
-                                </div>
-                                <!-- Army_id -->
-                                <div class="mt-4">
-                                    <!-- Campo "Armada" -->
-                                    <x-input-label for="army_id" :value="__('Armada')" />
-                                    <select id="army_id" name="army_id"
-                                        class="block mt-1 w-full border-gray-700 bg-gray-900 text-gray-300 focus:border-indigo-600 focus:ring-indigo-600 rounded-md shadow-sm">
-                                        <option value="" disabled selected>Selecciona una opción</option>
-                                        <option value="2" {{ old('army_id') == '2' ? 'selected' : '' }}>Tierra
-                                        </option>
-                                        <option value="4" {{ old('army_id') == '4' ? 'selected' : '' }}>Aire
-                                        </option>
-                                        <option value="3" {{ old('army_id') == '3' ? 'selected' : '' }}>Naval
-                                        </option>
-                                    </select>
-                                    <x-input-error :messages="$errors->get('army_id')" class="mt-2" />
-                                </div>
-                                {{-- Range_id --}}
-                                <div class="mt-4">
-                                    <x-input-label for="range_id" :value="__('Rango')" />
-                                    <select id="range_id" name="range_id"
-                                        class="block mt-1 w-full border-gray-700 bg-gray-900 text-gray-300 focus:border-indigo-600 focus:ring-indigo-600 rounded-md shadow-sm">
-                                        <option value="" disabled selected>Selecciona un rango</option>
-                                        <option value="2" {{ old('range_id') == '2' ? 'selected' : '' }}>Soldado
-                                        </option>
-                                        <option value="3" {{ old('range_id') == '3' ? 'selected' : '' }}>Cabo
-                                        </option>
-                                        <option value="4" {{ old('range_id') == '4' ? 'selected' : '' }}>Cabo
-                                            primero</option>
-                                        <option value="5" {{ old('range_id') == '5' ? 'selected' : '' }}>Sargento
-                                        </option>
-                                        <option value="6" {{ old('range_id') == '6' ? 'selected' : '' }}>Sargento
-                                            primero</option>
-                                        <option value="7" {{ old('range_id') == '7' ? 'selected' : '' }}>Brigada
-                                        </option>
-                                        <option value="8" {{ old('range_id') == '8' ? 'selected' : '' }}>
-                                            Subteniente</option>
-                                        <option value="9" {{ old('range_id') == '9' ? 'selected' : '' }}>Teniente
-                                        </option>
-                                        <option value="10" {{ old('range_id') == '10' ? 'selected' : '' }}>Capitán
-                                        </option>
-                                        <option value="11" {{ old('range_id') == '11' ? 'selected' : '' }}>
-                                            Comandante</option>
-                                        <option value="12" {{ old('range_id') == '12' ? 'selected' : '' }}>Teniente
-                                            coronel</option>
-                                        <option value="13" {{ old('range_id') == '13' ? 'selected' : '' }}>Coronel
-                                        </option>
-                                        <option value="14" {{ old('range_id') == '14' ? 'selected' : '' }}>General
-                                            de brigada</option>
-                                        <option value="15" {{ old('range_id') == '15' ? 'selected' : '' }}>General
-                                            de división</option>
-                                        <option value="16" {{ old('range_id') == '16' ? 'selected' : '' }}>Teniente
-                                            general</option>
-                                        <option value="17" {{ old('range_id') == '17' ? 'selected' : '' }}>General
-                                            de ejército</option>
-                                    </select>
-                                    <x-input-error :messages="$errors->get('range_id')" class="mt-2" />
-                                </div>
+                        <!-- Confirm Password -->
+                        <div class="mt-4">
+                            <x-input-label for="password_confirmation" :value="__('Confirmar Contraseña')" />
+                            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                                name="password_confirmation" required autocomplete="new-password" />
+                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4">
+                        <!-- Entry_army_date -->
+                        <div class="mt-4">
+                            <x-input-label for="entry_army_date" :value="__('Fecha de Entrada al Ejercito')" />
+                            <x-text-input id="entry_army_date" class="block mt-1 w-full" type="date"
+                                name="entry_army_date" :value="old('entry_army_date')" required autofocus
+                                autocomplete="entry_army_date" />
+                            <x-input-error :messages="$errors->get('entry_army_date')" class="mt-2" />
+                        </div>
+                        <!-- Army_id -->
+                        <div class="mt-4">
+                            <!-- Campo "Armada" -->
+                            <x-input-label for="army_id" :value="__('Armada')" />
+                            <select id="army_id" name="army_id" required
+                                class="block mt-1 w-full border-gray-700 bg-gray-900 text-gray-300 focus:border-indigo-600 focus:ring-indigo-600 rounded-md shadow-sm">
+                                <option value="" disabled selected>Selecciona una Armada</option>
+                                <option value="2" {{ old('army_id') == '2' ? 'selected' : '' }}>Tierra
+                                </option>
+                                <option value="4" {{ old('army_id') == '4' ? 'selected' : '' }}>Aire
+                                </option>
+                                <option value="3" {{ old('army_id') == '3' ? 'selected' : '' }}>Naval
+                                </option>
+                            </select>
+                            <x-input-error :messages="$errors->get('army_id')" class="mt-2" />
+                        </div>
+                        {{-- Range_id --}}
+                        <div class="mt-4">
+                            <x-input-label for="range_id" :value="__('Rango')" />
+                            <select id="range_id" name="range_id" required
+                                class="block mt-1 w-full border-gray-700 bg-gray-900 text-gray-300 focus:border-indigo-600 focus:ring-indigo-600 rounded-md shadow-sm">
+                                <option value="" disabled selected>Selecciona un rango</option>
+                                <option value="2" {{ old('range_id') == '2' ? 'selected' : '' }}>Soldado
+                                </option>
+                                <option value="3" {{ old('range_id') == '3' ? 'selected' : '' }}>Cabo
+                                </option>
+                                <option value="4" {{ old('range_id') == '4' ? 'selected' : '' }}>Cabo
+                                    primero</option>
+                                <option value="5" {{ old('range_id') == '5' ? 'selected' : '' }}>Sargento
+                                </option>
+                                <option value="6" {{ old('range_id') == '6' ? 'selected' : '' }}>Sargento
+                                    primero</option>
+                                <option value="7" {{ old('range_id') == '7' ? 'selected' : '' }}>Brigada
+                                </option>
+                                <option value="8" {{ old('range_id') == '8' ? 'selected' : '' }}>
+                                    Subteniente</option>
+                                <option value="9" {{ old('range_id') == '9' ? 'selected' : '' }}>Teniente
+                                </option>
+                                <option value="10" {{ old('range_id') == '10' ? 'selected' : '' }}>Capitán
+                                </option>
+                                <option value="11" {{ old('range_id') == '11' ? 'selected' : '' }}>
+                                    Comandante</option>
+                                <option value="12" {{ old('range_id') == '12' ? 'selected' : '' }}>Teniente
+                                    coronel</option>
+                                <option value="13" {{ old('range_id') == '13' ? 'selected' : '' }}>Coronel
+                                </option>
+                                <option value="14" {{ old('range_id') == '14' ? 'selected' : '' }}>General
+                                    de brigada</option>
+                                <option value="15" {{ old('range_id') == '15' ? 'selected' : '' }}>General
+                                    de división</option>
+                                <option value="16" {{ old('range_id') == '16' ? 'selected' : '' }}>Teniente
+                                    general</option>
+                            </select>
+                            <x-input-error :messages="$errors->get('range_id')" class="mt-2" />
+                        </div>
+                    </div>
 
-                            </div>
-                        </tr>
-                        <tr>
-                            <td><!-- DNI -->
-                                <div class="mt-4">
-                                    <x-input-label for="DNI" :value="__('Dni')" />
-                                    <x-text-input id="DNI" class="block mt-1 w-full" type="text" name="DNI"
-                                        :value="old('DNI')" required autofocus autocomplete="DNI" />
-                                    <x-input-error :messages="$errors->get('DNI')" class="mt-2" />
-                                </div>
-                            </td>
-                            <td><!-- Phone -->
-                                <div class="mt-4">
-                                    <x-input-label for="phone" :value="__('Telefono')" />
-                                    <x-text-input id="phone" class="block mt-1 w-full" type="text"
-                                        name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
-                                    <x-input-error :messages="$errors->get('phone')" class="mt-2" />
-                                </div>
-                            </td>
-                            <td><!-- birthdate -->
-                                <div class="mt-4">
-                                    <x-input-label for="birthdate" :value="__('Fecha de Nacimiento')" />
-                                    <x-text-input id="birthdate" class="block mt-1 w-full" type="date"
-                                        name="birthdate" :value="old('birthdate')" required autofocus
-                                        autocomplete="birthdate" />
-                                    <x-input-error :messages="$errors->get('birthdate')" class="mt-2" />
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td> <!-- province -->
-                                <div class="mt-4">
-                                    <x-input-label for="province" :value="__('Provincia')" />
-                                    <x-text-input id="province" class="block mt-1 w-full" type="text"
-                                        name="province" :value="old('province')" required autofocus
-                                        autocomplete="province" />
-                                    <x-input-error :messages="$errors->get('province')" class="mt-2" />
-                                </div>
-                            </td>
-                            <td> <!-- Town -->
-                                <div class="mt-4">
-                                    <x-input-label for="town" :value="__('Pueblo/Ciudad')" />
-                                    <x-text-input id="town" class="block mt-1 w-full" type="text"
-                                        name="town" :value="old('town')" required autofocus autocomplete="town" />
-                                    <x-input-error :messages="$errors->get('town')" class="mt-2" />
-                                </div>
-                            </td>
-                            <td><!-- Sex -->
-                                <div class="mt-4">
-                                    <x-input-label for="sex" :value="__('Sexo')" />
-                                    <select id="sex" name="sex"
-                                        class="border-gray-700 bg-gray-900 text-gray-300 focus:border-indigo-600 focus:ring-indigo-600 rounded-md shadow-sm">
-                                        <option value="" disabled selected>Selecciona una opción</option>
-                                        <option value="M" {{ old('sex') == 'M' ? 'selected' : '' }}>Mujer
-                                        </option>
-                                        <option value="H" {{ old('sex') == 'H' ? 'selected' : '' }}>Hombre
-                                        </option>
-                                        <option value="Otro" {{ old('sex') == 'Otro' ? 'selected' : '' }}>Otro
-                                        </option>
-                                    </select>
-                                    <x-input-error :messages="$errors->get('sex')" class="mt-2" />
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-
+                    <div class="grid grid-cols-3 gap-4">
+                        <!-- DNI -->
+                        <div class="mt-4">
+                            <x-input-label for="DNI" :value="__('Dni')" />
+                            <x-text-input id="DNI" class="block mt-1 w-full" type="text" name="DNI"
+                                :value="old('DNI')" required autofocus autocomplete="DNI" />
+                            <x-input-error :messages="$errors->get('DNI')" class="mt-2" />
+                        </div>
+                        <!-- Phone -->
+                        <div class="mt-4">
+                            <x-input-label for="phone" :value="__('Telefono')" />
+                            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone"
+                                :value="old('phone')" required autofocus autocomplete="phone" />
+                            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                        </div>
+                        <!-- birthdate -->
+                        <div class="mt-4">
+                            <x-input-label for="birthdate" :value="__('Fecha de Nacimiento')" />
+                            <x-text-input id="birthdate" class="block mt-1 w-full" type="date" name="birthdate"
+                                :value="old('birthdate')" required autofocus autocomplete="birthdate" />
+                            <x-input-error :messages="$errors->get('birthdate')" class="mt-2" />
+                        </div>
+                        </td>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4">
+                        <!-- province -->
+                        <div class="mt-4">
+                            <x-input-label for="province" :value="__('Provincia')" />
+                            <x-text-input id="province" class="block mt-1 w-full" type="text" name="province"
+                                :value="old('province')" required autofocus autocomplete="province" />
+                            <x-input-error :messages="$errors->get('province')" class="mt-2" />
+                        </div>
+                        <!-- Town -->
+                        <div class="mt-4">
+                            <x-input-label for="town" :value="__('Pueblo/Ciudad')" />
+                            <x-text-input id="town" class="block mt-1 w-full" type="text" name="town"
+                                :value="old('town')" required autofocus autocomplete="town" />
+                            <x-input-error :messages="$errors->get('town')" class="mt-2" />
+                        </div>
+                        <!-- Sex -->
+                        <div class="mt-4">
+                            <x-input-label for="sex" :value="__('Sexo')" />
+                            <select id="sex" name="sex" required
+                                class="border-gray-700 bg-gray-900 text-gray-300 focus:border-indigo-600 focus:ring-indigo-600 rounded-md shadow-sm">
+                                <option value="" disabled selected>Selecciona una opción</option>
+                                <option value="M" {{ old('sex') == 'M' ? 'selected' : '' }}>Mujer
+                                </option>
+                                <option value="H" {{ old('sex') == 'H' ? 'selected' : '' }}>Hombre
+                                </option>
+                                <option value="Otro" {{ old('sex') == 'Otro' ? 'selected' : '' }}>Otro
+                                </option>
+                            </select>
+                            <x-input-error :messages="$errors->get('sex')" class="mt-2" />
+                        </div>
+                    </div>
                     <div class="flex flex-col items-center justify-end mt-4">
                         <button class="buttonLogin w-full">
                             <span class="text">{{ __('Registrarse') }}</span>
