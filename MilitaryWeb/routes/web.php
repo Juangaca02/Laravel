@@ -33,7 +33,8 @@ Route::fallback(function () {
 });
 
 // Middleware para usuarios logueados pero no verificados
-Route::middleware('auth')->group(function () {
+// Route::middleware(['auth', 'password.confirm'])->group(function () {         //Verificacion de Correo
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -41,6 +42,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Middleware para usuarios logueados y verificados
+// Route::middleware(['auth', 'verifiedUser', 'password.confirm', 'verified'])->group(function () {     //Verificacion de Correo
 Route::middleware(['auth', 'verifiedUser'])->group(function () {
     // Seguir Misiones
     Route::post('/missions/{id}/follow', [MissionController::class, 'follow'])->name('missions.follow');
@@ -51,6 +53,7 @@ Route::middleware(['auth', 'verifiedUser'])->group(function () {
 });
 
 // Middleware para usuarios con rango mayor a 5 pero inferior a 11
+// Route::middleware(['auth', 'verifiedUser', 'range.more5', 'password.confirm', 'verified'])->group(function () {      //Verificacion de Correo
 Route::middleware(['auth', 'verifiedUser', 'range.more5'])->group(function () {
     Route::get('/listSoldier', [ArmyController::class, 'index'])->name('listSoldier');
     Route::get('/getUserDetails/{id}', [UserController::class, 'getUserDetails']);
@@ -58,6 +61,7 @@ Route::middleware(['auth', 'verifiedUser', 'range.more5'])->group(function () {
 });
 
 // Middleware para usuarios con rango mayor a 11  ---->>> Añadir validacion de Correo
+// Route::middleware(['auth', 'verifiedUser', 'range.more11', 'password.confirm', 'verified'])->group(function () {     //Verificacion de Correo
 Route::middleware(['auth', 'verifiedUser', 'range.more11'])->group(function () {
 
     // Misiones
@@ -97,12 +101,13 @@ Route::middleware(['auth', 'verifiedUser', 'range.more11'])->group(function () {
 });
 
 // Middleware para Admins
+// Route::middleware(['admin', 'auth', 'verifiedUser', 'password.confirm', 'verified'])->group(function () {        //Verificacion de Correo
 Route::middleware(['admin', 'auth', 'verifiedUser'])->group(function () {
     Route::get('/listSoldierAdmin', [ArmyController::class, 'indexAdmin'])->name('listSoldierAdmin');
 });
 
-Route::get('/prueba', function () {
-    return view('');
-})->name('prueba');
+// Route::get('/prueba', function () {
+//     return view('');
+// })->name('prueba');
 
 require __DIR__ . '/auth.php';

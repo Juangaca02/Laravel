@@ -18,6 +18,7 @@ class Follow extends Component
     {
         Auth::user()->missions()->detach($missionId);
         $this->missions = Auth::user()->missions;
+        return to_route('missions.followed');
     }
 
     public function render()

@@ -89,7 +89,7 @@ async function showUserDetails(userId) {
     </tr>
     <tr>
         <td class="border px-4 py-2"><strong>Imagen</strong></td>
-        <td class="border px-4 py-2"><img src="${data.user.image}" alt="Imagen del usuario" class="w-16 h-16 object-cover"></td>
+        <td class="border px-4 py-2"><img src="storage/Images/imagesUsers/${data.user.profile_photo_path}" alt="Imagen del usuario" class="w-16 h-16 object-cover"></td>
     </tr>
 </table>
     `;
@@ -165,7 +165,7 @@ async function showMissionsDetails(MissionId) {
     </tr>
     <tr>
         <td class="border px-4 py-2"><strong>Foto</strong></td>
-        <td class="border px-4 py-2"><img src="${data.mission.photo}" alt="Imagen de la misión" class="w-16 h-16 object-cover"></td>
+        <td class="border px-4 py-2"><img src="storage/Images/images-Missions/missions/${data.mission.photo}" alt="Imagen de la misión" class="w-20 h-16 object-cover"></td>
     </tr>
     <tr>
         <td class="border px-4 py-2"><strong>Ejército</strong></td>

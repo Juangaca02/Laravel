@@ -7,6 +7,7 @@ use App\Models\Army;
 use App\Models\Range;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -40,18 +41,26 @@ class UserController extends Controller
         $request->validated();
 
         $user = User::find($request->id);
-        $user->name = $request->name;
-        $user->surname = $request->surname;
+        $user->name = $request->nombre;
+        $user->surname = $request->apellidos;
         $user->DNI = $request->DNI;
-        $user->phone = $request->phone;
-        $user->town = $request->town;
-        $user->province = $request->province;
-        $user->birthdate = $request->birthdate;
-        $user->entry_army_date = $request->entry_army_date;
-        $user->sex = $request->sex;
+        $user->phone = $request->telefono;
+        $user->town = $request->ciudad;
+        $user->province = $request->provincia;
+        $user->birthdate = $request->Fecha_de_Nacimiento;
+        $user->entry_army_date = $request->fecha_de_ingreso;
+        $user->sex = $request->sexo;
         $user->range_id = $request->range_id;
+        if ($user->army_id != $request->army_id) {
+            // dd(Auth::user()->missions());
+            $user->missions()->detach();
+        }
         $user->army_id = $request->army_id;
+
         $user->save();
+
+
+
 
         return redirect()->route('editUser', ['id' => $user->id])->with('success', 'Usuario Editado Correctamente');
 

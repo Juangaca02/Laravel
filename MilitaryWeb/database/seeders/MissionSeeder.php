@@ -64,7 +64,7 @@ class MissionSeeder extends Seeder
                 'photo' => 'barco.jpg',
                 'army_id' => 3,
                 'destination_id' => 4,
-                'user_id' => 2,
+                'user_id' => 1,
             ],
             [
                 'title' => 'Misión Marítima en el Cantábrico',
@@ -98,7 +98,7 @@ class MissionSeeder extends Seeder
                 'photo' => 'barco.jpg',
                 'army_id' => 3,
                 'destination_id' => 5,
-                'user_id' => 2,
+                'user_id' => 1,
             ],
             // Misiones de 2024
             [
@@ -115,7 +115,7 @@ class MissionSeeder extends Seeder
                 'photo' => 'barco.jpg',
                 'army_id' => 2,
                 'destination_id' => 7,
-                'user_id' => 1,
+                'user_id' => 2,
             ],
             [
                 'title' => 'Operación Frontera Segura',
@@ -147,7 +147,7 @@ class MissionSeeder extends Seeder
                 'photo' => 'barco.jpg',
                 'army_id' => 2,
                 'destination_id' => 9,
-                'user_id' => 3,
+                'user_id' => 2,
             ],
             [
                 'title' => 'Operación Seguridad Urbana',
@@ -163,7 +163,7 @@ class MissionSeeder extends Seeder
                 'photo' => 'barco.jpg',
                 'army_id' => 2,
                 'destination_id' => 10,
-                'user_id' => 1,
+                'user_id' => 2,
             ],
 
             // Armada (ID: 3)
@@ -181,7 +181,7 @@ class MissionSeeder extends Seeder
                 'photo' => 'barco.jpg',
                 'army_id' => 3,
                 'destination_id' => 9,
-                'user_id' => 2,
+                'user_id' => 1,
             ],
             [
                 'title' => 'Operación Rescate en Altamar',
@@ -197,7 +197,7 @@ class MissionSeeder extends Seeder
                 'photo' => 'barco.jpg',
                 'army_id' => 3,
                 'destination_id' => 8,
-                'user_id' => 3,
+                'user_id' => 1,
             ],
             [
                 'title' => 'Operación Protección de la Pesca',

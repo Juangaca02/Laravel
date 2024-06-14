@@ -43,6 +43,7 @@
                                 </x-slot>
 
                                 <x-slot name="content">
+                                    <div class="px-4 py-2 text-white "><em>{{ Auth::user()->range->name }}</em></div>
                                     <x-dropdown-link :href="route('profile.edit')">
                                         {{ __('Perfil') }}
                                     </x-dropdown-link>
@@ -64,11 +65,12 @@
                 @else
                     <a href="{{ route('login') }}"
                         class="font-semibold text-black font-bold hover:text-yellow-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                        Login</a>
+                        Iniciar Sesion
+                    </a>
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
                             class="ml-4 font-semibold text-black font-bold hover:text-yellow-600 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                            Register
+                            Registrarse
                         </a>
                     @endif
                 @endauth

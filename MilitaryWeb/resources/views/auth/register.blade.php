@@ -63,7 +63,7 @@
                     <div class="grid grid-cols-3 gap-4">
                         <!-- Entry_army_date -->
                         <div class="mt-4">
-                            <x-input-label for="entry_army_date" :value="__('Fecha de Entrada al Ejercito')" />
+                            <x-input-label for="entry_army_date" :value="__('Fecha de Entrada al Ejército')" />
                             <x-text-input id="entry_army_date" class="block mt-1 w-full" type="date"
                                 name="entry_army_date" :value="old('entry_army_date')" required autofocus
                                 autocomplete="entry_army_date" />
@@ -136,7 +136,7 @@
                         </div>
                         <!-- Phone -->
                         <div class="mt-4">
-                            <x-input-label for="phone" :value="__('Telefono')" />
+                            <x-input-label for="phone" :value="__('Teléfono')" />
                             <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone"
                                 :value="old('phone')" required autofocus autocomplete="phone" />
                             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
@@ -187,7 +187,7 @@
                         </button>
                         <a class=" mt-3 hover:underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800"
                             href="{{ route('login') }}">
-                            {{ __('Already registered?') }}
+                            {{ __('Estas registrado?') }}
                         </a>
                     </div>
                 </form>
